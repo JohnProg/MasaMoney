@@ -13,7 +13,7 @@
         <!--Splash View Controller-->
         <scene sceneID="3zs-Hp-Ihd">
             <objects>
-                <viewController storyboardIdentifier="splashViewController" id="KO6-zS-OYG" customClass="SplashViewController" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashViewController" id="KO6-zS-OYG" customClass="SplashViewController" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dxk-jA-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,10 +51,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I6b-u2-7iW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="HBn-QO-a6h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-mI-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538.39999999999998" y="106.59670164917542"/>
+            <point key="canvasLocation" x="-270" y="106"/>
         </scene>
     </scenes>
     <resources>

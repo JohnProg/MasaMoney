@@ -6,4 +6,9 @@
 //  Copyright © 2018 Maria Lopez. All rights reserved.
 //
 
-import Foundation
+struct Account {
+    var id = ""
+    var name = ""
+    var balance = 0.0
+    var income = true  // <- is an income or a spend 
+}

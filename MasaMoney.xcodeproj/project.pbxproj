@@ -7,21 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		860C66272088C54F0095B574 /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860C66262088C54F0095B574 /* MainViewController.storyboard */; };
+		864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537CE209A123C0098A32F /* AccountsViewCell.swift */; };
+		864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864537CF209A123C0098A32F /* AccountsViewCell.xib */; };
+		864537D3209A15BD0098A32F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D2209A15BD0098A32F /* Account.swift */; };
+		864537D5209A1D310098A32F /* AccountsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D4209A1D310098A32F /* AccountsDataSource.swift */; };
+		869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */; };
+		869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */; };
+		869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */; };
+		869D5DE020A74A4700A8F0A8 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */; };
+		869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */; };
+		869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D5DE220A74BFA00A8F0A8 /* Style.swift */; };
+		869F029220873D2400B8D2DE /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F029120873D2400B8D2DE /* SplashViewController.swift */; };
+		869F02CB20877B7900B8D2DE /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */; };
+		869F02CF208784E200B8D2DE /* LogInViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CE208784E200B8D2DE /* LogInViewController.storyboard */; };
+		86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04A37208620DF00EB12FF /* MyFirebase.swift */; };
+		86A04CFA2084C57F00C3CBDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86A04CF92084C57F00C3CBDB /* GoogleService-Info.plist */; };
+		86A04D022084D0CB00C3CBDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04D012084D0CB00C3CBDB /* MainViewController.swift */; };
+		86A04D082084E7F400C3CBDB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04D072084E7F400C3CBDB /* Service.swift */; };
 		86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55320849B88008F7E18 /* AppDelegate.swift */; };
-		86A9D55620849B88008F7E18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* ViewController.swift */; };
-		86A9D55920849B88008F7E18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55720849B88008F7E18 /* Main.storyboard */; };
+		86A9D55620849B88008F7E18 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* LogInViewController.swift */; };
 		86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55A20849B8A008F7E18 /* Assets.xcassets */; };
-		86A9D55E20849B8A008F7E18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55C20849B8A008F7E18 /* LaunchScreen.storyboard */; };
+		A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		860C66262088C54F0095B574 /* MainViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainViewController.storyboard; sourceTree = "<group>"; };
+		864537CE209A123C0098A32F /* AccountsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewCell.swift; sourceTree = "<group>"; };
+		864537CF209A123C0098A32F /* AccountsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewCell.xib; sourceTree = "<group>"; };
+		864537D2209A15BD0098A32F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		864537D4209A1D310098A32F /* AccountsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsDataSource.swift; sourceTree = "<group>"; };
+		869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "MasaMoney/Supporting Files/Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Medium.ttf"; path = "MasaMoney/Supporting Files/Fonts/Lato-Medium.ttf"; sourceTree = SOURCE_ROOT; };
+		869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "MasaMoney/Supporting Files/Fonts/Lato-Light.ttf"; sourceTree = SOURCE_ROOT; };
+		869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Semibold.ttf"; path = "MasaMoney/Supporting Files/Fonts/Lato-Semibold.ttf"; sourceTree = SOURCE_ROOT; };
+		869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Thin.ttf"; path = "MasaMoney/Supporting Files/Fonts/Lato-Thin.ttf"; sourceTree = SOURCE_ROOT; };
+		869D5DE220A74BFA00A8F0A8 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		869F029120873D2400B8D2DE /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
+		869F02CE208784E200B8D2DE /* LogInViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInViewController.storyboard; sourceTree = "<group>"; };
+		86A04A37208620DF00EB12FF /* MyFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
+		86A04CF92084C57F00C3CBDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		86A04D012084D0CB00C3CBDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		86A04D072084E7F400C3CBDB /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		86A9D55020849B88008F7E18 /* MasaMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasaMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A9D55320849B88008F7E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		86A9D55520849B88008F7E18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		86A9D55820849B88008F7E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		86A9D55520849B88008F7E18 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		86A9D55A20849B8A008F7E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		86A9D55D20849B8A008F7E18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A9D55F20849B8A008F7E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasaMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF6FCE7E6BBA08FDACF6015 /* Pods-MasaMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.debug.xcconfig"; sourceTree = "<group>"; };
+		FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +65,144 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53A2EF47767F30472D157F8B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DAF6FCE7E6BBA08FDACF6015 /* Pods-MasaMoney.debug.xcconfig */,
+				FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		864537CD209A11F70098A32F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				864537CE209A123C0098A32F /* AccountsViewCell.swift */,
+				864537CF209A123C0098A32F /* AccountsViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		869F029020873CEF00B8D2DE /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				869F029120873D2400B8D2DE /* SplashViewController.swift */,
+				869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		86A04CF52084C4E900C3CBDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86A9D55F20849B8A008F7E18 /* Info.plist */,
+				86A04CF92084C57F00C3CBDB /* GoogleService-Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86A04CF62084C50100C3CBDB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				86A9D55320849B88008F7E18 /* AppDelegate.swift */,
+				86A04CFB2084C5C300C3CBDB /* Models */,
+				86A04CFC2084C5CE00C3CBDB /* Scenes */,
+				86A04CFD2084C5E200C3CBDB /* Repository */,
+				86A04CFE2084C5ED00C3CBDB /* Support */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		86A04CF72084C50A00C3CBDB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				86A9D55A20849B8A008F7E18 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		86A04CF82084C52600C3CBDB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		86A04CFB2084C5C300C3CBDB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				864537D2209A15BD0098A32F /* Account.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86A04CFC2084C5CE00C3CBDB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				869F029020873CEF00B8D2DE /* Splash */,
+				86A04CFF2084C62500C3CBDB /* Login */,
+				86A04D002084D09900C3CBDB /* Main */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		86A04CFD2084C5E200C3CBDB /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		86A04CFE2084C5ED00C3CBDB /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				86A04A37208620DF00EB12FF /* MyFirebase.swift */,
+				869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */,
+				869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */,
+				869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */,
+				869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */,
+				869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */,
+				86A04D072084E7F400C3CBDB /* Service.swift */,
+				869D5DE220A74BFA00A8F0A8 /* Style.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		86A04CFF2084C62500C3CBDB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				86A9D55520849B88008F7E18 /* LogInViewController.swift */,
+				869F02CE208784E200B8D2DE /* LogInViewController.storyboard */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		86A04D002084D09900C3CBDB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				864537CD209A11F70098A32F /* Cells */,
+				864537D4209A1D310098A32F /* AccountsDataSource.swift */,
+				86A04D012084D0CB00C3CBDB /* MainViewController.swift */,
+				860C66262088C54F0095B574 /* MainViewController.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		86A9D54720849B88008F7E18 = {
 			isa = PBXGroup;
 			children = (
 				86A9D55220849B88008F7E18 /* MasaMoney */,
+				86A04CF82084C52600C3CBDB /* Frameworks */,
 				86A9D55120849B88008F7E18 /* Products */,
+				53A2EF47767F30472D157F8B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +217,9 @@
 		86A9D55220849B88008F7E18 /* MasaMoney */ = {
 			isa = PBXGroup;
 			children = (
-				86A9D55320849B88008F7E18 /* AppDelegate.swift */,
-				86A9D55520849B88008F7E18 /* ViewController.swift */,
-				86A9D55720849B88008F7E18 /* Main.storyboard */,
-				86A9D55A20849B8A008F7E18 /* Assets.xcassets */,
-				86A9D55C20849B8A008F7E18 /* LaunchScreen.storyboard */,
-				86A9D55F20849B8A008F7E18 /* Info.plist */,
+				86A04CF62084C50100C3CBDB /* Classes */,
+				86A04CF72084C50A00C3CBDB /* Resources */,
+				86A04CF52084C4E900C3CBDB /* Supporting Files */,
 			);
 			path = MasaMoney;
 			sourceTree = "<group>";
@@ -71,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86A9D56220849B8A008F7E18 /* Build configuration list for PBXNativeTarget "MasaMoney" */;
 			buildPhases = (
+				45EF85B6E73DE86A1BE85D79 /* [CP] Check Pods Manifest.lock */,
 				86A9D54C20849B88008F7E18 /* Sources */,
 				86A9D54D20849B88008F7E18 /* Frameworks */,
 				86A9D54E20849B88008F7E18 /* Resources */,
+				A14082D682B140391F5C126E /* [CP] Embed Pods Frameworks */,
+				5DCA53918B76AF2E3C61F699 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,44 +285,122 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A9D55E20849B8A008F7E18 /* LaunchScreen.storyboard in Resources */,
+				869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */,
+				869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */,
+				86A04CFA2084C57F00C3CBDB /* GoogleService-Info.plist in Resources */,
+				869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */,
+				869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */,
 				86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */,
-				86A9D55920849B88008F7E18 /* Main.storyboard in Resources */,
+				869D5DE020A74A4700A8F0A8 /* Lato-Semibold.ttf in Resources */,
+				869F02CF208784E200B8D2DE /* LogInViewController.storyboard in Resources */,
+				860C66272088C54F0095B574 /* MainViewController.storyboard in Resources */,
+				864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */,
+				869F02CB20877B7900B8D2DE /* SplashViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45EF85B6E73DE86A1BE85D79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MasaMoney-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DCA53918B76AF2E3C61F699 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A14082D682B140391F5C126E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86A9D54C20849B88008F7E18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A9D55620849B88008F7E18 /* ViewController.swift in Sources */,
+				86A04D022084D0CB00C3CBDB /* MainViewController.swift in Sources */,
+				86A04D082084E7F400C3CBDB /* Service.swift in Sources */,
+				86A9D55620849B88008F7E18 /* LogInViewController.swift in Sources */,
+				864537D5209A1D310098A32F /* AccountsDataSource.swift in Sources */,
+				86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */,
+				869F029220873D2400B8D2DE /* SplashViewController.swift in Sources */,
+				864537D3209A15BD0098A32F /* Account.swift in Sources */,
+				864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */,
 				86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */,
+				869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		86A9D55720849B88008F7E18 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86A9D55820849B88008F7E18 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		86A9D55C20849B8A008F7E18 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86A9D55D20849B8A008F7E18 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		86A9D56020849B8A008F7E18 /* Debug */ = {
@@ -278,11 +519,12 @@
 		};
 		86A9D56320849B8A008F7E18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DAF6FCE7E6BBA08FDACF6015 /* Pods-MasaMoney.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3SZ9W3PW38;
-				INFOPLIST_FILE = MasaMoney/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MasaMoney/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -290,17 +532,18 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Masa.MasaMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		86A9D56420849B8A008F7E18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3SZ9W3PW38;
-				INFOPLIST_FILE = MasaMoney/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MasaMoney/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,7 +551,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Masa.MasaMoney;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

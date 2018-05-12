@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  firebasebasicauth
+//  SplashViewController.swift
+//  MasaMoney
 //
-//  Created by Mark Hoath on 22/1/18.
-//  Copyright © 2018 Swift Almanac. All rights reserved.
+//  Created by Maria Lopez on 16/04/2018.
+//  Copyright © 2018 Maria Lopez. All rights reserved.
 //
 
 import UIKit
@@ -12,9 +12,17 @@ class SplashViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        view.backgroundColor = .blue
+        // Check for a CURRENT LOGIN TOKEN
+        MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
+            if let isLogedIn = isLogedIn, isLogedIn {
+                let vc = MainViewController.storyboardInstance()
+                self.present(vc, animated: true, completion: nil)
+            } else {
+                let vc = LogInViewController.storyboardInstance()
+                self.present(vc, animated: true, completion: nil)
+            }
+        })
     }
 
 }
