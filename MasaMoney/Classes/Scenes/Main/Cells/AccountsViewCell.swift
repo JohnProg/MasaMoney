@@ -15,14 +15,22 @@ protocol AccountViewInput: class {
 class AccountsViewCell: UICollectionViewCell {
 
   
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!{
+        didSet {
+            titleLabel.font = UIFont.fdkLatoMedium12Font()
+        }
+    }
     @IBOutlet weak var icon: UIButton!
-    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!{
+        didSet {
+            balanceLabel.font = UIFont.fdkLatoMedium12Font()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        icon.setImage(#imageLiteral(resourceName: "rich"), for: .normal)
+        icon.setImage(#imageLiteral(resourceName: "money-1"), for: .normal)
     }
     
     override func prepareForReuse() {

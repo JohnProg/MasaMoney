@@ -19,6 +19,28 @@ class MainViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var titleBalanceLabel: UILabel!{
+        didSet {
+            titleBalanceLabel.font = UIFont.fdkLatoBold14Font()
+        }
+    }
+    @IBOutlet weak var balanceLabel: UILabel!{
+        didSet {
+            balanceLabel.font = UIFont.fdkLatoBold12Font()
+        }
+    }
+    
+    @IBOutlet weak var titleSpentLabel: UILabel!{
+        didSet {
+            titleSpentLabel.font = UIFont.fdkLatoBold14Font()
+        }
+    }
+    @IBOutlet weak var spentLabel: UILabel!{
+        didSet {
+            spentLabel.font = UIFont.fdkLatoBold12Font()
+        }
+    }
+    
     //MARKS: Properties
 //    var accountsDataSource = AccountsDataSource(accounts: [])
     var accountsArray: [Account] = []

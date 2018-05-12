@@ -54,14 +54,14 @@
                                                         <rect key="frame" x="100" y="0.0" width="75" height="75"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7t3-KZ-LpG">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="51.5"/>
-                                                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="14"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="59"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="630-BU-BVA">
-                                                                <rect key="frame" x="0.0" y="51.5" width="75" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="17"/>
+                                                                <rect key="frame" x="0.0" y="59" width="75" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -71,22 +71,22 @@
                                                         <rect key="frame" x="200" y="0.0" width="75" height="75"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Spent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLb-Gj-EiX">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="51.5"/>
-                                                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="14"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="59"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw8-5H-Rsh">
-                                                                <rect key="frame" x="0.0" y="51.5" width="75" height="23.5"/>
-                                                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="17"/>
+                                                                <rect key="frame" x="0.0" y="59" width="75" height="16"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr6-JG-czB">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dr6-JG-czB">
                                                         <rect key="frame" x="300" y="0.0" width="75" height="75"/>
-                                                        <state key="normal" title="Button"/>
+                                                        <state key="normal" image="getMoney"/>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -155,7 +155,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="4p9-6z-h5E"/>
                     <connections>
+                        <outlet property="balanceLabel" destination="630-BU-BVA" id="8WE-Ku-e5L"/>
                         <outlet property="collectionView" destination="FIg-RB-qM9" id="Red-Uy-6T4"/>
+                        <outlet property="spentLabel" destination="sw8-5H-Rsh" id="IfS-4z-aNz"/>
+                        <outlet property="titleBalanceLabel" destination="7t3-KZ-LpG" id="bWK-xY-jZP"/>
+                        <outlet property="titleSpentLabel" destination="sLb-Gj-EiX" id="drT-hg-n2Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSh-bz-AjY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,4 +167,7 @@
             <point key="canvasLocation" x="72.799999999999997" y="123.68815592203899"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="getMoney" width="64" height="64"/>
+    </resources>
 </document>
