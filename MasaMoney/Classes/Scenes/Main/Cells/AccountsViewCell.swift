@@ -17,13 +17,20 @@ class AccountsViewCell: UICollectionViewCell {
   
     @IBOutlet weak var titleLabel: UILabel!{
         didSet {
-            titleLabel.font = UIFont.fdkLatoMedium12Font()
+            titleLabel.font = UIFont.mmLatoSemiBoldFont(size: 14)
+            titleLabel.textColor = UIColor.mmGrey
         }
     }
-    @IBOutlet weak var icon: UIButton!
+    @IBOutlet weak var icon: UIButton!{
+        didSet {
+            icon.backgroundColor = UIColor.mmOrangeish
+        }
+    }
+    
     @IBOutlet weak var balanceLabel: UILabel!{
         didSet {
-            balanceLabel.font = UIFont.fdkLatoMedium12Font()
+            balanceLabel.font = UIFont.mmLatoSemiBoldFont(size: 14)
+            balanceLabel.textColor = UIColor.mmOrangeish
         }
     }
     
@@ -44,14 +51,5 @@ class AccountsViewCell: UICollectionViewCell {
     func configure(account: Account) {
         titleLabel.text = account.name
         balanceLabel.text = String(account.balance)
-        print(account.name)
-        print(account.balance)
     }
 }
-
-//extension AccountsViewCell: AccountViewInput {
-//    func configure(account: Account) {
-//        titleLabel.text = title
-//        balanceLabel.text = String(balance)
-//    }
-//}

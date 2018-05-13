@@ -22,33 +22,45 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKx-yV-DpJ">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IoV-O2-1MN">
-                                <rect key="frame" x="0.0" y="0.0" width="100" height="125"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRC-Jl-RY4">
-                                        <rect key="frame" x="31" y="0.0" width="38.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kI9-4C-EVJ">
-                                        <rect key="frame" x="35" y="20.5" width="30" height="84"/>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W34-a8-a7v">
-                                        <rect key="frame" x="29" y="104.5" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kI9-4C-EVJ" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                <rect key="frame" x="20" y="32.5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="3hw-rC-dWT"/>
+                                    <constraint firstAttribute="height" constant="60" id="HsI-U4-4XN"/>
+                                </constraints>
+                                <color key="tintColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="30"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backColor">
+                                        <color key="value" red="0.94117647058823528" green="0.84866259515204812" blue="0.026763626756077758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W34-a8-a7v">
+                                <rect key="frame" x="29" y="99.5" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRC-Jl-RY4">
+                                <rect key="frame" x="31" y="5" width="39" height="20.5"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IoV-O2-1MN" secondAttribute="bottom" id="8JA-gd-Icm"/>
-                            <constraint firstAttribute="trailing" secondItem="IoV-O2-1MN" secondAttribute="trailing" id="K9u-oR-KXg"/>
-                            <constraint firstItem="IoV-O2-1MN" firstAttribute="top" secondItem="VKx-yV-DpJ" secondAttribute="top" id="Uuv-Pc-IsV"/>
-                            <constraint firstItem="IoV-O2-1MN" firstAttribute="leading" secondItem="VKx-yV-DpJ" secondAttribute="leading" id="fKa-Q3-Uaw"/>
+                            <constraint firstItem="kI9-4C-EVJ" firstAttribute="centerY" secondItem="VKx-yV-DpJ" secondAttribute="centerY" id="7F1-9A-kk1"/>
+                            <constraint firstItem="W34-a8-a7v" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="Cte-8d-WHN"/>
+                            <constraint firstAttribute="bottom" secondItem="W34-a8-a7v" secondAttribute="bottom" constant="5" id="Fgw-V9-2gC"/>
+                            <constraint firstItem="TRC-Jl-RY4" firstAttribute="top" secondItem="VKx-yV-DpJ" secondAttribute="top" constant="5" id="JVx-jT-tvK"/>
+                            <constraint firstItem="TRC-Jl-RY4" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="RTD-f8-uIp"/>
+                            <constraint firstItem="kI9-4C-EVJ" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="dyy-om-7C3"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -65,6 +77,7 @@
                 <outlet property="icon" destination="kI9-4C-EVJ" id="LSm-jj-ugx"/>
                 <outlet property="titleLabel" destination="TRC-Jl-RY4" id="IZa-KB-JG9"/>
             </connections>
+            <point key="canvasLocation" x="33" y="90.5"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -11,6 +11,9 @@
 		864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537CE209A123C0098A32F /* AccountsViewCell.swift */; };
 		864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864537CF209A123C0098A32F /* AccountsViewCell.xib */; };
 		864537D3209A15BD0098A32F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D2209A15BD0098A32F /* Account.swift */; };
+		866DF24920A84A3500A5B101 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24820A84A3500A5B101 /* RoundButton.swift */; };
+		866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */; };
+		866DF24D20A885B700A5B101 /* IncomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24C20A885B700A5B101 /* IncomeDataSource.swift */; };
 		869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */; };
 		869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */; };
 		869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */; };
@@ -35,6 +38,9 @@
 		864537CE209A123C0098A32F /* AccountsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewCell.swift; sourceTree = "<group>"; };
 		864537CF209A123C0098A32F /* AccountsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewCell.xib; sourceTree = "<group>"; };
 		864537D2209A15BD0098A32F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		866DF24820A84A3500A5B101 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeDataSource.swift; sourceTree = "<group>"; };
+		866DF24C20A885B700A5B101 /* IncomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeDataSource.swift; sourceTree = "<group>"; };
 		869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Medium.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Medium.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Light.ttf"; sourceTree = SOURCE_ROOT; };
@@ -178,6 +184,7 @@
 				86A04A37208620DF00EB12FF /* MyFirebase.swift */,
 				86A04D072084E7F400C3CBDB /* Service.swift */,
 				869D5DE220A74BFA00A8F0A8 /* Style.swift */,
+				866DF24820A84A3500A5B101 /* RoundButton.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -197,6 +204,8 @@
 				864537CD209A11F70098A32F /* Cells */,
 				86A04D012084D0CB00C3CBDB /* MainViewController.swift */,
 				860C66262088C54F0095B574 /* MainViewController.storyboard */,
+				866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */,
+				866DF24C20A885B700A5B101 /* IncomeDataSource.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -397,7 +406,10 @@
 				86A9D55620849B88008F7E18 /* LogInViewController.swift in Sources */,
 				86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */,
 				869F029220873D2400B8D2DE /* SplashViewController.swift in Sources */,
+				866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */,
 				864537D3209A15BD0098A32F /* Account.swift in Sources */,
+				866DF24D20A885B700A5B101 /* IncomeDataSource.swift in Sources */,
+				866DF24920A84A3500A5B101 /* RoundButton.swift in Sources */,
 				864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */,
 				86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */,
 				869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */,

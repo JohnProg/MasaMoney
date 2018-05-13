@@ -19,31 +19,45 @@ class MainViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var outcomeCollectionView: UICollectionView!
+    
     @IBOutlet weak var titleBalanceLabel: UILabel!{
         didSet {
-            titleBalanceLabel.font = UIFont.fdkLatoBold14Font()
+            titleBalanceLabel.font = UIFont.mmLatoBoldFont(size: 16)
+            titleBalanceLabel.textColor = UIColor.mmGrey
         }
     }
     @IBOutlet weak var balanceLabel: UILabel!{
         didSet {
-            balanceLabel.font = UIFont.fdkLatoBold12Font()
+            balanceLabel.font = UIFont.mmLatoBoldFont(size: 14)
+            balanceLabel.textColor = UIColor.mmGrey
         }
     }
     
     @IBOutlet weak var titleSpentLabel: UILabel!{
         didSet {
-            titleSpentLabel.font = UIFont.fdkLatoBold14Font()
+            titleSpentLabel.font = UIFont.mmLatoBoldFont(size: 16)
+            titleSpentLabel.textColor = UIColor.mmGrey
         }
     }
     @IBOutlet weak var spentLabel: UILabel!{
         didSet {
-            spentLabel.font = UIFont.fdkLatoBold12Font()
+            spentLabel.font = UIFont.mmLatoBoldFont(size: 14)
+            spentLabel.textColor = UIColor.mmGrey
+        }
+    }
+    @IBOutlet weak var summarySeparator: UIView!{
+        didSet {
+            summarySeparator.backgroundColor = UIColor.black.withAlphaComponent(0.1)
+            
         }
     }
     
     //MARKS: Properties
-//    var accountsDataSource = AccountsDataSource(accounts: [])
-    var accountsArray: [Account] = []
+    var incomeArray: [Account] = []
+    var array: [Account] = []
+//    var badgesDataSource = ProgressBadgesDataSource(badges: [])
+    var outcomeArray = OutcomeDataSource(outcomeArray: [])
     
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -55,6 +69,7 @@ class MainViewController: UIViewController{
     //MARKS: Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         loadData()
     }
@@ -62,7 +77,10 @@ class MainViewController: UIViewController{
     func setupCollectionView(){
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
         collectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
-        collectionView.isScrollEnabled = true
+        outcomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
+        
+        outcomeCollectionView.delegate = outcomeArray
+        outcomeCollectionView.dataSource = outcomeArray
         
     }
     
@@ -88,9 +106,15 @@ class MainViewController: UIViewController{
                         account.balance = balance!
                         account.income = income!
 
-                        print(account)
-                        self.accountsArray.append(account)
+                        if account.income == true {
+                            self.incomeArray.append(account)
+                        }else{
+                            self.array.append(account)
+                            self.outcomeArray.outcomeArray = self.array
+                        }
+                        
                         self.collectionView.reloadData()
+                        self.outcomeCollectionView.reloadData()
                         print("reloadData")
                     })
                     
@@ -117,7 +141,7 @@ class MainViewController: UIViewController{
 extension MainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return accountsArray.count
+        return incomeArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -125,7 +149,7 @@ extension MainViewController: UICollectionViewDataSource {
             else {
                 return UICollectionViewCell()
         }
-        cell.configure(account: accountsArray[indexPath.item])
+        cell.configure(account: incomeArray[indexPath.item])
         
         return cell
     }
