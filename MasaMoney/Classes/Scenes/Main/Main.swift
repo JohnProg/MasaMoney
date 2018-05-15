@@ -17,7 +17,7 @@ class MainViewController: UIViewController{
     
     //MARKS: Outlets
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var incomeCollectionView: UICollectionView!
     
     @IBOutlet weak var outcomeCollectionView: UICollectionView!
     
@@ -55,9 +55,9 @@ class MainViewController: UIViewController{
     
     //MARKS: Properties
     var incomeArray: [Account] = []
-    var array: [Account] = []
-//    var badgesDataSource = ProgressBadgesDataSource(badges: [])
-    var outcomeArray = OutcomeDataSource(outcomeArray: [])
+    var incomeDataSource = IncomeDataSource(incomeArray: [])
+    var outcomeArray: [Account] = []
+    var outcomeDataSource = OutcomeDataSource(outcomeArray: [])
     
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -76,11 +76,14 @@ class MainViewController: UIViewController{
     
     func setupCollectionView(){
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
-        collectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
+        incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         outcomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         
-        outcomeCollectionView.delegate = outcomeArray
-        outcomeCollectionView.dataSource = outcomeArray
+        outcomeCollectionView.delegate = outcomeDataSource
+        outcomeCollectionView.dataSource = outcomeDataSource
+        
+        incomeCollectionView.delegate = incomeDataSource
+        incomeCollectionView.dataSource = incomeDataSource
         
     }
     
@@ -108,14 +111,14 @@ class MainViewController: UIViewController{
 
                         if account.income == true {
                             self.incomeArray.append(account)
+                            self.incomeDataSource.incomeArray = self.incomeArray
                         }else{
-                            self.array.append(account)
-                            self.outcomeArray.outcomeArray = self.array
+                            self.outcomeArray.append(account)
+                            self.outcomeDataSource.outcomeArray = self.outcomeArray
                         }
                         
-                        self.collectionView.reloadData()
+                        self.incomeCollectionView.reloadData()
                         self.outcomeCollectionView.reloadData()
-                        print("reloadData")
                     })
                     
                 }
@@ -135,22 +138,9 @@ class MainViewController: UIViewController{
         let vc = LogInViewController.storyboardInstance()
         self.present(vc, animated: true, completion: nil)
     }
-    
-}
-
-extension MainViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return incomeArray.count
+    @IBAction func addIncomeButton(_ sender: Any) {
+        let vc: AddIncomeViewController = UIStoryboard(.AddIncomeViewController).instantiateViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AccountsViewCell", for: indexPath) as? AccountsViewCell
-            else {
-                return UICollectionViewCell()
-        }
-        cell.configure(account: incomeArray[indexPath.item])
-        
-        return cell
-    }
 }
