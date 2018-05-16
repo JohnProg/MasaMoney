@@ -12,14 +12,9 @@ import UIKit
 extension UIStoryboard {
     
     enum Storyboard: String {
-        case Login
-        case Onboarding
         case Main
-        case Progress
-        case Workout
-        case Profile
-        case Booking
-        case Friends
+        case AddIncome
+        case IncomeCalculator
     }
     
     convenience init(_ storyboard: Storyboard, bundle: Bundle? = nil) {

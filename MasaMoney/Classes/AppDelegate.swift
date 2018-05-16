@@ -18,22 +18,23 @@ import FirebaseAuth
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    var name: String? = ""
-    var email: String? = ""
-    var profileImage: UIImage?
-    
-    let hud: JGProgressHUD = {
-        let hud = JGProgressHUD(style: .light)
-        hud.interactionType = .blockAllTouches
-        return hud
-    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Firebase
         FirebaseApp.configure()
+        
+        //Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        //NavigationController
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let nav1 = UINavigationController()
+        let mainView = Splash(nibName: nil, bundle: nil) 
+        nav1.viewControllers = [mainView]
+        self.window!.rootViewController = nav1
+        self.window?.makeKeyAndVisible()
         
         return true
     }

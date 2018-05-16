@@ -11,27 +11,47 @@ import UIKit
 class AddIncome: UIViewController{
     
     internal var screenName = "AddIncome"
-
+    
+    // MARK: -Outlets
+    @IBOutlet weak var chooseIncomeLabel: UILabel!{
+        didSet {
+            chooseIncomeLabel.font = UIFont.mmLatoBoldFont(size: 16)
+            chooseIncomeLabel.textColor = UIColor.darkGray
+            chooseIncomeLabel.text = "Select account where money comes to"
+        }
+    }
+    
+    @IBOutlet weak var incomeCollectionView: UICollectionView!
+    
+    // MARK: -Properties
+    var incomeArray: [Account] = []
+    var incomeDataSource = IncomeDataSource(incomeArray: [])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationItem.title = "Choose income account"
+        setupCollectionView()
+        incomeDataSource.incomeArray = self.incomeArray
+        incomeCollectionView.reloadData()
     }
     
+    func setupCollectionView(){
+        let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
+        incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
+ 
+        incomeDataSource.incomeDatasourceDelegate = self 
+        incomeCollectionView.delegate = incomeDataSource
+        incomeCollectionView.dataSource = incomeDataSource
+        
+    }    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension AddIncome: IncomeDataSourceOutput {
+    func didSelectAccountAtIndexPath(_ indexPath: IndexPath) {
+        
+        let vc = IncomeCalculator.storyboardInstance()
+        vc.account = incomeDataSource.incomeArray[indexPath.row]
+        self.present(vc, animated: true, completion: nil)
     }
-    */
-
 }

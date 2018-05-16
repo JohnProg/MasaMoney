@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SplashViewController: UIViewController {
+class Splash: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,10 +16,12 @@ class SplashViewController: UIViewController {
         // Check for a CURRENT LOGIN TOKEN
         MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
             if let isLogedIn = isLogedIn, isLogedIn {
-                let vc = MainViewController.storyboardInstance()
-                self.present(vc, animated: true, completion: nil)
+//                let vc = Main.storyboardInstance()
+//                self.present(vc, animated: true, completion: nil)
+                let vc: Main = UIStoryboard(.Main).instantiateViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
             } else {
-                let vc = LogInViewController.storyboardInstance()
+                let vc = Login.storyboardInstance()
                 self.present(vc, animated: true, completion: nil)
             }
         })

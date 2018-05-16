@@ -10,26 +10,46 @@ import UIKit
 
 class IncomeCalculator: UIViewController {
 
+    // MARK: -Outlets
+    @IBOutlet weak var incomeTitleLabel: UILabel!{
+        didSet {
+            incomeTitleLabel.font = UIFont.mmLatoBoldFont(size: 16)
+            incomeTitleLabel.textColor = UIColor.mmGrey
+        }
+    }
+    @IBOutlet weak var incomeNameLabel: UILabel!{
+        didSet {
+            incomeNameLabel.font = UIFont.mmLatoBoldFont(size: 16)
+            incomeNameLabel.textColor = UIColor.mmGrey
+            incomeNameLabel.text = account.name
+        }
+    }
+    
+    @IBOutlet weak var amountLabel: UILabel!
+    
+    @IBOutlet var buttonCollection: [RoundButton]!
+    
+    
+    
+    // MARK: -Properties
+    var account = Account()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        for button in buttonCollection {
+            button.backColor = UIColor.mmGrey
+            button.tintColor = UIColor.white
+            button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
+//            button.widthAnchor.constraint(equalToConstant: 90.0).isActive = true
+//            button.heightAnchor.constraint(equalToConstant: 90.0).isActive = true
+            button.cornerRadius = 45
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    static func storyboardInstance() -> IncomeCalculator {
+        let storyboard = UIStoryboard(name: "AddIncome", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "IncomeCalculator") as! IncomeCalculator
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -16,7 +16,7 @@ import FacebookLogin
 import FirebaseStorage
 import FirebaseDatabase
 
-class LogInViewController: UIViewController{
+class Login: UIViewController{
     
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -106,9 +106,10 @@ class LogInViewController: UIViewController{
                     //If everything was fetched, save the data in firebase
                     MyFirebase.shared.saveUserIntoFirebaseDatabase(name: self.name!, email: self.email!, profileImage: self.profileImage!, loggedIn: false, completion: { isLogedIn in
                         if let isLogedIn = isLogedIn, isLogedIn {
-                            self.performSegue(withIdentifier: "goToMain", sender: self)
+                            let vc = Main.storyboardInstance()
+                            self.present(vc, animated: true, completion: nil)
                         } else {
-                            let vc = LogInViewController.storyboardInstance()
+                            let vc = Login.storyboardInstance()
                             self.present(vc, animated: true, completion: nil)
                         }
                     })
@@ -124,9 +125,9 @@ class LogInViewController: UIViewController{
         graphRequestConnection.start()
     }
     
-    static func storyboardInstance() -> LogInViewController {
-        let storyboard = UIStoryboard(name: "LogInViewController", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInViewController
+    static func storyboardInstance() -> Login {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "Login") as! Login
     }
 
 }

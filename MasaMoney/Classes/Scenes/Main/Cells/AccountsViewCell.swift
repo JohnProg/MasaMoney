@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol AccountViewInput: class {
-    func configure(_ title: String, balance: Double)
-}
-
 class AccountsViewCell: UICollectionViewCell {
 
   
@@ -23,6 +19,7 @@ class AccountsViewCell: UICollectionViewCell {
     }
     @IBOutlet weak var icon: UIButton!{
         didSet {
+            icon.isUserInteractionEnabled = false
             icon.backgroundColor = UIColor.mmOrangeish
         }
     }
@@ -51,5 +48,9 @@ class AccountsViewCell: UICollectionViewCell {
     func configure(account: Account) {
         titleLabel.text = account.name
         balanceLabel.text = String(account.balance)
+        if account.income == false {
+            icon.backgroundColor = UIColor.mmGreenish
+            balanceLabel.textColor = UIColor.mmGreenish
+        }
     }
 }

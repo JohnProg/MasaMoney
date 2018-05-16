@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Splash View Controller-->
+        <!--Splash-->
         <scene sceneID="3zs-Hp-Ihd">
             <objects>
-                <viewController storyboardIdentifier="SplashViewController" id="KO6-zS-OYG" customClass="SplashViewController" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Splash" id="KO6-zS-OYG" customClass="Splash" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dxk-jA-2OF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

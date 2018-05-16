@@ -8,13 +8,13 @@
 
 import UIKit
 
-//protocol OutcomeDataSourceOutput: class {
-//    func didSelectBadgeAtIndexPath(_ indexPath: IndexPath)
-//}
+protocol IncomeDataSourceOutput: class {
+    func didSelectAccountAtIndexPath(_ indexPath: IndexPath)
+}
 
 class IncomeDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //    weak var badgeDatasourceDelegate: ProgressBadgesDataSourceOutput?
+    weak var incomeDatasourceDelegate: IncomeDataSourceOutput?
     
     var incomeArray: [Account] = []
     
@@ -36,9 +36,10 @@ class IncomeDataSource: NSObject, UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        badgeDatasourceDelegate?.didSelectBadgeAtIndexPath(indexPath)
-    //    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        incomeDatasourceDelegate?.didSelectAccountAtIndexPath(indexPath)
+    }
 }
+
 
 

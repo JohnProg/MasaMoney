@@ -13,7 +13,7 @@ import LBTAComponents
 import JGProgressHUD
 import GoogleSignIn
 
-class MainViewController: UIViewController{
+class Main: UIViewController{
     
     //MARKS: Outlets
     
@@ -54,6 +54,7 @@ class MainViewController: UIViewController{
     }
     
     //MARKS: Properties
+    
     var incomeArray: [Account] = []
     var incomeDataSource = IncomeDataSource(incomeArray: [])
     var outcomeArray: [Account] = []
@@ -72,6 +73,20 @@ class MainViewController: UIViewController{
         
         setupCollectionView()
         loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Show the navigation bar on other view controllers
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func setupCollectionView(){
@@ -126,20 +141,22 @@ class MainViewController: UIViewController{
         })
     }
     
-    static func storyboardInstance() -> MainViewController {
-        let storyboard = UIStoryboard(name: "MainViewController", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
+    static func storyboardInstance() -> Main {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        return storyboard.instantiateViewController(withIdentifier: "Main") as! Main
     }
     
     // MARK: Actions
     
     @IBAction func logOutButton(_ sender: Any) {
         try! Auth.auth().signOut()
-        let vc = LogInViewController.storyboardInstance()
+        let vc = Login.storyboardInstance()
         self.present(vc, animated: true, completion: nil)
     }
+    
     @IBAction func addIncomeButton(_ sender: Any) {
-        let vc: AddIncomeViewController = UIStoryboard(.AddIncomeViewController).instantiateViewController()
+        let vc: AddIncome = UIStoryboard(.AddIncome).instantiateViewController()
+        vc.incomeArray = incomeArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

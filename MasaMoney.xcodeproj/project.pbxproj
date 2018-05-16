@@ -7,58 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		860C66272088C54F0095B574 /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860C66262088C54F0095B574 /* MainViewController.storyboard */; };
+		860C66272088C54F0095B574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860C66262088C54F0095B574 /* Main.storyboard */; };
 		864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537CE209A123C0098A32F /* AccountsViewCell.swift */; };
 		864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864537CF209A123C0098A32F /* AccountsViewCell.xib */; };
 		864537D3209A15BD0098A32F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D2209A15BD0098A32F /* Account.swift */; };
 		866DF24920A84A3500A5B101 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24820A84A3500A5B101 /* RoundButton.swift */; };
 		866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */; };
 		866DF24D20A885B700A5B101 /* IncomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF24C20A885B700A5B101 /* IncomeDataSource.swift */; };
+		866DF25220A8944C00A5B101 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF25120A8944C00A5B101 /* AddIncome.swift */; };
+		866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF25320A8956D00A5B101 /* StoryboardExtension.swift */; };
+		866DF25620A8965B00A5B101 /* AddIncome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866DF25520A8965B00A5B101 /* AddIncome.storyboard */; };
 		869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */; };
 		869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */; };
 		869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */; };
 		869D5DE020A74A4700A8F0A8 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */; };
 		869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */; };
 		869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D5DE220A74BFA00A8F0A8 /* Style.swift */; };
-		869F029220873D2400B8D2DE /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F029120873D2400B8D2DE /* SplashViewController.swift */; };
-		869F02CB20877B7900B8D2DE /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */; };
-		869F02CF208784E200B8D2DE /* LogInViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CE208784E200B8D2DE /* LogInViewController.storyboard */; };
+		869F029220873D2400B8D2DE /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F029120873D2400B8D2DE /* Splash.swift */; };
+		869F02CB20877B7900B8D2DE /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CA20877B7900B8D2DE /* Splash.storyboard */; };
+		869F02CF208784E200B8D2DE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CE208784E200B8D2DE /* Login.storyboard */; };
 		86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04A37208620DF00EB12FF /* MyFirebase.swift */; };
 		86A04CFA2084C57F00C3CBDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86A04CF92084C57F00C3CBDB /* GoogleService-Info.plist */; };
-		86A04D022084D0CB00C3CBDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04D012084D0CB00C3CBDB /* MainViewController.swift */; };
+		86A04D022084D0CB00C3CBDB /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04D012084D0CB00C3CBDB /* Main.swift */; };
 		86A04D082084E7F400C3CBDB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A04D072084E7F400C3CBDB /* Service.swift */; };
 		86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55320849B88008F7E18 /* AppDelegate.swift */; };
-		86A9D55620849B88008F7E18 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* LogInViewController.swift */; };
+		86A9D55620849B88008F7E18 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* Login.swift */; };
 		86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55A20849B8A008F7E18 /* Assets.xcassets */; };
+		86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */; };
 		A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		860C66262088C54F0095B574 /* MainViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainViewController.storyboard; sourceTree = "<group>"; };
+		860C66262088C54F0095B574 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		864537CE209A123C0098A32F /* AccountsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewCell.swift; sourceTree = "<group>"; };
 		864537CF209A123C0098A32F /* AccountsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewCell.xib; sourceTree = "<group>"; };
 		864537D2209A15BD0098A32F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		866DF24820A84A3500A5B101 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeDataSource.swift; sourceTree = "<group>"; };
 		866DF24C20A885B700A5B101 /* IncomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeDataSource.swift; sourceTree = "<group>"; };
+		866DF25120A8944C00A5B101 /* AddIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
+		866DF25320A8956D00A5B101 /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
+		866DF25520A8965B00A5B101 /* AddIncome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddIncome.storyboard; sourceTree = "<group>"; };
 		869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Medium.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Medium.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Semibold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Semibold.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Thin.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Thin.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DE220A74BFA00A8F0A8 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		869F029120873D2400B8D2DE /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
-		869F02CE208784E200B8D2DE /* LogInViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInViewController.storyboard; sourceTree = "<group>"; };
+		869F029120873D2400B8D2DE /* Splash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
+		869F02CA20877B7900B8D2DE /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		869F02CE208784E200B8D2DE /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		86A04A37208620DF00EB12FF /* MyFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFirebase.swift; sourceTree = "<group>"; };
 		86A04CF92084C57F00C3CBDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		86A04D012084D0CB00C3CBDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		86A04D012084D0CB00C3CBDB /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		86A04D072084E7F400C3CBDB /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		86A9D55020849B88008F7E18 /* MasaMoney.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasaMoney.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A9D55320849B88008F7E18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		86A9D55520849B88008F7E18 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		86A9D55520849B88008F7E18 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		86A9D55A20849B8A008F7E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A9D55F20849B8A008F7E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCalculator.swift; sourceTree = "<group>"; };
 		BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasaMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6FCE7E6BBA08FDACF6015 /* Pods-MasaMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +102,26 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		866DF24E20A8936700A5B101 /* AddIncome */ = {
+			isa = PBXGroup;
+			children = (
+				866DF25120A8944C00A5B101 /* AddIncome.swift */,
+				86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */,
+			);
+			path = AddIncome;
+			sourceTree = "<group>";
+		};
+		866DF25720A8976A00A5B101 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				869F02CA20877B7900B8D2DE /* Splash.storyboard */,
+				869F02CE208784E200B8D2DE /* Login.storyboard */,
+				860C66262088C54F0095B574 /* Main.storyboard */,
+				866DF25520A8965B00A5B101 /* AddIncome.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		869D5DE420A74ECA00A8F0A8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,15 +132,6 @@
 				869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		869F029020873CEF00B8D2DE /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				869F029120873D2400B8D2DE /* SplashViewController.swift */,
-				869F02CA20877B7900B8D2DE /* SplashViewController.storyboard */,
-			);
-			path = Splash;
 			sourceTree = "<group>";
 		};
 		86A04CF52084C4E900C3CBDB /* Supporting Files */ = {
@@ -130,7 +149,6 @@
 				86A9D55320849B88008F7E18 /* AppDelegate.swift */,
 				86A04CFB2084C5C300C3CBDB /* Models */,
 				86A04CFC2084C5CE00C3CBDB /* Scenes */,
-				86A04CFD2084C5E200C3CBDB /* Repository */,
 				86A04CFE2084C5ED00C3CBDB /* Support */,
 			);
 			path = Classes;
@@ -163,18 +181,12 @@
 		86A04CFC2084C5CE00C3CBDB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				869F029020873CEF00B8D2DE /* Splash */,
+				866DF25720A8976A00A5B101 /* Storyboards */,
 				86A04CFF2084C62500C3CBDB /* Login */,
 				86A04D002084D09900C3CBDB /* Main */,
+				866DF24E20A8936700A5B101 /* AddIncome */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		86A04CFD2084C5E200C3CBDB /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		86A04CFE2084C5ED00C3CBDB /* Support */ = {
@@ -185,6 +197,7 @@
 				86A04D072084E7F400C3CBDB /* Service.swift */,
 				869D5DE220A74BFA00A8F0A8 /* Style.swift */,
 				866DF24820A84A3500A5B101 /* RoundButton.swift */,
+				866DF25320A8956D00A5B101 /* StoryboardExtension.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -192,8 +205,8 @@
 		86A04CFF2084C62500C3CBDB /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				86A9D55520849B88008F7E18 /* LogInViewController.swift */,
-				869F02CE208784E200B8D2DE /* LogInViewController.storyboard */,
+				869F029120873D2400B8D2DE /* Splash.swift */,
+				86A9D55520849B88008F7E18 /* Login.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -202,8 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				864537CD209A11F70098A32F /* Cells */,
-				86A04D012084D0CB00C3CBDB /* MainViewController.swift */,
-				860C66262088C54F0095B574 /* MainViewController.storyboard */,
+				86A04D012084D0CB00C3CBDB /* Main.swift */,
 				866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */,
 				866DF24C20A885B700A5B101 /* IncomeDataSource.swift */,
 			);
@@ -303,13 +315,14 @@
 				869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */,
 				86A04CFA2084C57F00C3CBDB /* GoogleService-Info.plist in Resources */,
 				869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */,
+				866DF25620A8965B00A5B101 /* AddIncome.storyboard in Resources */,
 				869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */,
 				86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */,
 				869D5DE020A74A4700A8F0A8 /* Lato-Semibold.ttf in Resources */,
-				869F02CF208784E200B8D2DE /* LogInViewController.storyboard in Resources */,
-				860C66272088C54F0095B574 /* MainViewController.storyboard in Resources */,
+				869F02CF208784E200B8D2DE /* Login.storyboard in Resources */,
+				860C66272088C54F0095B574 /* Main.storyboard in Resources */,
 				864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */,
-				869F02CB20877B7900B8D2DE /* SplashViewController.storyboard in Resources */,
+				869F02CB20877B7900B8D2DE /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,13 +414,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A04D022084D0CB00C3CBDB /* MainViewController.swift in Sources */,
+				86A04D022084D0CB00C3CBDB /* Main.swift in Sources */,
+				86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */,
+				866DF25220A8944C00A5B101 /* AddIncome.swift in Sources */,
 				86A04D082084E7F400C3CBDB /* Service.swift in Sources */,
-				86A9D55620849B88008F7E18 /* LogInViewController.swift in Sources */,
+				86A9D55620849B88008F7E18 /* Login.swift in Sources */,
 				86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */,
-				869F029220873D2400B8D2DE /* SplashViewController.swift in Sources */,
+				869F029220873D2400B8D2DE /* Splash.swift in Sources */,
 				866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */,
 				864537D3209A15BD0098A32F /* Account.swift in Sources */,
+				866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */,
 				866DF24D20A885B700A5B101 /* IncomeDataSource.swift in Sources */,
 				866DF24920A84A3500A5B101 /* RoundButton.swift in Sources */,
 				864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */,

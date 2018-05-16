@@ -9,30 +9,372 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Medium.ttf">
+            <string>Lato-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Add Income View Controller-->
+        <!--Add Income-->
         <scene sceneID="CED-9h-38y">
             <objects>
-                <viewController storyboardIdentifier="AddIncomeViewController" id="Xeo-nY-iU0" customClass="AddIncomeViewController" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddIncome" id="Xeo-nY-iU0" customClass="AddIncome" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HlH-Jo-YGs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOU ARE SPECIAL" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="St5-8X-ygv">
-                                <rect key="frame" x="-15" y="158" width="405" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tc-C0-el5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-oo-HSK">
+                                        <rect key="frame" x="166" y="20" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P12-ud-1h1">
+                                        <rect key="frame" x="20" y="61" width="335" height="566"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yFS-gu-z6O">
+                                            <size key="itemSize" width="100" height="125"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Xeo-nY-iU0" id="eal-wh-c7w"/>
+                                            <outlet property="delegate" destination="Xeo-nY-iU0" id="gu8-G5-VyD"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="P12-ud-1h1" firstAttribute="top" secondItem="ar4-oo-HSK" secondAttribute="bottom" constant="20" id="3q1-s5-p5G"/>
+                                    <constraint firstAttribute="bottom" secondItem="P12-ud-1h1" secondAttribute="bottom" constant="20" id="Eu8-A7-nvm"/>
+                                    <constraint firstAttribute="trailing" secondItem="P12-ud-1h1" secondAttribute="trailing" constant="20" id="EzS-Fh-unl"/>
+                                    <constraint firstItem="P12-ud-1h1" firstAttribute="leading" secondItem="8tc-C0-el5" secondAttribute="leading" constant="20" id="RzB-wo-T4v"/>
+                                    <constraint firstItem="ar4-oo-HSK" firstAttribute="centerX" secondItem="8tc-C0-el5" secondAttribute="centerX" id="VBh-24-lHQ"/>
+                                    <constraint firstItem="ar4-oo-HSK" firstAttribute="top" secondItem="8tc-C0-el5" secondAttribute="top" constant="20" id="mnu-lO-J17"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8tc-C0-el5" firstAttribute="leading" secondItem="eg0-tq-Fh8" secondAttribute="leading" id="N3w-JG-zZN"/>
+                            <constraint firstItem="8tc-C0-el5" firstAttribute="top" secondItem="eg0-tq-Fh8" secondAttribute="top" id="PO8-KO-ZLN"/>
+                            <constraint firstItem="eg0-tq-Fh8" firstAttribute="bottom" secondItem="8tc-C0-el5" secondAttribute="bottom" id="bT9-Ds-tNw"/>
+                            <constraint firstItem="eg0-tq-Fh8" firstAttribute="trailing" secondItem="8tc-C0-el5" secondAttribute="trailing" id="dV7-LV-ax5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="eg0-tq-Fh8"/>
                     </view>
+                    <connections>
+                        <outlet property="chooseIncomeLabel" destination="ar4-oo-HSK" id="i2z-6Q-AwV"/>
+                        <outlet property="incomeCollectionView" destination="P12-ud-1h1" id="lNv-oe-PWT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="18K-eo-oK0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="899" y="127"/>
         </scene>
+        <!--IncomeCalculator-->
+        <scene sceneID="Ibg-Ai-Grs">
+            <objects>
+                <viewController storyboardIdentifier="IncomeCalculator" title="IncomeCalculator" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WJ-vd-MIJ" userLabel="IncomeCalculator" customClass="IncomeCalculator" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wiy-g2-TPL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdS-m4-gkT">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87h-HY-KdH" userLabel="TopBarView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-fn-glz">
+                                                <rect key="frame" x="20" y="0.0" width="335" height="76.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-bS-CD7">
+                                                        <rect key="frame" x="0.0" y="22" width="32" height="32.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32.5" id="BAw-P5-7eg"/>
+                                                            <constraint firstAttribute="width" constant="32" id="JxL-NR-njh"/>
+                                                        </constraints>
+                                                        <state key="normal" image="cancel"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income received:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="971-3o-A73">
+                                                        <rect key="frame" x="57" y="28" width="127" height="20.5"/>
+                                                        <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewe-W5-KSa">
+                                                        <rect key="frame" x="204" y="28" width="42" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dd-C6-aQn">
+                                                        <rect key="frame" x="290" y="18.5" width="45" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="4ga-Nk-HK5"/>
+                                                            <constraint firstAttribute="height" constant="40" id="69p-IF-uHU"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="X6l-da-vfe"/>
+                                                            <constraint firstAttribute="width" constant="45" id="ovG-GU-qOV"/>
+                                                        </constraints>
+                                                        <state key="normal" image="ok"/>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="971-3o-A73" firstAttribute="top" secondItem="Ewe-W5-KSa" secondAttribute="top" id="OWq-go-Lwu"/>
+                                                    <constraint firstItem="971-3o-A73" firstAttribute="top" secondItem="ouN-fn-glz" secondAttribute="top" constant="28" id="sbi-rC-dtl"/>
+                                                    <constraint firstItem="aqW-bS-CD7" firstAttribute="top" secondItem="ouN-fn-glz" secondAttribute="top" constant="22" id="vg1-Va-v7C"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ouN-fn-glz" secondAttribute="trailing" constant="20" id="MQf-u9-HJN"/>
+                                            <constraint firstItem="ouN-fn-glz" firstAttribute="top" secondItem="87h-HY-KdH" secondAttribute="top" id="VtU-LI-IyC"/>
+                                            <constraint firstAttribute="height" constant="77" id="jDH-RC-iUz"/>
+                                            <constraint firstItem="ouN-fn-glz" firstAttribute="leading" secondItem="87h-HY-KdH" secondAttribute="leading" constant="20" id="pcu-WL-hK7"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiU-Kh-s9X" userLabel="BottomView">
+                                        <rect key="frame" x="0.0" y="77" width="375" height="570"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-5C-iKX">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="570"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNz-MO-w92">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-S1-Hsk">
+                                                                <rect key="frame" x="25" y="5" width="325" height="80"/>
+                                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="80" id="ZgR-PX-VKJ"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="bj4-S1-Hsk" firstAttribute="leading" secondItem="LNz-MO-w92" secondAttribute="leading" constant="25" id="MwE-ea-RJ0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="bj4-S1-Hsk" secondAttribute="trailing" constant="25" id="RyZ-pd-ktQ"/>
+                                                            <constraint firstItem="bj4-S1-Hsk" firstAttribute="centerY" secondItem="LNz-MO-w92" secondAttribute="centerY" id="cao-Gp-qiV"/>
+                                                            <constraint firstAttribute="height" constant="90" id="wHj-1M-u9y"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ai-jO-Hie">
+                                                        <rect key="frame" x="0.0" y="90" width="375" height="390"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="F9x-6v-To0">
+                                                                <rect key="frame" x="37.5" y="20" width="300" height="405"/>
+                                                                <subviews>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-qr-Ui2">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="90"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-DT-X7b" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="eM0-ya-LXt"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="fJO-94-dgm"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="1"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQx-bK-KDG" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="RfD-GL-fru"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="VVK-aA-JqA"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="2"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA2-xv-abp" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="90" id="eYg-UB-cQh"/>
+                                                                                    <constraint firstAttribute="width" constant="90" id="xdD-Vm-VMN"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="3"/>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FX8-D6-ARP">
+                                                                        <rect key="frame" x="0.0" y="105" width="300" height="90"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-iv-lrt" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="9qe-1f-Xm0"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="MZd-bV-01d"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="4"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-EM-IpL" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="Cer-n7-c3V"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="H8X-UX-MXT"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="5"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bi9-5c-nf1" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="90" id="BLm-Zh-XV3"/>
+                                                                                    <constraint firstAttribute="width" constant="90" id="b5e-U6-d1s"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="6"/>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Uf1-Oq-nUP">
+                                                                        <rect key="frame" x="0.0" y="210" width="300" height="90"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcb-cv-Zvp" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="9sA-Ea-JUU"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="fDJ-aU-0Ly"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="7"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-Wz-7r3" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="FkR-dk-C2z"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="hOB-Th-Ta1"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="8"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3C-39-Kfu" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="90" id="KBj-sk-veg"/>
+                                                                                    <constraint firstAttribute="width" constant="90" id="eAh-so-FA0"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="9"/>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="CDe-QU-9a9">
+                                                                        <rect key="frame" x="0.0" y="315" width="300" height="90"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzx-Og-9T1" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="90" id="CD5-T6-P6W"/>
+                                                                                    <constraint firstAttribute="width" constant="90" id="XmC-jY-5NP"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title=","/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7I-W7-bkm" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="0Bf-dK-Cm4"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="Tuf-L4-dTS"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="0"/>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ9-h8-ibF" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
+                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="90" id="0by-CO-uhj"/>
+                                                                                    <constraint firstAttribute="height" constant="90" id="IoP-hC-U5T"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="&lt;"/>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="F9x-6v-To0" firstAttribute="centerX" secondItem="0Ai-jO-Hie" secondAttribute="centerX" id="jaW-2s-7cj"/>
+                                                            <constraint firstItem="F9x-6v-To0" firstAttribute="top" secondItem="0Ai-jO-Hie" secondAttribute="top" constant="20" id="wp2-Mj-2i0"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="59L-3j-U82">
+                                                        <rect key="frame" x="0.0" y="480" width="375" height="90"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="90" id="tEb-P5-2g8"/>
+                                                        </constraints>
+                                                        <date key="date" timeIntervalSinceReferenceDate="548086744.13112795">
+                                                            <!--2018-05-15 14:19:04 +0000-->
+                                                        </date>
+                                                    </datePicker>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="LNz-MO-w92" firstAttribute="leading" secondItem="bnf-5C-iKX" secondAttribute="leading" id="DHv-Df-9gf"/>
+                                                    <constraint firstItem="0Ai-jO-Hie" firstAttribute="leading" secondItem="bnf-5C-iKX" secondAttribute="leading" id="QGi-HT-t0j"/>
+                                                    <constraint firstItem="59L-3j-U82" firstAttribute="top" secondItem="0Ai-jO-Hie" secondAttribute="bottom" id="bA7-LK-SH3"/>
+                                                    <constraint firstItem="LNz-MO-w92" firstAttribute="top" secondItem="bnf-5C-iKX" secondAttribute="top" id="mE0-ad-aOl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0Ai-jO-Hie" secondAttribute="trailing" id="p8C-gL-ZhQ"/>
+                                                    <constraint firstItem="0Ai-jO-Hie" firstAttribute="top" secondItem="LNz-MO-w92" secondAttribute="bottom" id="skA-04-xgQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LNz-MO-w92" secondAttribute="trailing" id="tPO-da-XQ6"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="bnf-5C-iKX" firstAttribute="top" secondItem="fiU-Kh-s9X" secondAttribute="top" id="0DK-rm-gpc"/>
+                                            <constraint firstItem="bnf-5C-iKX" firstAttribute="leading" secondItem="fiU-Kh-s9X" secondAttribute="leading" id="MPf-Ea-foq"/>
+                                            <constraint firstItem="59L-3j-U82" firstAttribute="width" secondItem="fiU-Kh-s9X" secondAttribute="width" id="UUh-4p-tZD"/>
+                                            <constraint firstAttribute="bottom" secondItem="bnf-5C-iKX" secondAttribute="bottom" id="Vlv-zn-jbe"/>
+                                            <constraint firstAttribute="trailing" secondItem="bnf-5C-iKX" secondAttribute="trailing" id="zn4-ml-TW2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="87h-HY-KdH" firstAttribute="width" secondItem="OdS-m4-gkT" secondAttribute="width" id="00L-KW-iLg"/>
+                                    <constraint firstItem="87h-HY-KdH" firstAttribute="leading" secondItem="fiU-Kh-s9X" secondAttribute="leading" id="OPT-pB-U7H"/>
+                                    <constraint firstItem="fiU-Kh-s9X" firstAttribute="leading" secondItem="OdS-m4-gkT" secondAttribute="leading" id="iVx-8R-K3R"/>
+                                    <constraint firstAttribute="bottom" secondItem="fiU-Kh-s9X" secondAttribute="bottom" id="jQH-qk-jMh"/>
+                                    <constraint firstAttribute="trailing" secondItem="fiU-Kh-s9X" secondAttribute="trailing" id="oi4-Af-9cE"/>
+                                    <constraint firstItem="fiU-Kh-s9X" firstAttribute="top" secondItem="87h-HY-KdH" secondAttribute="bottom" id="op9-yo-7mf"/>
+                                    <constraint firstItem="87h-HY-KdH" firstAttribute="top" secondItem="OdS-m4-gkT" secondAttribute="top" id="w41-Lk-Xha"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OdS-m4-gkT" firstAttribute="top" secondItem="gqg-8w-eo4" secondAttribute="top" id="dYO-e9-TRT"/>
+                            <constraint firstItem="gqg-8w-eo4" firstAttribute="trailing" secondItem="OdS-m4-gkT" secondAttribute="trailing" id="dx7-uj-E5T"/>
+                            <constraint firstItem="gqg-8w-eo4" firstAttribute="bottom" secondItem="OdS-m4-gkT" secondAttribute="bottom" id="ewh-Ow-9tw"/>
+                            <constraint firstItem="OdS-m4-gkT" firstAttribute="leading" secondItem="gqg-8w-eo4" secondAttribute="leading" id="ohI-fh-iPV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gqg-8w-eo4"/>
+                    </view>
+                    <connections>
+                        <outlet property="amountLabel" destination="bj4-S1-Hsk" id="TYf-VH-D9v"/>
+                        <outlet property="incomeNameLabel" destination="Ewe-W5-KSa" id="XEw-IW-Yho"/>
+                        <outlet property="incomeTitleLabel" destination="971-3o-A73" id="GTi-3O-MPe"/>
+                        <outletCollection property="buttonCollection" destination="HA2-xv-abp" collectionClass="NSMutableArray" id="fT4-nf-jE3"/>
+                        <outletCollection property="buttonCollection" destination="VQx-bK-KDG" collectionClass="NSMutableArray" id="lNJ-vx-Dtk"/>
+                        <outletCollection property="buttonCollection" destination="x1S-DT-X7b" collectionClass="NSMutableArray" id="hj9-bL-hDl"/>
+                        <outletCollection property="buttonCollection" destination="CIu-iv-lrt" collectionClass="NSMutableArray" id="Xtw-Bl-cwx"/>
+                        <outletCollection property="buttonCollection" destination="Nit-EM-IpL" collectionClass="NSMutableArray" id="9pm-eI-7Pm"/>
+                        <outletCollection property="buttonCollection" destination="bi9-5c-nf1" collectionClass="NSMutableArray" id="8ZV-jq-dRe"/>
+                        <outletCollection property="buttonCollection" destination="tcb-cv-Zvp" collectionClass="NSMutableArray" id="ec0-K6-sQQ"/>
+                        <outletCollection property="buttonCollection" destination="5dh-Wz-7r3" collectionClass="NSMutableArray" id="4sq-2v-eJ7"/>
+                        <outletCollection property="buttonCollection" destination="w3C-39-Kfu" collectionClass="NSMutableArray" id="OZ7-03-Iju"/>
+                        <outletCollection property="buttonCollection" destination="Bzx-Og-9T1" collectionClass="NSMutableArray" id="cjX-tv-JjV"/>
+                        <outletCollection property="buttonCollection" destination="Q7I-W7-bkm" collectionClass="NSMutableArray" id="Oyr-tE-EkV"/>
+                        <outletCollection property="buttonCollection" destination="hJ9-h8-ibF" collectionClass="NSMutableArray" id="UGa-IQ-KS1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9CP-Ar-fBE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="125.4872563718141"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="cancel" width="64" height="64"/>
+        <image name="ok" width="64" height="64"/>
+    </resources>
 </document>
