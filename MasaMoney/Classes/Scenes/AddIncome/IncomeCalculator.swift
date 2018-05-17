@@ -25,7 +25,13 @@ class IncomeCalculator: UIViewController {
         }
     }
     
-    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!{
+        didSet {
+            amountLabel.font = UIFont.mmLatoBoldFont(size: 35)
+            amountLabel.textColor = UIColor.white
+            amountLabel.textAlignment = .right
+        }
+    }
     
     @IBOutlet var buttonCollection: [RoundButton]!
     
@@ -33,6 +39,7 @@ class IncomeCalculator: UIViewController {
     
     // MARK: -Properties
     var account = Account()
+    var numberOnScreen : Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +48,6 @@ class IncomeCalculator: UIViewController {
             button.backColor = UIColor.mmGrey
             button.tintColor = UIColor.white
             button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
-//            button.widthAnchor.constraint(equalToConstant: 90.0).isActive = true
-//            button.heightAnchor.constraint(equalToConstant: 90.0).isActive = true
             button.cornerRadius = 45
         }
     }
@@ -51,5 +56,31 @@ class IncomeCalculator: UIViewController {
         let storyboard = UIStoryboard(name: "AddIncome", bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: "IncomeCalculator") as! IncomeCalculator
     }
-
+    
+    // MARK: - Actions
+    @IBAction func numberTapped(_ sender: RoundButton) {
+        guard let text = amountLabel.text else {return}
+        if text.contains("."){
+            if text.components(separatedBy: ".")[1].count != 2{
+                amountLabel.text = amountLabel.text! + String(sender.tag-1)
+                numberOnScreen = Double(amountLabel.text!)!
+            }
+        }else{
+            amountLabel.text = amountLabel.text! + String(sender.tag-1)
+            numberOnScreen = Double(amountLabel.text!)!
+        }
+    }
+        
+    
+    
+    
+    @IBAction func functionTapped(_ sender: RoundButton) {
+        guard let text = amountLabel.text else {return}
+        if sender.tag == 11 && text.contains(".") == false{
+            amountLabel.text = text + "."
+            numberOnScreen = Double(text)!
+        }else if sender.tag == 12 {
+            amountLabel.text?.removeLast()
+        }
+    }
 }
