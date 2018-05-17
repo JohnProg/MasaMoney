@@ -27,15 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
-        //NavigationController
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let nav1 = UINavigationController()
-        let mainView = Splash(nibName: nil, bundle: nil) 
-        nav1.viewControllers = [mainView]
-        self.window!.rootViewController = nav1
-        self.window?.makeKeyAndVisible()
-        
+                
         return true
     }
     

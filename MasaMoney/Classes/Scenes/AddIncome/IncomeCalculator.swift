@@ -35,6 +35,7 @@ class IncomeCalculator: UIViewController {
     
     @IBOutlet var buttonCollection: [RoundButton]!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     
     // MARK: -Properties
@@ -83,4 +84,17 @@ class IncomeCalculator: UIViewController {
             amountLabel.text?.removeLast()
         }
     }
+    @IBAction func cancel(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func confirm(_ sender: Any) {
+        guard amountLabel.text != nil else {return}
+        MyFirebase.shared.updateIncomeBalance(idAccount: account.id, balance: account.balance + numberOnScreen)
+        
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    
 }

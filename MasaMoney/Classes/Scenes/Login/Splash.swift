@@ -16,13 +16,20 @@ class Splash: UIViewController {
         // Check for a CURRENT LOGIN TOKEN
         MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
             if let isLogedIn = isLogedIn, isLogedIn {
-//                let vc = Main.storyboardInstance()
-//                self.present(vc, animated: true, completion: nil)
-                let vc: Main = UIStoryboard(.Main).instantiateViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! Main
+                let nav = UINavigationController(rootViewController: mainController)
+                appdelegate.window!.rootViewController = nav
+                
             } else {
-                let vc = Login.storyboardInstance()
-                self.present(vc, animated: true, completion: nil)
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
+                let nav = UINavigationController(rootViewController: loginController)
+                appdelegate.window!.rootViewController = nav
             }
         })
     }

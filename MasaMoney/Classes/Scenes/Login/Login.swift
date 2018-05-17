@@ -106,11 +106,8 @@ class Login: UIViewController{
                     //If everything was fetched, save the data in firebase
                     MyFirebase.shared.saveUserIntoFirebaseDatabase(name: self.name!, email: self.email!, profileImage: self.profileImage!, loggedIn: false, completion: { isLogedIn in
                         if let isLogedIn = isLogedIn, isLogedIn {
-                            let vc = Main.storyboardInstance()
-                            self.present(vc, animated: true, completion: nil)
-                        } else {
-                            let vc = Login.storyboardInstance()
-                            self.present(vc, animated: true, completion: nil)
+                            let vc: Main = UIStoryboard(.Main).instantiateViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
                         }
                     })
                     

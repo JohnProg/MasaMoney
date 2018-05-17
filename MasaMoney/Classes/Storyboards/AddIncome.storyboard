@@ -101,6 +101,9 @@
                                                             <constraint firstAttribute="width" constant="32" id="JxL-NR-njh"/>
                                                         </constraints>
                                                         <state key="normal" image="cancel"/>
+                                                        <connections>
+                                                            <action selector="cancel:" destination="4WJ-vd-MIJ" eventType="touchUpInside" id="TTB-ec-Zyf"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income received:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="971-3o-A73">
                                                         <rect key="frame" x="57" y="28" width="127" height="20.5"/>
@@ -123,6 +126,9 @@
                                                             <constraint firstAttribute="width" constant="45" id="ovG-GU-qOV"/>
                                                         </constraints>
                                                         <state key="normal" image="ok"/>
+                                                        <connections>
+                                                            <action selector="confirm:" destination="4WJ-vd-MIJ" eventType="touchUpInside" id="Ub7-9o-fWw"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -388,6 +394,7 @@
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="bj4-S1-Hsk" id="TYf-VH-D9v"/>
+                        <outlet property="datePicker" destination="59L-3j-U82" id="3bZ-US-Cf5"/>
                         <outlet property="incomeNameLabel" destination="Ewe-W5-KSa" id="XEw-IW-Yho"/>
                         <outlet property="incomeTitleLabel" destination="971-3o-A73" id="GTi-3O-MPe"/>
                         <outletCollection property="buttonCollection" destination="HA2-xv-abp" collectionClass="NSMutableArray" id="fT4-nf-jE3"/>

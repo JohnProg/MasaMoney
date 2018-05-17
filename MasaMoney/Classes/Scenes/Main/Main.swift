@@ -150,8 +150,12 @@ class Main: UIViewController{
     
     @IBAction func logOutButton(_ sender: Any) {
         try! Auth.auth().signOut()
-        let vc = Login.storyboardInstance()
-        self.present(vc, animated: true, completion: nil)
+        
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
+        let nav = UINavigationController(rootViewController: loginController)
+        appdelegate.window!.rootViewController = nav
     }
     
     @IBAction func addIncomeButton(_ sender: Any) {

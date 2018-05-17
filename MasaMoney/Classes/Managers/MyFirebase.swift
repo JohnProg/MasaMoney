@@ -130,4 +130,8 @@ class MyFirebase {
         
     }
     
+    func updateIncomeBalance(idAccount: String, balance: Double){
+        _ = dbRef.child("Accounts").child(self.userId).child(idAccount).updateChildValues(["balance": balance])
+    }
+    
 }

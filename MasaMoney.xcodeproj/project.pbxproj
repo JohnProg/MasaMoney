@@ -34,6 +34,7 @@
 		86A9D55620849B88008F7E18 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* Login.swift */; };
 		86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55A20849B8A008F7E18 /* Assets.xcassets */; };
 		86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */; };
+		86D8E3BB20AE2C130033A3A3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8E3BA20AE2C130033A3A3 /* Router.swift */; };
 		A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		86A9D55A20849B8A008F7E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A9D55F20849B8A008F7E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCalculator.swift; sourceTree = "<group>"; };
+		86D8E3BA20AE2C130033A3A3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasaMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6FCE7E6BBA08FDACF6015 /* Pods-MasaMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasaMoney.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasaMoney/Pods-MasaMoney.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +150,9 @@
 			children = (
 				86A9D55320849B88008F7E18 /* AppDelegate.swift */,
 				86A04CFB2084C5C300C3CBDB /* Models */,
+				866DF25720A8976A00A5B101 /* Storyboards */,
 				86A04CFC2084C5CE00C3CBDB /* Scenes */,
+				86D8E3B920AE2C030033A3A3 /* Managers */,
 				86A04CFE2084C5ED00C3CBDB /* Support */,
 			);
 			path = Classes;
@@ -181,7 +185,6 @@
 		86A04CFC2084C5CE00C3CBDB /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				866DF25720A8976A00A5B101 /* Storyboards */,
 				86A04CFF2084C62500C3CBDB /* Login */,
 				86A04D002084D09900C3CBDB /* Main */,
 				866DF24E20A8936700A5B101 /* AddIncome */,
@@ -193,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				869D5DE420A74ECA00A8F0A8 /* Fonts */,
-				86A04A37208620DF00EB12FF /* MyFirebase.swift */,
 				86A04D072084E7F400C3CBDB /* Service.swift */,
 				869D5DE220A74BFA00A8F0A8 /* Style.swift */,
 				866DF24820A84A3500A5B101 /* RoundButton.swift */,
@@ -248,6 +250,15 @@
 				86A04CF52084C4E900C3CBDB /* Supporting Files */,
 			);
 			path = MasaMoney;
+			sourceTree = "<group>";
+		};
+		86D8E3B920AE2C030033A3A3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				86D8E3BA20AE2C130033A3A3 /* Router.swift */,
+				86A04A37208620DF00EB12FF /* MyFirebase.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +432,7 @@
 				86A9D55620849B88008F7E18 /* Login.swift in Sources */,
 				86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */,
 				869F029220873D2400B8D2DE /* Splash.swift in Sources */,
+				86D8E3BB20AE2C130033A3A3 /* Router.swift in Sources */,
 				866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */,
 				864537D3209A15BD0098A32F /* Account.swift in Sources */,
 				866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */,
