@@ -77,7 +77,7 @@ class Main: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+//        updateData()
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
@@ -105,31 +105,40 @@ class Main: UIViewController{
     func loadData(){
         
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
-
-        accountsDB.observeSingleEvent(of: .value, with: { (snapshot) in
-
+        accountsDB.observe(.value, with: { (snapshot) in
+            
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in result {
                     let id = child.key as String
                     accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-
+                        
                         let snapshotValue = snapshot.value as? NSDictionary
                         let name = snapshotValue!["name"] as? String
                         let balance = snapshotValue!["balance"] as? Double
                         let income = snapshotValue!["income"] as? Bool
-
+                        
                         var account = Account()
                         account.id = id
                         account.name = name!
                         account.balance = balance!
                         account.income = income!
-
+                        
                         if account.income == true {
-                            self.incomeArray.append(account)
-                            self.incomeDataSource.incomeArray = self.incomeArray
+                            if let i = self.incomeArray.index(where: {$0.id == account.id}){
+                                self.incomeArray[i] = account
+                                self.incomeDataSource.incomeArray = self.incomeArray
+                            }else{
+                                self.incomeArray.append(account)
+                                self.incomeDataSource.incomeArray = self.incomeArray
+                            }
                         }else{
-                            self.outcomeArray.append(account)
-                            self.outcomeDataSource.outcomeArray = self.outcomeArray
+                            if let i = self.outcomeArray.index(where: {$0.id == account.id}){
+                                self.outcomeArray[i] = account
+                                self.outcomeDataSource.outcomeArray = self.outcomeArray
+                            }else{
+                                self.outcomeArray.append(account)
+                                self.outcomeDataSource.outcomeArray = self.outcomeArray
+                            }
                         }
                         
                         self.incomeCollectionView.reloadData()
@@ -139,12 +148,53 @@ class Main: UIViewController{
                 }
             }
         })
+//        accountsDB.observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+//                for child in result {
+//                    let id = child.key as String
+//                    accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+//
+//                        let snapshotValue = snapshot.value as? NSDictionary
+//                        let name = snapshotValue!["name"] as? String
+//                        let balance = snapshotValue!["balance"] as? Double
+//                        let income = snapshotValue!["income"] as? Bool
+//
+//                        var account = Account()
+//                        account.id = id
+//                        account.name = name!
+//                        account.balance = balance!
+//                        account.income = income!
+//
+//                        if account.income == true {
+//                            self.incomeArray.append(account)
+//                            self.incomeDataSource.incomeArray = self.incomeArray
+//                        }else{
+//                            self.outcomeArray.append(account)
+//                            self.outcomeDataSource.outcomeArray = self.outcomeArray
+//                        }
+//
+//                        self.incomeCollectionView.reloadData()
+//                        self.outcomeCollectionView.reloadData()
+//                    })
+//
+//                }
+//            }
+//        })
     }
     
-    static func storyboardInstance() -> Main {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "Main") as! Main
+    func updateData(){
+        self.incomeDataSource.incomeArray.removeAll()
+        self.outcomeDataSource.outcomeArray.removeAll()
+        incomeArray.removeAll()
+        outcomeArray.removeAll()
+        loadData()
     }
+    
+//    static func storyboardInstance() -> Main {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        return storyboard.instantiateViewController(withIdentifier: "Main") as! Main
+//    }
     
     // MARK: Actions
     
