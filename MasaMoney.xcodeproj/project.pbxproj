@@ -249,8 +249,8 @@
 			children = (
 				864537CD209A11F70098A32F /* Cells */,
 				86A04D012084D0CB00C3CBDB /* Main.swift */,
-				866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */,
 				866DF24C20A885B700A5B101 /* IncomeDataSource.swift */,
+				866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

@@ -48,11 +48,15 @@ class AddIncome: UIViewController{
 }
 
 extension AddIncome: IncomeDataSourceOutput {
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath) {
+    func didSelectIncomeAccountAtIndexPath(_ indexPath: IndexPath) {
+        let incomeAccount = Account()
+        incomeAccount.name = "Income"
+        incomeAccount.id = "External"
+        incomeAccount.balance = 0
         
-//        let vc = IncomeCalculator.storyboardInstance()
         let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
-        vc.account = incomeDataSource.incomeArray[indexPath.row]
+        vc.accountDestination = incomeDataSource.incomeArray[indexPath.row]
+        vc.accountOrigin = incomeAccount
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

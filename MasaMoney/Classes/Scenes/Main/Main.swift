@@ -93,22 +93,21 @@ class Main: UIViewController{
         incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         outcomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         
-        outcomeCollectionView.delegate = outcomeDataSource
-        outcomeCollectionView.dataSource = outcomeDataSource
-        outcomeDataSource.outcomeDatasourceDelegate = self
-        
-//        outcomeCollectionView.dragDelegate = self
-//        outcomeCollectionView.dropDelegate = self
-        outcomeCollectionView.dragInteractionEnabled = true
-        
+        incomeCollectionView.allowsSelection = true
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
-        incomeDataSource.incomeDatasourceDelegate = self
-//        incomeCollectionView.dragDelegate = self
+        incomeCollectionView.dragDelegate = self
 //        incomeCollectionView.dropDelegate = self
         incomeCollectionView.dragInteractionEnabled = true
         
+        outcomeCollectionView.delegate = outcomeDataSource
+        outcomeCollectionView.dataSource = outcomeDataSource
+//        outcomeCollectionView.dragDelegate = self
+        outcomeCollectionView.dropDelegate = self
+//        outcomeCollectionView.dragInteractionEnabled = true
         
+        incomeDataSource.incomeDatasourceDelegate = self
+        outcomeDataSource.outcomeDatasourceDelegate = self
         
     }
     
@@ -127,7 +126,7 @@ class Main: UIViewController{
                         let balance = snapshotValue!["balance"] as? Double
                         let income = snapshotValue!["income"] as? Bool
                         
-                        var account = Account()
+                        let account = Account()
                         account.id = id
                         account.name = name!
                         account.balance = balance!
@@ -154,7 +153,6 @@ class Main: UIViewController{
                         self.incomeCollectionView.reloadData()
                         self.outcomeCollectionView.reloadData()
                     })
-                    
                 }
             }
         })
@@ -181,7 +179,7 @@ class Main: UIViewController{
 }
 
 extension Main: IncomeDataSourceOutput{
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath) {
+    func didSelectIncomeAccountAtIndexPath(_ indexPath: IndexPath) {
         let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
         vc.account = incomeDataSource.incomeArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
@@ -196,14 +194,32 @@ extension Main: OutcomeDataSourceOutput  {
     }
 }
 
-//extension Main: UICollectionViewDragDelegate, UICollectionViewDropDelegate {
-//    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-//
-//    }
-//
-//
-//}
+extension Main: UICollectionViewDragDelegate {
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let account = incomeDataSource.incomeArray[indexPath.row]
+        let accountProvider = NSItemProvider(object: account)
+        let dragAccount = UIDragItem(itemProvider: accountProvider)
+        dragAccount.localObject = account
+        return [dragAccount]
+    }
+}
+
+extension Main: UICollectionViewDropDelegate{
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        //Get outcome account
+        let destinationIndex = coordinator.destinationIndexPath?.row
+        let destinationAccount = outcomeArray[destinationIndex!]
+        
+        for item in coordinator.items {
+            item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in
+                if let originAccount = account as? Account {
+                    //Send accounts and open calculator
+                    let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
+                    vc.accountOrigin = originAccount
+                    vc.accountDestination = destinationAccount
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
+        }
+    }
+}

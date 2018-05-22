@@ -21,7 +21,7 @@ class IncomeCalculator: UIViewController {
         didSet {
             incomeNameLabel.font = UIFont.mmLatoBoldFont(size: 16)
             incomeNameLabel.textColor = UIColor.mmGrey
-            incomeNameLabel.text = account.name
+            incomeNameLabel.text = accountDestination.name
         }
     }
     
@@ -39,7 +39,10 @@ class IncomeCalculator: UIViewController {
     
     
     // MARK: -Properties
-    var account = Account()
+    var accountOrigin = Account()
+    
+    var accountDestination = Account()
+    
     var numberOnScreen : Double = 0
     
     override func viewDidLoad() {
@@ -51,11 +54,6 @@ class IncomeCalculator: UIViewController {
             button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
             button.cornerRadius = 45
         }
-    }
-
-    static func storyboardInstance() -> IncomeCalculator {
-        let storyboard = UIStoryboard(name: "AddIncome", bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: "IncomeCalculator") as! IncomeCalculator
     }
     
     // MARK: - Actions
@@ -71,9 +69,6 @@ class IncomeCalculator: UIViewController {
             numberOnScreen = Double(amountLabel.text!)!
         }
     }
-        
-    
-    
     
     @IBAction func functionTapped(_ sender: RoundButton) {
         guard let text = amountLabel.text else {return}
@@ -86,19 +81,19 @@ class IncomeCalculator: UIViewController {
     }
     @IBAction func cancel(_ sender: Any) {
         
-        self.dismiss(animated: true, completion: nil)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func confirm(_ sender: Any) {
         guard amountLabel.text != nil else {return}
-        MyFirebase.shared.updateIncomeBalance(idAccount: account.id, balance: account.balance + numberOnScreen)
+        MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + numberOnScreen)
         
         datePicker.datePickerMode = UIDatePickerMode.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
         let selectedDate = dateFormatter.string(from: datePicker.date)
         
-        MyFirebase.shared.createMovements(origin: "Income", destination: account.name, amount: numberOnScreen, date: selectedDate, originId: "custom", destinyId: account.id)
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: numberOnScreen, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     

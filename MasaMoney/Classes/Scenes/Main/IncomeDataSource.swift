@@ -9,7 +9,7 @@
 import UIKit
 
 protocol IncomeDataSourceOutput: class {
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath)
+    func didSelectIncomeAccountAtIndexPath(_ indexPath: IndexPath)
 }
 
 class IncomeDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -37,7 +37,7 @@ class IncomeDataSource: NSObject, UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        incomeDatasourceDelegate?.didSelectAccountAtIndexPath(indexPath)
+        incomeDatasourceDelegate?.didSelectIncomeAccountAtIndexPath(indexPath)
     }
 }
 

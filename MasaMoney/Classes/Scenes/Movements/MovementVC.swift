@@ -74,7 +74,6 @@ class MovementVC: UIViewController {
                             
                             if historic == true {
                                 self.movementArray.append(movement)
-                                print(self.movementArray)
                                 self.movementDataSource.movementArray = self.movementArray
                                 self.movTableView.reloadData()
                             }
