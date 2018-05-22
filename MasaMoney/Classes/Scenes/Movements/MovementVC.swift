@@ -49,10 +49,9 @@ class MovementVC: UIViewController {
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in result {
                     let id = child.key as String
-                    movementsDB.child(id).queryEqual(toValue: self.account.id, childKey: "Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
+                    movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let snapshotValue = snapshot.value as? NSDictionary
-                        print(snapshotValue)
                         
                         let origin = snapshotValue!["origin"] as? String
                         let destination = snapshotValue!["destination"] as? String
@@ -66,10 +65,19 @@ class MovementVC: UIViewController {
                         movement.amount = amount!
                         movement.date = date!
                         
-                        self.movementArray.append(movement)
-                        print(self.movementArray)
-                        self.movementDataSource.movementArray = self.movementArray
-                        self.movTableView.reloadData()
+                        movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
+                            let snapshotValue = snapshot.value as? NSDictionary
+                            
+                            let historic = snapshotValue![self.account.id] as? Bool
+                            
+                            if historic == true {
+                                print("Esta dentro : " + self.account.id)
+                                self.movementArray.append(movement)
+                                print(self.movementArray)
+                                self.movementDataSource.movementArray = self.movementArray
+                                self.movTableView.reloadData()
+                            }
+                        })
                     })
                 }
             }
@@ -78,21 +86,4 @@ class MovementVC: UIViewController {
 
 }
 
-//extension MovementVC : UITableViewDelegate, UITableViewDataSource{
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovementCell", for: indexPath) as? MovementCell
-//            else {
-//                return UITableViewCell()
-//        }
-//        cell.configure(movement: movementArray[indexPath.item])
-//
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print(movementArray)
-//        print(movementArray.count)
-//        return movementArray.count
-//    }
-//}
+
