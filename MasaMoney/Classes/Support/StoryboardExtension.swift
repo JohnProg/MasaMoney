@@ -15,6 +15,7 @@ extension UIStoryboard {
         case Main
         case AddIncome
         case IncomeCalculator
+        case Movement
     }
     
     convenience init(_ storyboard: Storyboard, bundle: Bundle? = nil) {

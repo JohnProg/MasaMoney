@@ -93,6 +93,12 @@ class IncomeCalculator: UIViewController {
         guard amountLabel.text != nil else {return}
         MyFirebase.shared.updateIncomeBalance(idAccount: account.id, balance: account.balance + numberOnScreen)
         
+        datePicker.datePickerMode = UIDatePickerMode.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        let selectedDate = dateFormatter.string(from: datePicker.date)
+        
+        MyFirebase.shared.createMovements(origin: "Income", destination: account.name, amount: numberOnScreen, date: selectedDate, originId: "custom", destinyId: account.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		860C66272088C54F0095B574 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860C66262088C54F0095B574 /* Main.storyboard */; };
+		862B0C9320B17C94008B45C3 /* MovementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9120B17C94008B45C3 /* MovementCell.swift */; };
+		862B0C9420B17C94008B45C3 /* MovementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 862B0C9220B17C94008B45C3 /* MovementCell.xib */; };
+		862B0C9620B180AF008B45C3 /* MovementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9520B180AF008B45C3 /* MovementVC.swift */; };
+		862B0C9820B19EC5008B45C3 /* MovementDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */; };
+		862B0C9A20B19F4F008B45C3 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9920B19F4F008B45C3 /* Movement.swift */; };
 		864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537CE209A123C0098A32F /* AccountsViewCell.swift */; };
 		864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864537CF209A123C0098A32F /* AccountsViewCell.xib */; };
 		864537D3209A15BD0098A32F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D2209A15BD0098A32F /* Account.swift */; };
@@ -40,6 +45,11 @@
 
 /* Begin PBXFileReference section */
 		860C66262088C54F0095B574 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		862B0C9120B17C94008B45C3 /* MovementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementCell.swift; sourceTree = "<group>"; };
+		862B0C9220B17C94008B45C3 /* MovementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovementCell.xib; sourceTree = "<group>"; };
+		862B0C9520B180AF008B45C3 /* MovementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementVC.swift; sourceTree = "<group>"; };
+		862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDataSource.swift; sourceTree = "<group>"; };
+		862B0C9920B19F4F008B45C3 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		864537CE209A123C0098A32F /* AccountsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewCell.swift; sourceTree = "<group>"; };
 		864537CF209A123C0098A32F /* AccountsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewCell.xib; sourceTree = "<group>"; };
 		864537D2209A15BD0098A32F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -93,6 +103,25 @@
 				FC7C4152BC7F51CC1D0F26B9 /* Pods-MasaMoney.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		862B0C8D20B17C10008B45C3 /* Movements */ = {
+			isa = PBXGroup;
+			children = (
+				862B0C9020B17C43008B45C3 /* Cells */,
+				862B0C9520B180AF008B45C3 /* MovementVC.swift */,
+				862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */,
+			);
+			path = Movements;
+			sourceTree = "<group>";
+		};
+		862B0C9020B17C43008B45C3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				862B0C9120B17C94008B45C3 /* MovementCell.swift */,
+				862B0C9220B17C94008B45C3 /* MovementCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		864537CD209A11F70098A32F /* Cells */ = {
@@ -178,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				864537D2209A15BD0098A32F /* Account.swift */,
+				862B0C9920B19F4F008B45C3 /* Movement.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +218,7 @@
 				86A04CFF2084C62500C3CBDB /* Login */,
 				86A04D002084D09900C3CBDB /* Main */,
 				866DF24E20A8936700A5B101 /* AddIncome */,
+				862B0C8D20B17C10008B45C3 /* Movements */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -325,6 +356,7 @@
 				869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */,
 				869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */,
 				86A04CFA2084C57F00C3CBDB /* GoogleService-Info.plist in Resources */,
+				862B0C9420B17C94008B45C3 /* MovementCell.xib in Resources */,
 				869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */,
 				866DF25620A8965B00A5B101 /* AddIncome.storyboard in Resources */,
 				869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */,
@@ -427,14 +459,18 @@
 			files = (
 				86A04D022084D0CB00C3CBDB /* Main.swift in Sources */,
 				86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */,
+				862B0C9620B180AF008B45C3 /* MovementVC.swift in Sources */,
 				866DF25220A8944C00A5B101 /* AddIncome.swift in Sources */,
 				86A04D082084E7F400C3CBDB /* Service.swift in Sources */,
 				86A9D55620849B88008F7E18 /* Login.swift in Sources */,
 				86A04A38208620DF00EB12FF /* MyFirebase.swift in Sources */,
+				862B0C9320B17C94008B45C3 /* MovementCell.swift in Sources */,
+				862B0C9A20B19F4F008B45C3 /* Movement.swift in Sources */,
 				869F029220873D2400B8D2DE /* Splash.swift in Sources */,
 				86D8E3BB20AE2C130033A3A3 /* Router.swift in Sources */,
 				866DF24B20A8814800A5B101 /* OutcomeDataSource.swift in Sources */,
 				864537D3209A15BD0098A32F /* Account.swift in Sources */,
+				862B0C9820B19EC5008B45C3 /* MovementDataSource.swift in Sources */,
 				866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */,
 				866DF24D20A885B700A5B101 /* IncomeDataSource.swift in Sources */,
 				866DF24920A84A3500A5B101 /* RoundButton.swift in Sources */,

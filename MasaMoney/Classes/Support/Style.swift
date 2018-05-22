@@ -19,9 +19,13 @@ extension UIColor {
     class var mmGreenish: UIColor {
         return UIColor(red: 119.0 / 255.0, green: 211.0 / 255.0, blue: 83.0 / 255.0, alpha: 1.0)
     }
+    class var mmBlackish: UIColor {
+        return UIColor(red: 71.0 / 255.0, green: 82.0 / 255.0, blue: 94.0 / 255.0, alpha: 1.0)
+    }
     class var fdkReddishOrange: UIColor {
         return UIColor(red: 248.0 / 255.0, green: 68.0 / 255.0, blue: 22.0 / 255.0, alpha: 1.0)
     }
+    
 }
 
 // MARK: - Fonts
