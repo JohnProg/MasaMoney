@@ -95,11 +95,20 @@ class Main: UIViewController{
         
         outcomeCollectionView.delegate = outcomeDataSource
         outcomeCollectionView.dataSource = outcomeDataSource
+        outcomeDataSource.outcomeDatasourceDelegate = self
+        
+//        outcomeCollectionView.dragDelegate = self
+//        outcomeCollectionView.dropDelegate = self
+        outcomeCollectionView.dragInteractionEnabled = true
         
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
-        
         incomeDataSource.incomeDatasourceDelegate = self
+//        incomeCollectionView.dragDelegate = self
+//        incomeCollectionView.dropDelegate = self
+        incomeCollectionView.dragInteractionEnabled = true
+        
+        
         
     }
     
@@ -171,10 +180,30 @@ class Main: UIViewController{
     
 }
 
-extension Main: IncomeDataSourceOutput {
+extension Main: IncomeDataSourceOutput{
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath) {
         let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
         vc.account = incomeDataSource.incomeArray[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+extension Main: OutcomeDataSourceOutput  {
+    func didSelectOutcomeAccountAtIndexPath(_ indexPath: IndexPath) {
+        let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
+        vc.account = outcomeDataSource.outcomeArray[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+//extension Main: UICollectionViewDragDelegate, UICollectionViewDropDelegate {
+//    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+//
+//    }
+//
+//
+//}

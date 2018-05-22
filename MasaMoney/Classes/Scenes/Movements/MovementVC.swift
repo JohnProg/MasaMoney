@@ -42,6 +42,7 @@ class MovementVC: UIViewController {
     // -TODO: Controlar si no hay historico
     func loadData(){
         
+        //check every movement
         let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
         
         movementsDB.observe(.value, with: { (snapshot) in
@@ -65,13 +66,13 @@ class MovementVC: UIViewController {
                         movement.amount = amount!
                         movement.date = date!
                         
+                        //check if the account is in the movement, if so, add it to the array to show
                         movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
                             let snapshotValue = snapshot.value as? NSDictionary
                             
                             let historic = snapshotValue![self.account.id] as? Bool
                             
                             if historic == true {
-                                print("Esta dentro : " + self.account.id)
                                 self.movementArray.append(movement)
                                 print(self.movementArray)
                                 self.movementDataSource.movementArray = self.movementArray
