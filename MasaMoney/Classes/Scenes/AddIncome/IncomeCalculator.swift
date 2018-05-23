@@ -15,6 +15,7 @@ class IncomeCalculator: UIViewController {
         didSet {
             incomeTitleLabel.font = UIFont.mmLatoBoldFont(size: 16)
             incomeTitleLabel.textColor = UIColor.mmGrey
+            incomeTitleLabel.text = "\(accountOrigin.name) > "
         }
     }
     @IBOutlet weak var incomeNameLabel: UILabel!{
@@ -86,7 +87,11 @@ class IncomeCalculator: UIViewController {
     
     @IBAction func confirm(_ sender: Any) {
         guard amountLabel.text != nil else {return}
+        // Update balance in the accounts except if it is an addition to an income account
         MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + numberOnScreen)
+        if accountOrigin.id != "External"{
+            MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - numberOnScreen)
+        }
         
         datePicker.datePickerMode = UIDatePickerMode.date
         let dateFormatter = DateFormatter()

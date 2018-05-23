@@ -30,7 +30,7 @@ class AddIncome: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Choose income account"
+        navigationItem.title = "Income"
         setupCollectionView()
         incomeDataSource.incomeArray = self.incomeArray
         incomeCollectionView.reloadData()

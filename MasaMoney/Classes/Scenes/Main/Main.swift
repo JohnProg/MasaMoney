@@ -14,7 +14,7 @@ import JGProgressHUD
 import GoogleSignIn
 
 class Main: UIViewController{
-    
+    // TODO: - Remove imports not used
     //MARKS: Outlets
     
     @IBOutlet weak var incomeCollectionView: UICollectionView!
@@ -49,7 +49,6 @@ class Main: UIViewController{
     @IBOutlet weak var summarySeparator: UIView!{
         didSet {
             summarySeparator.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-            
         }
     }
     
@@ -97,14 +96,11 @@ class Main: UIViewController{
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
         incomeCollectionView.dragDelegate = self
-//        incomeCollectionView.dropDelegate = self
         incomeCollectionView.dragInteractionEnabled = true
         
         outcomeCollectionView.delegate = outcomeDataSource
         outcomeCollectionView.dataSource = outcomeDataSource
-//        outcomeCollectionView.dragDelegate = self
         outcomeCollectionView.dropDelegate = self
-//        outcomeCollectionView.dragInteractionEnabled = true
         
         incomeDataSource.incomeDatasourceDelegate = self
         outcomeDataSource.outcomeDatasourceDelegate = self
@@ -152,6 +148,13 @@ class Main: UIViewController{
                         
                         self.incomeCollectionView.reloadData()
                         self.outcomeCollectionView.reloadData()
+                        
+                        //Calculate total income and spent and set it
+                        let sumIncome = self.incomeArray.map({$0.balance}).reduce(0, +)
+                        self.balanceLabel.text = String(format:"%g €",sumIncome)
+                        let sumSpent = self.outcomeArray.map({$0.balance}).reduce(0, +)
+                        self.spentLabel.text = String(format:"%g €",sumSpent)
+                        
                     })
                 }
             }
@@ -214,10 +217,12 @@ extension Main: UICollectionViewDropDelegate{
             item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in
                 if let originAccount = account as? Account {
                     //Send accounts and open calculator
-                    let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
-                    vc.accountOrigin = originAccount
-                    vc.accountDestination = destinationAccount
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    DispatchQueue.main.async {
+                        let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
+                        vc.accountOrigin = originAccount
+                        vc.accountDestination = destinationAccount
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
             })
         }

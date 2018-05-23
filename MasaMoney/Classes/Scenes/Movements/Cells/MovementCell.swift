@@ -54,10 +54,16 @@ class MovementCell: UITableViewCell {
     func configure(movement: Movement) {
         origin.text = movement.origin
         destiny.text = movement.destination
-        if movement.amount < 0 {
+        
+        // Check if is an addition to an income and set style
+        if movement.origin !=  "Income" {
             amount.textColor = UIColor.red
+            amount.text = String(format:"-%g €",movement.amount)
+        }else{
+            amount.textColor = UIColor.mmGreenish
+            amount.text = String(format:"+%g €",movement.amount)
         }
-        amount.text = String(movement.amount)
+        
     }
     
 }

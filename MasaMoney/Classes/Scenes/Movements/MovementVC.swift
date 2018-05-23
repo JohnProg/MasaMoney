@@ -14,6 +14,7 @@ class MovementVC: UIViewController {
         didSet {
             totalLabel.font = UIFont.mmLatoSemiBoldFont(size: 18)
             totalLabel.textColor = UIColor.mmBlackish
+            totalLabel.text = String(format:"%g €",account.balance)
         }
     }
     @IBOutlet weak var movTableView: UITableView!
@@ -25,7 +26,7 @@ class MovementVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        totalLabel.text = account.name
+        navigationItem.title = account.name
         setupTableView()
         loadData()
     }

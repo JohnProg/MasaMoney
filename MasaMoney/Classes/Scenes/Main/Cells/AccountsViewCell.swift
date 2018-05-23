@@ -20,14 +20,14 @@ class AccountsViewCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIButton!{
         didSet {
             icon.isUserInteractionEnabled = false
-            icon.backgroundColor = UIColor.mmOrangeish
+            icon.backgroundColor = UIColor.mmGreenish
         }
     }
     
     @IBOutlet weak var balanceLabel: UILabel!{
         didSet {
             balanceLabel.font = UIFont.mmLatoSemiBoldFont(size: 14)
-            balanceLabel.textColor = UIColor.mmOrangeish
+            balanceLabel.textColor = UIColor.mmGreenish
         }
     }
     
@@ -47,10 +47,13 @@ class AccountsViewCell: UICollectionViewCell {
     
     func configure(account: Account) {
         titleLabel.text = account.name
-        balanceLabel.text = String(account.balance)
-        if account.income == false {
-            icon.backgroundColor = UIColor.mmGreenish
-            balanceLabel.textColor = UIColor.mmGreenish
+        balanceLabel.text = String(format:"%g €",account.balance)
+        if account.income != false {
+            icon.backgroundColor = UIColor.mmOrangeish
+            balanceLabel.textColor = UIColor.mmGoldish
+            if account.balance < 0 {
+                balanceLabel.textColor = UIColor.red
+            }
         }
     }
 }
