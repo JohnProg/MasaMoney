@@ -20,9 +20,11 @@ class MovementDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var movementArray: [Movement] = []
     
-    var dates : [String] = []
+    var datesString : [String] = []
     
-    var convertedArray: [Date] = []
+    var datesDate: [Date] = []
+    
+    var datesDateOrdered: [Date] = []
     
     var dateFormatter = DateFormatter()
     
@@ -51,24 +53,11 @@ class MovementDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     //number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
-        dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
-        
-        for mov in movementArray {
-            if !dates.contains(mov.date) {
-                let date = dateFormatter.date(from: mov.date)
-                if let date = date {
-                    convertedArray.append(date)
-                }
-                dates.append(mov.date)
-            }
-        }
-        convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
-        
-        return dates.count
+        return getSectionArray().count
     }
-    //titleForHeaderInSection
+    //titleForHeaderInSection -- we use the ordered array to set the title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dates[section]
+        return dateFormatter.string(from: datesDateOrdered[section])
     }
     //didSelectRowAt indexPath
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,9 +67,19 @@ class MovementDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Functions
     
     //Get array of sections
-//    func getSectionArray -> [String]{
-//
-//    }
+    func getSectionArray() -> [String]{
+        dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
+        
+        for mov in movementArray {
+            if !datesString.contains(mov.date) {
+                let date = dateFormatter.date(from: mov.date)
+                datesDate.append(date!)
+                datesString.append(mov.date)
+            }
+        }
+        datesDateOrdered = datesDate.sorted(by: { $0.compare($1) == .orderedDescending })
+        return datesString
+    }
     
     //Calculate number of sections
     func getSectionItems(section: Int) -> [Movement] {
@@ -90,7 +89,7 @@ class MovementDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
         for item in movementArray {
             let mov = item as Movement
             // if the item's date equals the section's date then add it
-            if item.date == dates[section] {
+            if item.date == datesString[section] {
                 sectionItems.append(mov)
             }
         }
