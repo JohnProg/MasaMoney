@@ -11,7 +11,7 @@ import FirebaseAuth
 import Firebase
 import LBTAComponents
 import JGProgressHUD
-import GoogleSignIn
+import SideMenu
 
 class Main: UIViewController{
     // TODO: - Remove imports not used
@@ -97,6 +97,8 @@ class Main: UIViewController{
         incomeCollectionView.dataSource = incomeDataSource
         incomeCollectionView.dragDelegate = self
         incomeCollectionView.dragInteractionEnabled = true
+        incomeCollectionView.dropDelegate = self
+        print(incomeCollectionView.hasActiveDrop)
         
         outcomeCollectionView.delegate = outcomeDataSource
         outcomeCollectionView.dataSource = outcomeDataSource
@@ -108,7 +110,7 @@ class Main: UIViewController{
     }
     
     func loadData(){
-        
+        //read all the accounts
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
         accountsDB.observe(.value, with: { (snapshot) in
             
@@ -128,6 +130,7 @@ class Main: UIViewController{
                         account.balance = balance!
                         account.income = income!
                         
+                        //Check if the account is an income or outcome and add check if already exists to update it instead of append it
                         if account.income == true {
                             if let i = self.incomeArray.index(where: {$0.id == account.id}){
                                 self.incomeArray[i] = account
@@ -163,21 +166,59 @@ class Main: UIViewController{
     
     // MARK: Actions
     
-    @IBAction func logOutButton(_ sender: Any) {
-        try! Auth.auth().signOut()
-        
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
-        let nav = UINavigationController(rootViewController: loginController)
-        appdelegate.window!.rootViewController = nav
-    }
+//    @IBAction func logOutButton(_ sender: Any) {
+   
+//        try! Auth.auth().signOut()
+//        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+//        let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//        let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
+//        let nav = UINavigationController(rootViewController: loginController)
+//        appdelegate.window!.rootViewController = nav
+//    }
     
     @IBAction func addIncomeButton(_ sender: Any) {
         let vc: AddIncome = UIStoryboard(.AddIncome).instantiateViewController()
         vc.incomeArray = incomeArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func addInAccount(_ sender: Any) {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Income", message: "Introduce the name of the new income account", preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: true)
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func addOutAccount(_ sender: Any) {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Outcome", message: "Introduce the name of the new outcome account", preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            textField.text = ""
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: false)
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     
 }
 
@@ -210,8 +251,8 @@ extension Main: UICollectionViewDragDelegate {
 extension Main: UICollectionViewDropDelegate{
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         //Get outcome account
-        let destinationIndex = coordinator.destinationIndexPath?.row
-        let destinationAccount = outcomeArray[destinationIndex!]
+        guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
+        let destinationAccount = outcomeArray[destinationIndex]
         
         for item in coordinator.items {
             item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in

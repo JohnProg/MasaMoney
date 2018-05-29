@@ -23,16 +23,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="XSn-sV-wRa">
-                                <rect key="frame" x="0.0" y="0.0" width="175" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CJ-yS-XQM">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZb-fe-KGt">
-                                        <rect key="frame" x="0.0" y="40" width="175" height="40"/>
+                                        <rect key="frame" x="0.0" y="40" width="160" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xR-sj-gFy">
-                                <rect key="frame" x="175" y="0.0" width="200" height="80"/>
+                                <rect key="frame" x="160" y="0.0" width="200" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="5Te-Ci-5M3"/>
                                     <constraint firstAttribute="height" constant="80" id="ebK-wQ-DPm"/>
@@ -49,6 +49,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKQ-SK-7df">
+                                <rect key="frame" x="360" y="0.0" width="15" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="5H5-J8-XFF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="XSn-sV-wRa" firstAttribute="top" secondItem="hkV-zj-bba" secondAttribute="top" id="2hj-bU-lqi"/>

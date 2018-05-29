@@ -123,10 +123,6 @@ class Login: UIViewController{
     }
     
     // - TODO: Delete storyboardINstance
-//    static func storyboardInstance() -> Login {
-//        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-//        return storyboard.instantiateViewController(withIdentifier: "Login") as! Login
-//    }
 
 }
 

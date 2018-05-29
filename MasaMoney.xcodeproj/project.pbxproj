@@ -22,6 +22,7 @@
 		866DF25220A8944C00A5B101 /* AddIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF25120A8944C00A5B101 /* AddIncome.swift */; };
 		866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866DF25320A8956D00A5B101 /* StoryboardExtension.swift */; };
 		866DF25620A8965B00A5B101 /* AddIncome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 866DF25520A8965B00A5B101 /* AddIncome.storyboard */; };
+		8689776420BC7F2C00F0D94E /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689776320BC7F2C00F0D94E /* SideMenuVC.swift */; };
 		869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */; };
 		869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */; };
 		869D5DDF20A74A4700A8F0A8 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */; };
@@ -59,6 +60,7 @@
 		866DF25120A8944C00A5B101 /* AddIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncome.swift; sourceTree = "<group>"; };
 		866DF25320A8956D00A5B101 /* StoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardExtension.swift; sourceTree = "<group>"; };
 		866DF25520A8965B00A5B101 /* AddIncome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddIncome.storyboard; sourceTree = "<group>"; };
+		8689776320BC7F2C00F0D94E /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DD920A74A4700A8F0A8 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Medium.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Medium.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDA20A74A4700A8F0A8 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Light.ttf"; sourceTree = SOURCE_ROOT; };
@@ -251,6 +253,7 @@
 				86A04D012084D0CB00C3CBDB /* Main.swift */,
 				866DF24C20A885B700A5B101 /* IncomeDataSource.swift */,
 				866DF24A20A8814800A5B101 /* OutcomeDataSource.swift */,
+				8689776320BC7F2C00F0D94E /* SideMenuVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -441,6 +445,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -459,6 +464,7 @@
 			files = (
 				86A04D022084D0CB00C3CBDB /* Main.swift in Sources */,
 				86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */,
+				8689776420BC7F2C00F0D94E /* SideMenuVC.swift in Sources */,
 				862B0C9620B180AF008B45C3 /* MovementVC.swift in Sources */,
 				866DF25220A8944C00A5B101 /* AddIncome.swift in Sources */,
 				86A04D082084E7F400C3CBDB /* Service.swift in Sources */,
