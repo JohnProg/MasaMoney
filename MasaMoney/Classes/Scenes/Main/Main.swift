@@ -112,6 +112,7 @@ class Main: UIViewController{
     func loadData(){
         //read all the accounts
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
+        accountsDB.keepSynced(true)
         accountsDB.observe(.value, with: { (snapshot) in
             
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
@@ -121,12 +122,14 @@ class Main: UIViewController{
                         
                         let snapshotValue = snapshot.value as? NSDictionary
                         let name = snapshotValue!["name"] as? String
+                        let icon = snapshotValue!["icon"] as? String
                         let balance = snapshotValue!["balance"] as? Double
                         let income = snapshotValue!["income"] as? Bool
                         
                         let account = Account()
                         account.id = id
                         account.name = name!
+                        account.icon = icon!
                         account.balance = balance!
                         account.income = income!
                         
@@ -166,57 +169,55 @@ class Main: UIViewController{
     
     // MARK: Actions
     
-//    @IBAction func logOutButton(_ sender: Any) {
-   
-//        try! Auth.auth().signOut()
-//        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-//        let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-//        let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
-//        let nav = UINavigationController(rootViewController: loginController)
-//        appdelegate.window!.rootViewController = nav
-//    }
-    
     @IBAction func addIncomeButton(_ sender: Any) {
         let vc: AddIncome = UIStoryboard(.AddIncome).instantiateViewController()
         vc.incomeArray = incomeArray
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func addInAccount(_ sender: Any) {
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "Income", message: "Introduce the name of the new income account", preferredStyle: .alert)
+//        //1. Create the alert controller.
+//        let alert = UIAlertController(title: "Income", message: "Introduce the name of the new income account", preferredStyle: .alert)
+//
+//        //2. Add the text field. You can configure it however you need.
+//        alert.addTextField { (textField) in
+//            textField.text = ""
+//        }
+//
+//        // 3. Grab the value from the text field, and print it when the user clicks OK.
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+//            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: true)
+//        }))
+//
+//        // 4. Present the alert.
+//        self.present(alert, animated: true, completion: nil)
         
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: true)
-        }))
-        
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+        let vc: AddAccountVC = UIStoryboard(.Main).instantiateViewController()
+        vc.vcType = .income
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func addOutAccount(_ sender: Any) {
-        //1. Create the alert controller.
-        let alert = UIAlertController(title: "Outcome", message: "Introduce the name of the new outcome account", preferredStyle: .alert)
+        let vc: AddAccountVC = UIStoryboard(.Main).instantiateViewController()
+        vc.vcType = .outcome
+        self.navigationController?.pushViewController(vc, animated: true)
         
-        //2. Add the text field. You can configure it however you need.
-        alert.addTextField { (textField) in
-            textField.text = ""
-        }
-        
-        // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: false)
-        }))
-        
-        // 4. Present the alert.
-        self.present(alert, animated: true, completion: nil)
+//        //1. Create the alert controller.
+//        let alert = UIAlertController(title: "Outcome", message: "Introduce the name of the new outcome account", preferredStyle: .alert)
+//
+//        //2. Add the text field. You can configure it however you need.
+//        alert.addTextField { (textField) in
+//            textField.text = ""
+//        }
+//
+//        // 3. Grab the value from the text field, and print it when the user clicks OK.
+//        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+//            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+//            MyFirebase.shared.createAccounts(name: (textField?.text)!, income: false)
+//        }))
+//
+//        // 4. Present the alert.
+//        self.present(alert, animated: true, completion: nil)
     }
     
     

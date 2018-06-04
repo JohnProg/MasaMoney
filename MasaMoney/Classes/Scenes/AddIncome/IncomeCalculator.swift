@@ -11,6 +11,17 @@ import UIKit
 class IncomeCalculator: UIViewController {
 
     // MARK: -Outlets
+    @IBOutlet weak var dateButton: UIButton!{
+        didSet {
+            dateButton.setImage(#imageLiteral(resourceName: "calendar"), for: .normal)
+            dateButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            dateButton.imageView?.tintColor = UIColor.mmGrey
+            dateButton.titleLabel?.font = UIFont.mmLatoBoldFont(size: 20)
+            dateButton.titleLabel?.tintColor = UIColor.mmGrey
+            dateButton.titleLabel?.textColor = UIColor.mmGrey
+        }
+    }
+    
     @IBOutlet weak var incomeTitleLabel: UILabel!{
         didSet {
             incomeTitleLabel.font = UIFont.mmLatoBoldFont(size: 16)
@@ -36,8 +47,6 @@ class IncomeCalculator: UIViewController {
     
     @IBOutlet var buttonCollection: [RoundButton]!
     
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
     
     // MARK: -Properties
     var accountOrigin = Account()
@@ -46,20 +55,29 @@ class IncomeCalculator: UIViewController {
     
     var numberOnScreen : Double = 0
     
+    var selectedDate : String = ""
+    
+    var dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        selectedDate = dateFormatter.string(from: Date())
+        dateButton.setTitle(selectedDate, for: .normal)
 
         for button in buttonCollection {
             button.backColor = UIColor.mmGrey
             button.tintColor = UIColor.white
             button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
-            button.cornerRadius = 45
+            button.cornerRadius = 37.5
         }
     }
     
     // MARK: - Actions
     @IBAction func numberTapped(_ sender: RoundButton) {
+        //Check that the number screen is not empty
         guard let text = amountLabel.text else {return}
+        //Check if there is already a decimal point and limit it to 2 decimals
         if text.contains("."){
             if text.components(separatedBy: ".")[1].count != 2{
                 amountLabel.text = amountLabel.text! + String(sender.tag-1)
@@ -93,14 +111,21 @@ class IncomeCalculator: UIViewController {
             MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - numberOnScreen)
         }
         
-        datePicker.datePickerMode = UIDatePickerMode.date
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        let selectedDate = dateFormatter.string(from: datePicker.date)
-        
         MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: numberOnScreen, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     
+    @IBAction func dateTapped() {
+        
+        let alert = UIAlertController(style: .actionSheet, title: "Select date")
+        alert.addDatePicker(mode: .date, date: Date(), minimumDate: NSDate.distantPast, maximumDate: NSDate.distantFuture) { date in
+            self.selectedDate = self.dateFormatter.string(from: date)
+            self.dateButton.setTitle(self.selectedDate, for: .normal)
+        }
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+        
+    }
 }
+

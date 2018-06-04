@@ -45,7 +45,7 @@ class MovementVC: UIViewController {
         
         //check every movement
         let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
-        
+        movementsDB.keepSynced(true)
         movementsDB.observe(.value, with: { (snapshot) in
             
             if let result = snapshot.children.allObjects as? [DataSnapshot] {

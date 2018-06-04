@@ -8,12 +8,6 @@
 
 import UIKit
 import MobileCoreServices
-//struct Account {
-//    var id = ""
-//    var name = ""
-//    var balance = 0.0
-//    var income = true  // <- is an income or a spend
-//}
 
 final class Account: NSObject, NSItemProviderWriting, NSItemProviderReading, Codable {
     
@@ -54,15 +48,11 @@ final class Account: NSObject, NSItemProviderWriting, NSItemProviderReading, Cod
     
     var id = ""
     var name = ""
+    var icon = ""
     var balance = 0.0
     var income = true
     
     override init() {
-//        id = Database.database().reference().childByAutoId().key
         super.init()
     }
-    
-//    init?(_ snapshot: DataSnapshot) {
-//        //...
-//    }
 }

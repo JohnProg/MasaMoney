@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -20,20 +20,20 @@
             <objects>
                 <viewController storyboardIdentifier="AddIncome" id="Xeo-nY-iU0" customClass="AddIncome" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HlH-Jo-YGs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tc-C0-el5">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ar4-oo-HSK">
-                                        <rect key="frame" x="166" y="20" width="42" height="21"/>
+                                        <rect key="frame" x="138.5" y="20" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="P12-ud-1h1">
-                                        <rect key="frame" x="20" y="61" width="335" height="566"/>
+                                        <rect key="frame" x="20" y="61" width="280" height="467"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yFS-gu-z6O">
                                             <size key="itemSize" width="100" height="125"/>
@@ -82,17 +82,17 @@
             <objects>
                 <viewController storyboardIdentifier="IncomeCalculator" title="IncomeCalculator" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WJ-vd-MIJ" userLabel="IncomeCalculator" customClass="IncomeCalculator" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wiy-g2-TPL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OdS-m4-gkT">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87h-HY-KdH" userLabel="TopBarView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ouN-fn-glz">
-                                                <rect key="frame" x="20" y="0.0" width="335" height="76.5"/>
+                                                <rect key="frame" x="20" y="0.0" width="280" height="76.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-bS-CD7">
                                                         <rect key="frame" x="0.0" y="22" width="32" height="32.5"/>
@@ -106,19 +106,19 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income received:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="971-3o-A73">
-                                                        <rect key="frame" x="57" y="28" width="127" height="20.5"/>
+                                                        <rect key="frame" x="52" y="28" width="111" height="20.5"/>
                                                         <fontDescription key="fontDescription" name="Lato-Medium" family="Lato" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewe-W5-KSa">
-                                                        <rect key="frame" x="204" y="28" width="42" height="20.5"/>
+                                                        <rect key="frame" x="183" y="28" width="32" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dd-C6-aQn">
-                                                        <rect key="frame" x="290" y="18.5" width="45" height="40"/>
+                                                        <rect key="frame" x="235" y="18.5" width="45" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="4ga-Nk-HK5"/>
                                                             <constraint firstAttribute="height" constant="40" id="69p-IF-uHU"/>
@@ -146,16 +146,16 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiU-Kh-s9X" userLabel="BottomView">
-                                        <rect key="frame" x="0.0" y="77" width="375" height="570"/>
+                                        <rect key="frame" x="0.0" y="77" width="320" height="471"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-5C-iKX">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="570"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="471"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNz-MO-w92">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LNz-MO-w92" userLabel="ScreenView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj4-S1-Hsk">
-                                                                <rect key="frame" x="25" y="5" width="325" height="80"/>
+                                                                <rect key="frame" x="25" y="5" width="270" height="80"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="80" id="ZgR-PX-VKJ"/>
@@ -173,20 +173,20 @@
                                                             <constraint firstAttribute="height" constant="90" id="wHj-1M-u9y"/>
                                                         </constraints>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ai-jO-Hie">
-                                                        <rect key="frame" x="0.0" y="90" width="375" height="390"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ai-jO-Hie" userLabel="NumbersView">
+                                                        <rect key="frame" x="0.0" y="90" width="320" height="306"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="F9x-6v-To0">
-                                                                <rect key="frame" x="37.5" y="20" width="300" height="405"/>
+                                                                <rect key="frame" x="32.5" y="20" width="255" height="345"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Sxb-qr-Ui2">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="255" height="75"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1S-DT-X7b" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="eM0-ya-LXt"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="fJO-94-dgm"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="eM0-ya-LXt"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="fJO-94-dgm"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="1"/>
                                                                                 <connections>
@@ -194,10 +194,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQx-bK-KDG" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="90" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="RfD-GL-fru"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="VVK-aA-JqA"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="RfD-GL-fru"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="VVK-aA-JqA"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="2"/>
                                                                                 <connections>
@@ -205,10 +205,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HA2-xv-abp" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="180" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="90" id="eYg-UB-cQh"/>
-                                                                                    <constraint firstAttribute="width" constant="90" id="xdD-Vm-VMN"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="eYg-UB-cQh"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="xdD-Vm-VMN"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="3"/>
                                                                                 <connections>
@@ -218,13 +218,13 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="FX8-D6-ARP">
-                                                                        <rect key="frame" x="0.0" y="105" width="300" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="90" width="255" height="75"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-iv-lrt" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="9qe-1f-Xm0"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="MZd-bV-01d"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="9qe-1f-Xm0"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="MZd-bV-01d"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="4"/>
                                                                                 <connections>
@@ -232,10 +232,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nit-EM-IpL" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="90" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="Cer-n7-c3V"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="H8X-UX-MXT"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="Cer-n7-c3V"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="H8X-UX-MXT"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="5"/>
                                                                                 <connections>
@@ -243,10 +243,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bi9-5c-nf1" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="180" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="90" id="BLm-Zh-XV3"/>
-                                                                                    <constraint firstAttribute="width" constant="90" id="b5e-U6-d1s"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="BLm-Zh-XV3"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="b5e-U6-d1s"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="6"/>
                                                                                 <connections>
@@ -256,13 +256,13 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Uf1-Oq-nUP">
-                                                                        <rect key="frame" x="0.0" y="210" width="300" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="180" width="255" height="75"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcb-cv-Zvp" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="9sA-Ea-JUU"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="fDJ-aU-0Ly"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="9sA-Ea-JUU"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="fDJ-aU-0Ly"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="7"/>
                                                                                 <connections>
@@ -270,10 +270,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5dh-Wz-7r3" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="90" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="FkR-dk-C2z"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="hOB-Th-Ta1"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="FkR-dk-C2z"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="hOB-Th-Ta1"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="8"/>
                                                                                 <connections>
@@ -281,10 +281,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3C-39-Kfu" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="180" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="90" id="KBj-sk-veg"/>
-                                                                                    <constraint firstAttribute="width" constant="90" id="eAh-so-FA0"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="KBj-sk-veg"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="eAh-so-FA0"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="9"/>
                                                                                 <connections>
@@ -294,13 +294,13 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="CDe-QU-9a9">
-                                                                        <rect key="frame" x="0.0" y="315" width="300" height="90"/>
+                                                                        <rect key="frame" x="0.0" y="270" width="255" height="75"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzx-Og-9T1" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="90" id="CD5-T6-P6W"/>
-                                                                                    <constraint firstAttribute="width" constant="90" id="XmC-jY-5NP"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="CD5-T6-P6W"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="XmC-jY-5NP"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title=","/>
                                                                                 <connections>
@@ -308,10 +308,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7I-W7-bkm" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="105" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="90" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="0Bf-dK-Cm4"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="Tuf-L4-dTS"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="0Bf-dK-Cm4"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="Tuf-L4-dTS"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="0"/>
                                                                                 <connections>
@@ -319,10 +319,10 @@
                                                                                 </connections>
                                                                             </button>
                                                                             <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ9-h8-ibF" customClass="RoundButton" customModule="MasaMoney" customModuleProvider="target">
-                                                                                <rect key="frame" x="210" y="0.0" width="90" height="90"/>
+                                                                                <rect key="frame" x="180" y="0.0" width="75" height="75"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="90" id="0by-CO-uhj"/>
-                                                                                    <constraint firstAttribute="height" constant="90" id="IoP-hC-U5T"/>
+                                                                                    <constraint firstAttribute="width" constant="75" id="0by-CO-uhj"/>
+                                                                                    <constraint firstAttribute="height" constant="75" id="IoP-hC-U5T"/>
                                                                                 </constraints>
                                                                                 <state key="normal" title="&lt;"/>
                                                                                 <connections>
@@ -340,23 +340,28 @@
                                                             <constraint firstItem="F9x-6v-To0" firstAttribute="top" secondItem="0Ai-jO-Hie" secondAttribute="top" constant="20" id="wp2-Mj-2i0"/>
                                                         </constraints>
                                                     </view>
-                                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="59L-3j-U82">
-                                                        <rect key="frame" x="0.0" y="480" width="375" height="90"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hyh-jC-ifd">
+                                                        <rect key="frame" x="0.0" y="396" width="320" height="75"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="90" id="tEb-P5-2g8"/>
+                                                            <constraint firstAttribute="height" constant="75" id="E2c-ij-1bt"/>
                                                         </constraints>
-                                                        <date key="date" timeIntervalSinceReferenceDate="548086744.13112795">
-                                                            <!--2018-05-15 14:19:04 +0000-->
-                                                        </date>
-                                                    </datePicker>
+                                                        <state key="normal" title="Button">
+                                                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="dateTapped" destination="4WJ-vd-MIJ" eventType="touchUpInside" id="jBZ-6Z-Ghh"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="LNz-MO-w92" firstAttribute="leading" secondItem="bnf-5C-iKX" secondAttribute="leading" id="DHv-Df-9gf"/>
+                                                    <constraint firstItem="Hyh-jC-ifd" firstAttribute="width" secondItem="bnf-5C-iKX" secondAttribute="width" id="JZB-6M-36J"/>
                                                     <constraint firstItem="0Ai-jO-Hie" firstAttribute="leading" secondItem="bnf-5C-iKX" secondAttribute="leading" id="QGi-HT-t0j"/>
-                                                    <constraint firstItem="59L-3j-U82" firstAttribute="top" secondItem="0Ai-jO-Hie" secondAttribute="bottom" id="bA7-LK-SH3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Hyh-jC-ifd" secondAttribute="bottom" id="gav-2M-3bc"/>
                                                     <constraint firstItem="LNz-MO-w92" firstAttribute="top" secondItem="bnf-5C-iKX" secondAttribute="top" id="mE0-ad-aOl"/>
                                                     <constraint firstAttribute="trailing" secondItem="0Ai-jO-Hie" secondAttribute="trailing" id="p8C-gL-ZhQ"/>
                                                     <constraint firstItem="0Ai-jO-Hie" firstAttribute="top" secondItem="LNz-MO-w92" secondAttribute="bottom" id="skA-04-xgQ"/>
+                                                    <constraint firstItem="Hyh-jC-ifd" firstAttribute="top" secondItem="0Ai-jO-Hie" secondAttribute="bottom" id="st2-r7-36f"/>
                                                     <constraint firstAttribute="trailing" secondItem="LNz-MO-w92" secondAttribute="trailing" id="tPO-da-XQ6"/>
                                                 </constraints>
                                             </stackView>
@@ -365,7 +370,6 @@
                                         <constraints>
                                             <constraint firstItem="bnf-5C-iKX" firstAttribute="top" secondItem="fiU-Kh-s9X" secondAttribute="top" id="0DK-rm-gpc"/>
                                             <constraint firstItem="bnf-5C-iKX" firstAttribute="leading" secondItem="fiU-Kh-s9X" secondAttribute="leading" id="MPf-Ea-foq"/>
-                                            <constraint firstItem="59L-3j-U82" firstAttribute="width" secondItem="fiU-Kh-s9X" secondAttribute="width" id="UUh-4p-tZD"/>
                                             <constraint firstAttribute="bottom" secondItem="bnf-5C-iKX" secondAttribute="bottom" id="Vlv-zn-jbe"/>
                                             <constraint firstAttribute="trailing" secondItem="bnf-5C-iKX" secondAttribute="trailing" id="zn4-ml-TW2"/>
                                         </constraints>
@@ -394,7 +398,7 @@
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="bj4-S1-Hsk" id="TYf-VH-D9v"/>
-                        <outlet property="datePicker" destination="59L-3j-U82" id="3bZ-US-Cf5"/>
+                        <outlet property="dateButton" destination="Hyh-jC-ifd" id="bKS-fp-jHM"/>
                         <outlet property="incomeNameLabel" destination="Ewe-W5-KSa" id="XEw-IW-Yho"/>
                         <outlet property="incomeTitleLabel" destination="971-3o-A73" id="GTi-3O-MPe"/>
                         <outletCollection property="buttonCollection" destination="HA2-xv-abp" collectionClass="NSMutableArray" id="fT4-nf-jE3"/>

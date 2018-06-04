@@ -34,20 +34,21 @@ class AccountsViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        icon.setImage(#imageLiteral(resourceName: "money-1"), for: .normal)
+        icon.setImage(#imageLiteral(resourceName: "bill"), for: .normal)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         titleLabel.text = "titulo"
-     //   icon.setImage(#imageLiteral(resourceName: "rich"), for: .normal)
-        balanceLabel.text = "300"
+        icon.setImage(#imageLiteral(resourceName: "bill"), for: .normal)
+        balanceLabel.text = "0"
     }
     
     func configure(account: Account) {
         titleLabel.text = account.name
         balanceLabel.text = String(format:"%g €",account.balance)
+        icon.setImage(UIImage(named: account.icon) , for: .normal)
         if account.income != false {
             icon.backgroundColor = UIColor.mmOrangeish
             balanceLabel.textColor = UIColor.mmGoldish

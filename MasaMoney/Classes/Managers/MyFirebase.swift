@@ -112,17 +112,20 @@ class MyFirebase {
         //Creating accounts
         var accountDictionary = ["name": "Wallet",
                                  "balance": 0.0,
+                                 "icon": "bill",
                                  "income" : true] as [String : Any]
         
         self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
         
         accountDictionary = ["name": "Bank account",
+                             "icon": "bill",
                              "balance": 0.0,
                              "income" : true] as [String : Any]
         
         self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
         
         accountDictionary = ["name": "Groceries",
+                             "icon": "supplies",
                              "balance": 0.0,
                              "income" : false] as [String : Any]
         
@@ -130,10 +133,11 @@ class MyFirebase {
         
     }
     
-    func createAccounts(name: String, income: Bool){
+    func createAccounts(name: String, balance: Double, icon: String, income: Bool){
         //Creating accounts
         let accountDictionary = ["name": name,
-                                 "balance": 0.0,
+                                 "balance": balance,
+                                 "icon": icon,
                                  "income" : income] as [String : Any]
         
         self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)

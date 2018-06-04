@@ -68,7 +68,7 @@ class MovementDataSource: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     //Get array of sections
     func getSectionArray() -> [String]{
-        dateFormatter.dateFormat = "dd MM, yyyy"// yyyy-MM-dd"
+        dateFormatter.dateFormat = "dd MM yyyy"// yyyy-MM-dd"
         
         for mov in movementArray {
             if !datesString.contains(mov.date) {
