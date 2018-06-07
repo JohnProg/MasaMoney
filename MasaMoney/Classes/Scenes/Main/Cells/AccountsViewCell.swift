@@ -21,6 +21,7 @@ class AccountsViewCell: UICollectionViewCell {
         didSet {
             icon.isUserInteractionEnabled = false
             icon.backgroundColor = UIColor.mmGreenish
+            icon.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         }
     }
     

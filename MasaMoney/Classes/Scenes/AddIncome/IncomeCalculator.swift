@@ -53,14 +53,15 @@ class IncomeCalculator: UIViewController {
     
     var accountDestination = Account()
     
-    var numberOnScreen : Double = 0
-    
     var selectedDate : String = ""
     
     var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         dateFormatter.dateFormat = "dd MMM yyyy"
         selectedDate = dateFormatter.string(from: Date())
         dateButton.setTitle(selectedDate, for: .normal)
@@ -73,6 +74,12 @@ class IncomeCalculator: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     // MARK: - Actions
     @IBAction func numberTapped(_ sender: RoundButton) {
         //Check that the number screen is not empty
@@ -81,11 +88,9 @@ class IncomeCalculator: UIViewController {
         if text.contains("."){
             if text.components(separatedBy: ".")[1].count != 2{
                 amountLabel.text = amountLabel.text! + String(sender.tag-1)
-                numberOnScreen = Double(amountLabel.text!)!
             }
         }else{
             amountLabel.text = amountLabel.text! + String(sender.tag-1)
-            numberOnScreen = Double(amountLabel.text!)!
         }
     }
     
@@ -93,28 +98,31 @@ class IncomeCalculator: UIViewController {
         guard let text = amountLabel.text else {return}
         if sender.tag == 11 && text.contains(".") == false{
             amountLabel.text = text + "."
-            numberOnScreen = Double(text)!
         }else if sender.tag == 12 {
             amountLabel.text?.removeLast()
         }
     }
+    
     @IBAction func cancel(_ sender: Any) {
         
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func confirm(_ sender: Any) {
-        guard amountLabel.text != nil else {return}
+        guard let  amount = amountLabel.text, !amount.isEmpty else {
+            let alert = UIAlertController(style: .alert, title: Strings.emptyField, message: Strings.noAmount)
+            alert.addAction(title: Strings.cancel, style: .cancel)
+            alert.show()
+            return}
         // Update balance in the accounts except if it is an addition to an income account
-        MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + numberOnScreen)
+        MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + Double(amount)!)
         if accountOrigin.id != "External"{
-            MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - numberOnScreen)
+            MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
         }
-        
-        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: numberOnScreen, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
+        // create the movement
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
-    
     
     @IBAction func dateTapped() {
         
@@ -125,7 +133,6 @@ class IncomeCalculator: UIViewController {
         }
         alert.addAction(title: "OK", style: .cancel)
         alert.show()
-        
     }
 }
 

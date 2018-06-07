@@ -33,12 +33,10 @@ class Login: UIViewController{
         super.viewDidLoad()
     }
     
-
-    
     //MARK: - Actions Buttons
     
     @IBAction func facebookButton(_ sender: Any) {
-        hud.textLabel.text = "Logging in with Facebook..."
+        hud.textLabel.text = Strings.loggingFacebook
         hud.show(in: view, animated: true)
         let loginManager = LoginManager()
         loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
@@ -48,9 +46,9 @@ class Login: UIViewController{
                 self.signIntoFirebaseWithFacebook()
                 
             case .failed(let err):
-                Service.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err)", delay: 3)
+                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
             case .cancelled:
-                Service.dismissHud(self.hud, text: "Error", detailText: "Canceled getting Facebook user.", delay: 3)
+                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.cancelFacebook)", delay: 3)
             }
         }
     }
@@ -64,7 +62,7 @@ class Login: UIViewController{
         Auth.auth().signInAndRetrieveData(with: credential) { (user, err) in
             if let err = err {
                 print(err)
-                Service.dismissHud(self.hud, text: "Sign up error", detailText: err.localizedDescription, delay: 3)
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: err.localizedDescription, delay: 3)
                 return
             }
             print("Succesfully authenticated with Firebase.")
@@ -115,14 +113,12 @@ class Login: UIViewController{
                 break
                 
             case .failed(let err):
-                Service.dismissHud(self.hud, text: "Error", detailText: "Failed to get Facebook user with error: \(err)", delay: 3)
+                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
                 break
             }
         })
         graphRequestConnection.start()
     }
-    
-    // - TODO: Delete storyboardINstance
 
 }
 

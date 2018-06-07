@@ -15,14 +15,20 @@ class Splash: UIViewController {
         hud.interactionType = .blockAllTouches
         return hud
     }()
-
+    
+    @IBOutlet weak var splashLabel: UILabel!{
+        didSet{
+            splashLabel.text = Strings.splashWelcome
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Check for a CURRENT LOGIN TOKEN
         MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
             if let isLogedIn = isLogedIn, isLogedIn {
-                self.hud.textLabel.text = "Loading data..."
+                self.hud.textLabel.text = Strings.loading
                 self.hud.show(in: self.view, animated: true)
                 
                 let appdelegate = UIApplication.shared.delegate as! AppDelegate

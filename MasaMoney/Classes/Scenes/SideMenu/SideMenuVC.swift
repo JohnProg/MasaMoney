@@ -11,16 +11,27 @@ import Firebase
 
 class SideMenuVC: UITableViewController {
 
+    @IBOutlet weak var atmTitle: UILabel!{
+        didSet{
+            atmTitle.text = Strings.atm
+        }
+    }
+    @IBOutlet weak var profileTitle: UILabel!{
+        didSet{
+            profileTitle.text = Strings.perfil
+        }
+    }
+    @IBOutlet weak var logoutTitle: UILabel!{
+        didSet{
+            logoutTitle.text = Strings.logout
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-
-    @IBOutlet weak var atmLabel: UILabel!
-    
-    
-    @IBOutlet weak var logOutLabel: UILabel!
-
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView.cellForRow(at: indexPath)?.tag{
@@ -29,7 +40,9 @@ class SideMenuVC: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
 
         case 2:
-            print("tag 2 tapped")
+            let vc: ProfileVC = UIStoryboard(.Main).instantiateViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
         case 3:
             try! Auth.auth().signOut()
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -37,8 +50,10 @@ class SideMenuVC: UITableViewController {
             let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
             let nav = UINavigationController(rootViewController: loginController)
             appdelegate.window!.rootViewController = nav
+            
         case .none:
             print("tag none")
+            
         case .some(_):
             print("some")
         }

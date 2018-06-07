@@ -22,7 +22,7 @@
                                 <rect key="frame" x="51.5" y="152.5" width="273" height="362.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MasaMoney" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7W-dM-3wj">
-                                        <rect key="frame" x="44" y="0.0" width="184.5" height="42"/>
+                                        <rect key="frame" x="44.5" y="0.0" width="184.5" height="42"/>
                                         <color key="tintColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -52,6 +52,9 @@
                         <viewLayoutGuide key="safeArea" id="I6b-u2-7iW"/>
                     </view>
                     <navigationItem key="navigationItem" id="HBn-QO-a6h"/>
+                    <connections>
+                        <outlet property="splashLabel" destination="A0D-99-RXk" id="Rnh-qs-4AW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8X-mI-sO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

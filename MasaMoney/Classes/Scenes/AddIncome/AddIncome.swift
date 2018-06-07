@@ -17,7 +17,7 @@ class AddIncome: UIViewController{
         didSet {
             chooseIncomeLabel.font = UIFont.mmLatoBoldFont(size: 16)
             chooseIncomeLabel.textColor = UIColor.darkGray
-            chooseIncomeLabel.text = "Select account where money comes to"
+            chooseIncomeLabel.text = Strings.addIncomeTitle
         }
     }
     
@@ -25,14 +25,15 @@ class AddIncome: UIViewController{
     
     // MARK: -Properties
     var incomeArray: [Account] = []
-    var incomeDataSource = IncomeDataSource(incomeArray: [])
+    var incomeDataSource = AccountDataSource(accountArray: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Income"
+        navigationItem.title = Strings.income
         setupCollectionView()
-        incomeDataSource.incomeArray = self.incomeArray
+        incomeDataSource.accountArray = self.incomeArray
+        incomeDataSource.accountDatasourceDelegate = self
         incomeCollectionView.reloadData()
     }
     
@@ -40,23 +41,25 @@ class AddIncome: UIViewController{
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
         incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
  
-        incomeDataSource.incomeDatasourceDelegate = self 
+//        incomeDataSource.incomeDatasourceDelegate = self
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
         
     }    
 }
 
-extension AddIncome: IncomeDataSourceOutput {
-    func didSelectIncomeAccountAtIndexPath(_ indexPath: IndexPath) {
+extension AddIncome: AccountDataSourceOutput {
+    
+    func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int) {
         let incomeAccount = Account()
         incomeAccount.name = "Income"
         incomeAccount.id = "External"
         incomeAccount.balance = 0
         
         let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
-        vc.accountDestination = incomeDataSource.incomeArray[indexPath.row]
+        vc.accountDestination = incomeDataSource.accountArray[indexPath.row]
         vc.accountOrigin = incomeAccount
+        self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
