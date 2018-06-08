@@ -14,31 +14,30 @@ import FirebaseStorage
 import JGProgressHUD
 
 class MyFirebase {
-    
-    static let shared = MyFirebase()
-    // Declare instance variables here
-    var currentUser: User?
-    var userId: String = ""
-    var dbRef: DatabaseReference! = Database.database().reference()
-    
-    private var listenHandler: AuthStateDidChangeListenerHandle?
-    
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
         hud.interactionType = .blockAllTouches
         return hud
     }()
     
+    // MARK: - Properties
+    static let shared = MyFirebase()
+    var currentUser: User?
+    var userId: String = ""
+    var dbRef: DatabaseReference! = Database.database().reference()
+    
+    private var listenHandler: AuthStateDidChangeListenerHandle?
+    
+    
+    
     private init() {
         
     }
     
     func addUserListener(loggedIn: Bool, completion: @escaping (Bool?) -> Void) {
-        print ("Add listener")
         listenHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
                 // We are Logged Out
-                print("Logged Out")
                 self.currentUser = nil
                 self.userId = ""
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -46,12 +45,9 @@ class MyFirebase {
                 }
             }
             else {
-                print ("Logged In")
-                
                 if (self.currentUser == nil) {
                     self.currentUser = user
                     self.userId = (user?.uid)!
-                    print ("userId -> \(self.userId)")
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         completion(true)
                     }
@@ -70,10 +66,7 @@ class MyFirebase {
         Auth.auth().removeStateDidChangeListener(listenHandler!)
     }
     
-    
-    
     func saveUserIntoFirebaseDatabase(name: String, email: String, profileImage: UIImage, loggedIn: Bool, completion: @escaping (Bool?) -> Void) {
-        
         
         //Storaging profile picture
         guard let profileImageUploadData = UIImageJPEGRepresentation(profileImage, 0.3) else { Service.dismissHud(hud, text: "Error", detailText: "Failed to save user.", delay: 3); return }
@@ -115,21 +108,21 @@ class MyFirebase {
                                  "icon": "bill",
                                  "income" : true] as [String : Any]
         
-        self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
+        self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
         
         accountDictionary = ["name": Strings.bank,
                              "icon": "bill",
                              "balance": 0.0,
                              "income" : true] as [String : Any]
         
-        self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
+        self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
         
         accountDictionary = ["name": Strings.groceries,
                              "icon": "supplies",
                              "balance": 0.0,
                              "income" : false] as [String : Any]
         
-        self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
+        self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
         
     }
     
@@ -140,7 +133,7 @@ class MyFirebase {
                                  "icon": icon,
                                  "income" : income] as [String : Any]
         
-        self.dbRef.child("Accounts").child(self.userId).childByAutoId().setValue(accountDictionary)
+        self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
     }
     
     func createMovements(origin: String, destination: String, amount: Double, date: String, originId: String, destinyId: String){
@@ -152,7 +145,7 @@ class MyFirebase {
         let movementAccountDictionary = [originId: true,
                                          destinyId: true]
         
-        let movId = self.dbRef.child("Movements").child(self.userId).childByAutoId()
+        let movId = self.dbRef.child("Movements").child(userId).childByAutoId()
         movId.setValue(movementDictionary)
         movId.child("Accounts").setValue(movementAccountDictionary)
 
@@ -160,14 +153,14 @@ class MyFirebase {
     }
     
     func updateIncomeBalance(idAccount: String, balance: Double){
-        _ = dbRef.child("Accounts").child(self.userId).child(idAccount).updateChildValues(["balance": balance])
+        _ = dbRef.child("Accounts").child(userId).child(idAccount).updateChildValues(["balance": balance])
     }
     
     func editAccount(idAccount: String, name: String, icon: String){
-        _ = dbRef.child("Accounts").child(self.userId).child(idAccount).updateChildValues(["name": name, "icon": icon])
+        _ = dbRef.child("Accounts").child(userId).child(idAccount).updateChildValues(["name": name, "icon": icon])
     }
     
     func deleteAccount(idAccount: String){
-        _ = dbRef.child("Accounts").child(self.userId).child(idAccount).removeValue()
+        _ = dbRef.child("Accounts").child(userId).child(idAccount).removeValue()
     }
 }

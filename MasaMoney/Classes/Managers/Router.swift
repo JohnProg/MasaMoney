@@ -10,19 +10,25 @@ import UIKit
 
 struct Router {
     
-    private static let duration = 0.3
-    
-//    static func openMainApp(animated: Bool) {
-//        if animated {
-//            UIView.transition(with: AppDelegate.window, duration: duration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
-//                let mainVC = UIStoryboard(.Main).instantiateInitialViewController()
-//                AppDelegate.window.rootViewController = mainVC
-//            }, completion: nil)
-//        } else {
-//            let mainVC = UIStoryboard(.Main).instantiateInitialViewController()
-//            AppDelegate.window.rootViewController = mainVC
-//        }
-//    }
-    
+    static func openMainApp() {
+        // Check for a CURRENT LOGIN TOKEN
+        MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
+            if let isLogedIn = isLogedIn, isLogedIn {
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! Main
+                let nav = UINavigationController(rootViewController: mainController)
+                appdelegate.window!.rootViewController = nav
+                
+            } else {
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+                let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
+                let nav = UINavigationController(rootViewController: loginController)
+                appdelegate.window!.rootViewController = nav
+            }
+        })
+    }
 }
-

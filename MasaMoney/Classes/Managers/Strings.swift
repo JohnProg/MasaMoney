@@ -296,6 +296,15 @@ struct Strings {
         }
     }
     
+    static var contact: String {
+        switch language {
+        case .en:
+            return "Contact"
+        case .es:
+            return "Contacto"
+        }
+    }
+    
     static var back: String {
         switch language {
         case .en:
@@ -313,4 +322,32 @@ struct Strings {
             return "Editar"
         }
     }
+    
+    static var delete: String {
+        switch language {
+        case .en:
+            return "Delete"
+        case .es:
+            return "Eliminar"
+        }
+    }
+    
+    static var deleteMessage: String {
+        switch language {
+        case .en:
+            return "Are you sure that you want to eliminate this account?"
+        case .es:
+            return "Esta seguro de que quiere eliminar esta cuenta?"
+        }
+    }
+    
+    static var deleteAccount: String {
+        switch language {
+        case .en:
+            return "Delete account"
+        case .es:
+            return "Eliminar cuenta"
+        }
+    }
+
 }

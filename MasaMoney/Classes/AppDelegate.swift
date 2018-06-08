@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //Firebase
         FirebaseApp.configure()
-//        Database.database().isPersistenceEnabled = true
+        Database.database().isPersistenceEnabled = true
         
         //Facebook
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

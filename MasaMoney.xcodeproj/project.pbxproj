@@ -74,7 +74,7 @@
 		8689776420BC7F2C00F0D94E /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8689776320BC7F2C00F0D94E /* SideMenuVC.swift */; };
 		868E0E8420C9182F00E9EE86 /* AccountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868E0E8320C9182F00E9EE86 /* AccountDataSource.swift */; };
 		869116B520C284D70051546B /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869116B420C284D70051546B /* ClusterView.swift */; };
-		869116B720C2F7F40051546B /* AddAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869116B620C2F7F40051546B /* AddAccountVC.swift */; };
+		869116B720C2F7F40051546B /* AccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869116B620C2F7F40051546B /* AccountVC.swift */; };
 		869116B920C566540051546B /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869116B820C566540051546B /* ProfileVC.swift */; };
 		869116BB20C5735D0051546B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869116BA20C5735D0051546B /* Strings.swift */; };
 		869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */; };
@@ -166,7 +166,7 @@
 		8689776320BC7F2C00F0D94E /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		868E0E8320C9182F00E9EE86 /* AccountDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataSource.swift; sourceTree = "<group>"; };
 		869116B420C284D70051546B /* ClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
-		869116B620C2F7F40051546B /* AddAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountVC.swift; sourceTree = "<group>"; };
+		869116B620C2F7F40051546B /* AccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVC.swift; sourceTree = "<group>"; };
 		869116B820C566540051546B /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		869116BA20C5735D0051546B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		869D5DD820A74A4700A8F0A8 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Bold.ttf"; sourceTree = SOURCE_ROOT; };
@@ -622,7 +622,7 @@
 			children = (
 				864537CD209A11F70098A32F /* Cells */,
 				86A04D012084D0CB00C3CBDB /* Main.swift */,
-				869116B620C2F7F40051546B /* AddAccountVC.swift */,
+				869116B620C2F7F40051546B /* AccountVC.swift */,
 				868E0E8320C9182F00E9EE86 /* AccountDataSource.swift */,
 			);
 			path = Main;
@@ -907,7 +907,7 @@
 				8686D7F520BDD5C10009F723 /* Button.swift in Sources */,
 				8686D7E720BDD5C10009F723 /* Contact.swift in Sources */,
 				8686D7EC20BDD5C10009F723 /* ItemWithImage.swift in Sources */,
-				869116B720C2F7F40051546B /* AddAccountVC.swift in Sources */,
+				869116B720C2F7F40051546B /* AccountVC.swift in Sources */,
 				8686D7DE20BDD5C10009F723 /* PhotoLibraryPickerViewController.swift in Sources */,
 				86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */,
 				869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */,

@@ -76,11 +76,18 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         loadData()
         setupCollectionView()
         
-        let lpgr : UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-        lpgr.minimumPressDuration = 0.2
-        lpgr.delegate = self
-        lpgr.delaysTouchesBegan = true
-        self.incomeCollectionView?.addGestureRecognizer(lpgr)
+        ///set the recognize in multiple views
+        incomeCollectionView.addGestureRecognizer(setGestureRecognizer())
+        outcomeCollectionView.addGestureRecognizer(setGestureRecognizer())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //Refresh data
+        incomeArray.removeAll()
+        outcomeArray.removeAll()
+        loadData()
+        incomeCollectionView.reloadData()
+        outcomeCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +126,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     func loadData(){
         //read all the accounts
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
-//        accountsDB.keepSynced(true)
+        accountsDB.keepSynced(true)
         accountsDB.observe(.value, with: { (snapshot) in
             //go through every result to get the id and read everyone
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
@@ -156,7 +163,6 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         //Check if the account is an income or outcome and add
         //check if already exists to update it instead of append it
         if account.income == true {
-            print(account.name)
             if let i = incomeArray.index(where: {$0.id == account.id}){
                 incomeArray[i] = account
                 incomeDataSource.accountArray = incomeArray
@@ -183,21 +189,37 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         spentLabel.text = String(format:"%g €",sumSpent)
     }
     
+    func setGestureRecognizer() -> UILongPressGestureRecognizer {
+        var longRecognizer = UILongPressGestureRecognizer()
+        longRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longRecognizer.minimumPressDuration = 0.2
+        longRecognizer.delegate = self
+        longRecognizer.delaysTouchesBegan = true
+        return longRecognizer
+    }
+    
     // MARK: Actions
     
     @objc func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer){
-        
+        var account = Account()
         if (gestureRecognizer.state != UIGestureRecognizerState.ended){
             return
         }
-        
-        let location = gestureRecognizer.location(in: self.incomeCollectionView)
-        
-        guard let index = (self.incomeCollectionView?.indexPathForItem(at: location)) else {return}
-        
-        let vc: AddAccountVC = UIStoryboard(.Main).instantiateViewController()
+        // Check from where is coming the long press, pick the account and open the next scene
+        if gestureRecognizer.view == incomeCollectionView {
+            let locationIn = gestureRecognizer.location(in: self.incomeCollectionView)
+            if let indexIn = (self.incomeCollectionView?.indexPathForItem(at: locationIn)) {
+                account = incomeDataSource.accountArray[indexIn.row]
+            }
+        } else {
+            let locationOut = gestureRecognizer.location(in: self.outcomeCollectionView)
+            if let indexOut = (self.outcomeCollectionView?.indexPathForItem(at: locationOut)) {
+                account = outcomeDataSource.accountArray[indexOut.row]
+            }
+        }
+        let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
         vc.vcType = .edit
-        vc.account = incomeDataSource.accountArray[index.row]
+        vc.account = account
         self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -210,14 +232,14 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     }
     
     @IBAction func addInAccount(_ sender: Any) {
-        let vc: AddAccountVC = UIStoryboard(.Main).instantiateViewController()
+        let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
         vc.vcType = .income
         self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func addOutAccount(_ sender: Any) {
-        let vc: AddAccountVC = UIStoryboard(.Main).instantiateViewController()
+        let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
         vc.vcType = .outcome
         self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
@@ -259,6 +281,7 @@ extension Main: UICollectionViewDropDelegate{
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         //Get destination account
         guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
+        print(destinationIndex)
         let destinationAccount = outcomeArray[destinationIndex]
         
         //Get origin account

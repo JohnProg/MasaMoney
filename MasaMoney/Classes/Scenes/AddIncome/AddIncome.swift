@@ -41,10 +41,8 @@ class AddIncome: UIViewController{
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
         incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
  
-//        incomeDataSource.incomeDatasourceDelegate = self
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
-        
     }    
 }
 

@@ -7,14 +7,9 @@
 //
 
 import UIKit
-import JGProgressHUD
 
 class Splash: UIViewController {
-    let hud: JGProgressHUD = {
-        let hud = JGProgressHUD(style: .light)
-        hud.interactionType = .blockAllTouches
-        return hud
-    }()
+    
     
     @IBOutlet weak var splashLabel: UILabel!{
         didSet{
@@ -25,27 +20,7 @@ class Splash: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Check for a CURRENT LOGIN TOKEN
-        MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
-            if let isLogedIn = isLogedIn, isLogedIn {
-                self.hud.textLabel.text = Strings.loading
-                self.hud.show(in: self.view, animated: true)
-                
-                let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! Main
-                let nav = UINavigationController(rootViewController: mainController)
-                appdelegate.window!.rootViewController = nav
-                
-            } else {
-                
-                let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-                let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login
-                let nav = UINavigationController(rootViewController: loginController)
-                appdelegate.window!.rootViewController = nav
-            }
-        })
+        Router.openMainApp()
     }
 
 }

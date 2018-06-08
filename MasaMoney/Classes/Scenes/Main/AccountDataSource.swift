@@ -37,7 +37,6 @@ class AccountDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
                 return UICollectionViewCell()
         }
         cell.configure(account: accountArray[indexPath.item])
-        print("IDS -> \(accountArray[indexPath.item].name)")
         return cell
     }
     

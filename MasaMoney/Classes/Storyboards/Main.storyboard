@@ -24,7 +24,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <view key="tableFooterView" contentMode="scaleToFill" id="iYw-3H-2hz" userLabel="footer">
-                            <rect key="frame" x="0.0" y="227" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="271" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
@@ -75,8 +75,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" tag="3" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tuV-nl-zoO">
+                                    <tableViewCell clipsSubviews="YES" tag="3" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="MZm-gQ-2tP">
                                         <rect key="frame" x="0.0" y="183" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MZm-gQ-2tP" id="ZZf-GN-kyW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vO8-83-tlX">
+                                                    <rect key="frame" x="16" y="11" width="343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vO8-83-tlX" firstAttribute="leading" secondItem="ZZf-GN-kyW" secondAttribute="leadingMargin" id="FRp-Ak-Unt"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vO8-83-tlX" secondAttribute="bottom" constant="1" id="NwH-r5-uvu"/>
+                                                <constraint firstItem="vO8-83-tlX" firstAttribute="top" secondItem="ZZf-GN-kyW" secondAttribute="topMargin" id="TdD-C2-xp8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vO8-83-tlX" secondAttribute="trailing" id="Wb2-0U-9dn"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" tag="4" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tuV-nl-zoO">
+                                        <rect key="frame" x="0.0" y="227" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tuV-nl-zoO" id="mAM-2y-U8O">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -108,6 +130,7 @@
                     <navigationItem key="navigationItem" id="Qm9-oL-qcd"/>
                     <connections>
                         <outlet property="atmTitle" destination="cZj-yo-4BQ" id="GoN-Or-V98"/>
+                        <outlet property="contactTitle" destination="vO8-83-tlX" id="cq3-2f-fa7"/>
                         <outlet property="logoutTitle" destination="TWU-mo-eSg" id="2FA-JC-r7C"/>
                         <outlet property="profileTitle" destination="P8i-dI-v5C" id="Hej-ce-Va8"/>
                     </connections>
@@ -458,10 +481,10 @@
             </objects>
             <point key="canvasLocation" x="72.799999999999997" y="123.68815592203899"/>
         </scene>
-        <!--Add AccountVC-->
+        <!--AccountVC-->
         <scene sceneID="IWJ-DY-Mfc">
             <objects>
-                <viewController storyboardIdentifier="AddAccountVC" id="oRr-TD-MCm" customClass="AddAccountVC" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountVC" id="oRr-TD-MCm" customClass="AccountVC" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Hn-FJ-9hC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

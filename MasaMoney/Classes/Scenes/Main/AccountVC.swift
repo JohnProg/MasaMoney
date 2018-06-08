@@ -1,5 +1,5 @@
 //
-//  AddAccountVC.swift
+//  AccountVC.swift
 //  MasaMoney
 //
 //  Created by Maria Lopez on 02/06/2018.
@@ -14,7 +14,7 @@ enum AccountType {
     case edit
 }
 
-class AddAccountVC: UIViewController, UITextFieldDelegate {
+class AccountVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
     
@@ -50,6 +50,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupItems()
         
         // Listen for keyboard events
@@ -132,9 +133,14 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didPressDelete(_ sender: Any) {
-        MyFirebase.shared.deleteAccount(idAccount: account.id)
-        print("delete")
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        
+        let alert = UIAlertController(style: .alert, title: Strings.delete, message: Strings.deleteMessage)
+        alert.addAction(title: Strings.cancel, style: .cancel)
+        alert.addAction(title: Strings.deleteAccount, style: .default){ action in
+            MyFirebase.shared.deleteAccount(idAccount: self.account.id)
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        }
+        alert.show()
     }
     
     @IBAction func didPressIcon(_ sender: Any) {
@@ -176,6 +182,7 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
             view.frame.origin.y = 0
         }
     }
+    
     //Press return, change state of keyboard // decimal pad doesn't have return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         acNameTF.resignFirstResponder()
@@ -204,6 +211,5 @@ class AddAccountVC: UIViewController, UITextFieldDelegate {
         }else{
             return true
         }
-        
     }
 }

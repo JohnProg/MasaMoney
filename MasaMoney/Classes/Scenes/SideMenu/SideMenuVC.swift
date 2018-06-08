@@ -27,6 +27,11 @@ class SideMenuVC: UITableViewController {
         }
     }
     
+    @IBOutlet weak var contactTitle: UILabel!{
+        didSet{
+            contactTitle.text = Strings.contact
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +49,12 @@ class SideMenuVC: UITableViewController {
             self.navigationController?.pushViewController(vc, animated: true)
             
         case 3:
+            let email = "contact@masamoney.com"
+            let url = URL(string: "mailto:\(email)")
+//            UIApplication.shared.openURL(url!)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            
+        case 4:
             try! Auth.auth().signOut()
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
