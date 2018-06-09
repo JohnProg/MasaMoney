@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
 import Firebase
-import LBTAComponents
 import JGProgressHUD
 import SideMenu
 
@@ -93,14 +91,14 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Hide the navigation bar on the this view controller
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Show the navigation bar on other view controllers
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     //MARKS: - Functions
@@ -112,8 +110,8 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         
         incomeCollectionView.allowsSelection = true
         incomeCollectionView.dragDelegate = self
-        incomeCollectionView.dragInteractionEnabled = true
         incomeCollectionView.dropDelegate = self
+        incomeCollectionView.dragInteractionEnabled = true
         outcomeCollectionView.dropDelegate = self
         
         incomeCollectionView.delegate = incomeDataSource
@@ -124,8 +122,11 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     }
     
     func loadData(){
+        
         //read all the accounts
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
+        hud.textLabel.text = Strings.loading
+        hud.show(in: self.view, animated: false)
         accountsDB.keepSynced(true)
         accountsDB.observe(.value, with: { (snapshot) in
             //go through every result to get the id and read everyone
@@ -157,6 +158,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
                 }
             }
         })
+        hud.dismiss()
     }
     
     func setUpAccount(account: Account) {
@@ -268,22 +270,26 @@ extension Main: AccountDataSourceOutput  {
 
 extension Main: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let account = incomeDataSource.accountArray[indexPath.row]
-        let accountProvider = NSItemProvider(object: account)
-        let dragAccount = UIDragItem(itemProvider: accountProvider)
-        dragAccount.localObject = account
-        return [dragAccount]
+        //get the account from the array
+        let provider = NSItemProvider(object: incomeDataSource.accountArray[indexPath.row])
+        let dragItem = UIDragItem(itemProvider: provider)
+        dragItem.previewProvider = {
+            let image = UIImage(named: "dollar")
+            let imageView = UIImageView(image: image!)
+            let dollar = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 64, height: 64))
+            dollar.addSubview(imageView)
+            return UIDragPreview(view: dollar)
+        }
+        return [dragItem]
     }
 }
 
 extension Main: UICollectionViewDropDelegate{
-    
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         //Get destination account
         guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
-        print(destinationIndex)
         let destinationAccount = outcomeArray[destinationIndex]
-        
+
         //Get origin account
         for item in coordinator.items {
             item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in

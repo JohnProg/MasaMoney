@@ -53,6 +53,15 @@ struct Strings {
         }
     }
     
+    static var loggingGoogle: String {
+        switch language {
+        case .en:
+            return "Logging in with Google..."
+        case .es:
+            return "Entrando en Google..."
+        }
+    }
+    
     static var failedFacebook: String {
         switch language {
         case .en:

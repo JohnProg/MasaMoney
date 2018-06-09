@@ -10,7 +10,6 @@ import UIKit
 
 class Splash: UIViewController {
     
-    
     @IBOutlet weak var splashLabel: UILabel!{
         didSet{
             splashLabel.text = Strings.splashWelcome
@@ -19,9 +18,7 @@ class Splash: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         Router.openMainApp()
     }
-
 }
 

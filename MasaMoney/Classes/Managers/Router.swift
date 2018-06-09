@@ -14,7 +14,6 @@ struct Router {
         // Check for a CURRENT LOGIN TOKEN
         MyFirebase.shared.addUserListener(loggedIn: false, completion: { isLogedIn in
             if let isLogedIn = isLogedIn, isLogedIn {
-                
                 let appdelegate = UIApplication.shared.delegate as! AppDelegate
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainController = mainStoryboard.instantiateViewController(withIdentifier: "Main") as! Main

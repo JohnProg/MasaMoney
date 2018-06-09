@@ -49,11 +49,11 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     // MARK: - Functions
     
     func loadData(){
-        self.hud.textLabel.text = Strings.loading
-        self.hud.show(in: self.view, animated: true)
+        hud.textLabel.text = Strings.loading
+        hud.show(in: self.view, animated: true)
         //read user information from Firebase
         let userDB = Database.database().reference().child("users").child(MyFirebase.shared.userId)
-//        userDB.keepSynced(true)
+        userDB.keepSynced(true)
         userDB.observe(.value, with: { (snapshot) in
             
             let snapshotValue = snapshot.value as? NSDictionary

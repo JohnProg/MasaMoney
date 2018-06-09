@@ -13,10 +13,10 @@ import SwiftyJSON
 import FirebaseAuth
 import FacebookCore
 import FacebookLogin
-import FirebaseStorage
 import FirebaseDatabase
+import GoogleSignIn
 
-class Login: UIViewController{
+class Login: UIViewController, GIDSignInUIDelegate {
     
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -28,9 +28,14 @@ class Login: UIViewController{
     var email: String? = ""
     var profileImage: UIImage?
     
+    @IBOutlet weak var facebookButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGoogleButton()
+        setupFaceButton()
+        // Hide the navigation bar on the this view controller
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     //MARK: - Actions Buttons
@@ -42,7 +47,6 @@ class Login: UIViewController{
         loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
             switch result {
             case .success(grantedPermissions: _, declinedPermissions: _, token: _):
-                print("Succesfully logged in into Facebook.")
                 self.signIntoFirebaseWithFacebook()
                 
             case .failed(let err):
@@ -53,23 +57,35 @@ class Login: UIViewController{
         }
     }
     
+    func setupFaceButton() {
+        facebookButton.frame = CGRect(x: 60, y: 512, width: view.frame.width - 115, height: 40)
+        view.addSubview(facebookButton)
+    }
+    
+    func setupGoogleButton(){
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 60, y: 412, width: view.frame.width - 115, height: 40)
+        view.addSubview(googleButton)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
 
     //MARK: - Sign into firebase
     
     func signIntoFirebaseWithFacebook() {
         guard let authenticationToken = AccessToken.current?.authenticationToken else { return }
         let credential = FacebookAuthProvider.credential(withAccessToken: authenticationToken)
+        //Authentication with firebase, retrieve info to check if user already exists
         Auth.auth().signInAndRetrieveData(with: credential) { (user, err) in
             if let err = err {
                 print(err)
                 Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: err.localizedDescription, delay: 3)
                 return
             }
-            print("Succesfully authenticated with Firebase.")
             if(user?.additionalUserInfo?.isNewUser == true) {
                 MyFirebase.shared.createBasicAccounts()
+                self.fetchFacebookUser()
             }
-            self.fetchFacebookUser()
         }
     }
     
@@ -79,12 +95,13 @@ class Login: UIViewController{
         
         let graphRequestConnection = GraphRequestConnection()
         let graphRequest = GraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
-        
+        // Make an api call
         graphRequestConnection.add(graphRequest, completion: { (httpResponse, result) in
             switch result {
+            // If is a success, fetch info
             case .success(response: let response):
-                
                 guard let responseDict = response.dictionaryValue else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
+                
                 let json = JSON(responseDict)
                 self.name = json["name"].string
                 self.email = json["email"].string

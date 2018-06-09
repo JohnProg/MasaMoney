@@ -8,8 +8,15 @@
 
 import UIKit
 import Firebase
+import JGProgressHUD
 
 class MovementVC: UIViewController {
+    let hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .light)
+        hud.interactionType = .blockAllTouches
+        return hud
+    }()
+    
     @IBOutlet weak var totalLabel: UILabel!{
         didSet {
             totalLabel.font = UIFont.mmLatoSemiBoldFont(size: 18)
@@ -43,7 +50,10 @@ class MovementVC: UIViewController {
     func loadData(){
         
         //check every movement
+        
         let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
+        hud.textLabel.text = Strings.loading
+        hud.show(in: self.view, animated: false)
         movementsDB.keepSynced(true)
         movementsDB.observe(.value, with: { (snapshot) in
             
@@ -82,6 +92,7 @@ class MovementVC: UIViewController {
                 }
             }
         })
+        hud.dismiss()
     }
 }
 

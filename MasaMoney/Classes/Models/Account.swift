@@ -9,6 +9,8 @@
 import UIKit
 import MobileCoreServices
 
+// Necessary to be like this to be able to drag it (NSObject)
+
 final class Account: NSObject, NSItemProviderWriting, NSItemProviderReading, Codable {
     
     static var writableTypeIdentifiersForItemProvider: [String] {

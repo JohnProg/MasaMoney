@@ -47,8 +47,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRC-Jl-RY4">
-                                <rect key="frame" x="31" y="5" width="39" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRC-Jl-RY4">
+                                <rect key="frame" x="5" y="5" width="90" height="20.5"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -56,11 +56,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="kI9-4C-EVJ" firstAttribute="centerY" secondItem="VKx-yV-DpJ" secondAttribute="centerY" id="7F1-9A-kk1"/>
+                            <constraint firstItem="TRC-Jl-RY4" firstAttribute="leading" secondItem="VKx-yV-DpJ" secondAttribute="leading" constant="5" id="CFW-YK-yJs"/>
                             <constraint firstItem="W34-a8-a7v" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="Cte-8d-WHN"/>
                             <constraint firstAttribute="bottom" secondItem="W34-a8-a7v" secondAttribute="bottom" constant="5" id="Fgw-V9-2gC"/>
                             <constraint firstItem="TRC-Jl-RY4" firstAttribute="top" secondItem="VKx-yV-DpJ" secondAttribute="top" constant="5" id="JVx-jT-tvK"/>
                             <constraint firstItem="TRC-Jl-RY4" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="RTD-f8-uIp"/>
                             <constraint firstItem="kI9-4C-EVJ" firstAttribute="centerX" secondItem="VKx-yV-DpJ" secondAttribute="centerX" id="dyy-om-7C3"/>
+                            <constraint firstAttribute="trailing" secondItem="TRC-Jl-RY4" secondAttribute="trailing" constant="5" id="rPv-Ia-iZ8"/>
                         </constraints>
                     </view>
                 </subviews>

@@ -14,7 +14,7 @@ enum AccountType {
     case edit
 }
 
-class AccountVC: UIViewController, UITextFieldDelegate {
+class AccountVC: UIViewController {
     
     // MARK: - Outlets
     
@@ -167,11 +167,12 @@ class AccountVC: UIViewController, UITextFieldDelegate {
         alert.addAction(title: Strings.done, style: .cancel)
         alert.show()
     }
+}
+
+extension AccountVC : UITextFieldDelegate {
     
-    // MARK: - UITextFieldDelegate Methods
-    
+    //Calculate the keyboard
     @objc func keyboardWillChange(notification: Notification) {
-        //Calculate the keyboard
         guard let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
@@ -189,8 +190,9 @@ class AccountVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    //Limit the decimalPad keyboard to two decimals and one dot
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //Limit the decimalPad keyboard to two decimals and one dot
+        
         if textField.keyboardType == .decimalPad {
             guard let oldText = textField.text, let r = Range(range, in: oldText) else {
                 return true
