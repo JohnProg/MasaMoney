@@ -190,9 +190,8 @@ extension AccountVC : UITextFieldDelegate {
         return true
     }
     
-    //Limit the decimalPad keyboard to two decimals and one dot
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
+        //Limit the decimalPad keyboard to two decimals, one dot and max character
         if textField.keyboardType == .decimalPad {
             guard let oldText = textField.text, let r = Range(range, in: oldText) else {
                 return true
@@ -209,8 +208,17 @@ extension AccountVC : UITextFieldDelegate {
                 numberOfDecimalDigits = 0
             }
             
+            if newText.count > 9 {
+                return false
+            }
+            
             return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
         }else{
+            // Control max of characters
+            let str = (NSString(string: textField.text!)).replacingCharacters(in: range, with: string)
+            if str.count >= 20 {
+                return false
+            }
             return true
         }
     }

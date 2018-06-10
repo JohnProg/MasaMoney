@@ -15,7 +15,7 @@ enum CountryCode: String {
 
 struct Strings {
     //check the country code in the system
-    private static let userLanguage = Locale.current.languageCode ?? "en"
+    private static var userLanguage = Locale.current.languageCode ?? "en"
     //if the language is not supported set english by default
     private static var language: CountryCode {
         if let code = CountryCode.init(rawValue: Strings.userLanguage) {

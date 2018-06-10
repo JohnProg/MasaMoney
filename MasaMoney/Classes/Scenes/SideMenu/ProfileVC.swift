@@ -37,9 +37,9 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         super.viewDidLoad()
         
         loadData()
-
         picker_language.dataSource = self
         picker_language.delegate = self
+        setPickerView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,12 +73,21 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             self.hud.dismiss()
         })
     }
+    
     //Pulse effect profile picture
     func animatePulseView(){
         UIView.animate(withDuration: 0.5, animations: {
             self.user_picture.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }) { (success) in
             self.user_picture.transform = .identity
+        }
+    }
+    // Set current language
+    func setPickerView(){
+        if Locale.current.languageCode == "es" {
+            picker_language.selectRow(1, inComponent: 0, animated: false)
+        } else {
+            picker_language.selectRow(0, inComponent: 0, animated: false)
         }
     }
     
@@ -95,26 +104,22 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         return languages[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         let languageChosen = (languages[picker_language.selectedRow(inComponent: 0)])
         
         switch (languageChosen){
         case Strings.spanish:
-            UserDefaults.standard.set(["es"], forKey: "AppleLanguages")
-            UserDefaults.standard.synchronize()
-            let alert = UIAlertController(style: .alert, title: "Reinicio de app necesario", message: "Para que el idioma cambie es necesario cerrar y volver a abrir la aplicacion")
+            let alert = UIAlertController(style: .alert, title: "Cambio de idioma", message: "Para cambiar el idioma debe cambiarlo desde el sistema de su telefono")
             alert.addAction(title: "Mas tarde", style: .cancel)
-            alert.addAction(title: "Cerrar ahora", style: .default){ action in
-                exit(EXIT_SUCCESS)
+            alert.addAction(title: "Cambiar ahora", style: .default){ action in
+                UIApplication.shared.open(URL(string:"App-Prefs:root=General&path=INTERNATIONAL")!, options: [:], completionHandler: nil)
             }
             alert.show()
         default:
-            print("English")
-            UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
-            UserDefaults.standard.synchronize()
-            let alert = UIAlertController(style: .alert, title: "App restart required", message: "In order to change the language, the App must be closed and reopened by you")
+            let alert = UIAlertController(style: .alert, title: "Change language", message: "In order to change the language, you need to change your settings")
             alert.addAction(title: "Later", style: .cancel)
-            alert.addAction(title: "Close now", style: .default){ action in
-                exit(EXIT_SUCCESS)
+            alert.addAction(title: "Change now", style: .default){ action in
+                UIApplication.shared.open(URL(string:"App-Prefs:root=General&path=INTERNATIONAL")!, options: [:], completionHandler: nil)
             }
             alert.show()
         }

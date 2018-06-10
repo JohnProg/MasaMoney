@@ -29,6 +29,7 @@ class AccountsViewCell: UICollectionViewCell {
         didSet {
             balanceLabel.font = UIFont.mmLatoSemiBoldFont(size: 14)
             balanceLabel.textColor = UIColor.mmGreenish
+            balanceLabel.adjustsFontSizeToFitWidth = true
         }
     }
     

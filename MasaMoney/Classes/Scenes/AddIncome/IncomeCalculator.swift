@@ -83,7 +83,7 @@ class IncomeCalculator: UIViewController {
     // MARK: - Actions
     @IBAction func numberTapped(_ sender: RoundButton) {
         //Check that the number screen is not empty
-        guard let text = amountLabel.text else {return}
+        guard let text = amountLabel.text, text.count < 8 else {return}
         //Check if there is already a decimal point and limit it to 2 decimals
         if text.contains("."){
             if text.components(separatedBy: ".")[1].count != 2{
@@ -120,6 +120,7 @@ class IncomeCalculator: UIViewController {
             MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
         }
         // create the movement
+        print(selectedDate)
         MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
