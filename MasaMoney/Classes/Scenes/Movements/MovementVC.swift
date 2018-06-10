@@ -68,7 +68,9 @@ class MovementVC: UIViewController {
                         let destination = snapshotValue!["destination"] as? String
                         let comment = snapshotValue!["comment"] as? String
                         let amount = snapshotValue!["amount"] as? Double
-                        let date = snapshotValue!["date"] as? String
+                        var date = snapshotValue!["date"] as? String
+                        // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
+                        date = date?.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
                         
                         
                         var movement = Movement()

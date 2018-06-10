@@ -67,6 +67,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     //MARKS: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.mmBlackish
         
         incomeDataSource.accountDatasourceDelegate = self
         outcomeDataSource.accountDatasourceDelegate = self

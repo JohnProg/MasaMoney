@@ -25,6 +25,9 @@ extension UIColor {
     class var mmGoldish: UIColor {
         return UIColor(red: 255.0 / 255.0, green: 215.0 / 255.0, blue: 94.0 / 255.0, alpha: 1.0)
     }
+    class var mmPurpleish: UIColor {
+        return UIColor(red: 130.0 / 255.0, green: 28.0 / 255.0, blue: 140.0 / 255.0, alpha: 1.0)
+    }
     class var fdkReddishOrange: UIColor {
         return UIColor(red: 248.0 / 255.0, green: 68.0 / 255.0, blue: 22.0 / 255.0, alpha: 1.0)
     }

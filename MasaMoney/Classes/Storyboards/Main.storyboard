@@ -191,6 +191,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdZ-51-3YY">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBack" translatesAutoresizingMaskIntoConstraints="NO" id="KUw-HB-UVA">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="blw-wK-3E8">
                                         <rect key="frame" x="98" y="60" width="180" height="180"/>
                                         <constraints>
@@ -222,17 +225,21 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="KUw-HB-UVA" secondAttribute="bottom" id="94l-xf-bFG"/>
                                     <constraint firstItem="Uhv-jM-YTp" firstAttribute="centerX" secondItem="5OB-xP-nKz" secondAttribute="centerX" id="JPb-cJ-OJy"/>
+                                    <constraint firstItem="KUw-HB-UVA" firstAttribute="leading" secondItem="bdZ-51-3YY" secondAttribute="leading" id="XUx-DX-iXU"/>
                                     <constraint firstItem="5OB-xP-nKz" firstAttribute="leading" secondItem="bdZ-51-3YY" secondAttribute="leading" constant="20" id="aTI-CJ-umT"/>
                                     <constraint firstItem="blw-wK-3E8" firstAttribute="centerX" secondItem="bdZ-51-3YY" secondAttribute="centerX" id="aa6-1r-DH6"/>
                                     <constraint firstAttribute="trailing" secondItem="5OB-xP-nKz" secondAttribute="trailing" constant="20" id="cti-zd-uZJ"/>
                                     <constraint firstItem="npK-7l-of5" firstAttribute="leading" secondItem="bdZ-51-3YY" secondAttribute="leading" constant="20" id="eoG-Ke-tNg"/>
                                     <constraint firstAttribute="trailing" secondItem="npK-7l-of5" secondAttribute="trailing" constant="20" id="kPL-jT-9IP"/>
                                     <constraint firstItem="npK-7l-of5" firstAttribute="top" secondItem="blw-wK-3E8" secondAttribute="bottom" constant="50" id="kwY-r7-fAv"/>
+                                    <constraint firstItem="KUw-HB-UVA" firstAttribute="top" secondItem="bdZ-51-3YY" secondAttribute="top" id="m2G-vg-TbA"/>
                                     <constraint firstAttribute="bottom" secondItem="Uhv-jM-YTp" secondAttribute="bottom" id="o5h-P2-ATJ"/>
                                     <constraint firstItem="blw-wK-3E8" firstAttribute="top" secondItem="bdZ-51-3YY" secondAttribute="top" constant="60" id="rdD-No-X9c"/>
                                     <constraint firstItem="Uhv-jM-YTp" firstAttribute="top" secondItem="5OB-xP-nKz" secondAttribute="bottom" constant="45" id="x7B-ga-EH9"/>
                                     <constraint firstItem="Uhv-jM-YTp" firstAttribute="leading" secondItem="bdZ-51-3YY" secondAttribute="leading" id="y2q-av-59a"/>
+                                    <constraint firstAttribute="trailing" secondItem="KUw-HB-UVA" secondAttribute="trailing" id="yTV-WK-Hw3"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -685,5 +692,6 @@
         <image name="getMoney" width="64" height="64"/>
         <image name="menuOptions" width="32" height="32"/>
         <image name="money" width="512" height="512"/>
+        <image name="profileBack" width="1440" height="900"/>
     </resources>
 </document>

@@ -20,7 +20,8 @@ class AccountsViewCell: UICollectionViewCell {
     @IBOutlet weak var icon: UIButton!{
         didSet {
             icon.isUserInteractionEnabled = false
-            icon.backgroundColor = UIColor.mmGreenish
+            icon.setBackgroundImage(#imageLiteral(resourceName: "quepal"), for: .normal)
+            icon.setRounded()
             icon.imageEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         }
     }
@@ -52,7 +53,7 @@ class AccountsViewCell: UICollectionViewCell {
         balanceLabel.text = String(format:"%g €",account.balance)
         icon.setImage(UIImage(named: account.icon) , for: .normal)
         if account.income != false {
-            icon.backgroundColor = UIColor.mmOrangeish
+            icon.setBackgroundImage(#imageLiteral(resourceName: "sulphur"), for: .normal)
             balanceLabel.textColor = UIColor.mmGoldish
             if account.balance < 0 {
                 balanceLabel.textColor = UIColor.red

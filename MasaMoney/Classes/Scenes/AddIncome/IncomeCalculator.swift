@@ -12,13 +12,21 @@ class IncomeCalculator: UIViewController {
 
     // MARK: -Outlets
     
-    @IBOutlet weak var commentButton: RoundButton!{
+    @IBOutlet weak var commentButton: UIButton!{
         didSet{
             commentButton.setBackgroundImage(#imageLiteral(resourceName: "quepal"), for: .selected)
+            commentButton.backgroundColor = UIColor.mmGrey
+            commentButton.setRounded()
         }
     }
     
-    @IBOutlet weak var pictureButton: RoundButton!
+    @IBOutlet weak var pictureButton: UIButton!{
+        didSet{
+            pictureButton.setBackgroundImage(#imageLiteral(resourceName: "quepal"), for: .selected)
+            pictureButton.backgroundColor = UIColor.mmGrey
+            pictureButton.setRounded()
+        }
+    }
     
     @IBOutlet weak var dateButton: UIButton!{
         didSet {
@@ -54,7 +62,18 @@ class IncomeCalculator: UIViewController {
         }
     }
     
-    @IBOutlet var buttonCollection: [RoundButton]!
+    @IBOutlet var buttonCollection: [RoundButton]!{
+        didSet{
+            for button in buttonCollection {
+                button.backColor = UIColor.mmGrey
+                button.tintColor = UIColor.white
+                button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
+                button.widthAnchor.constraint(equalToConstant: 70).isActive = true
+                button.heightAnchor.constraint(equalToConstant: 70).isActive = true
+                button.cornerRadius = 35
+            }
+        }
+    }
     
     
     // MARK: -Properties
@@ -76,13 +95,6 @@ class IncomeCalculator: UIViewController {
         dateFormatter.dateFormat = "dd MMM yyyy"
         selectedDate = dateFormatter.string(from: Date())
         dateButton.setTitle(selectedDate, for: .normal)
-
-        for button in buttonCollection {
-            button.backColor = UIColor.mmGrey
-            button.tintColor = UIColor.white
-            button.titleLabel?.font = UIFont.mmLatoSemiBoldFont(size: 30)
-            button.cornerRadius = 37.5
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,6 +190,14 @@ class IncomeCalculator: UIViewController {
         }
         alert.addAction(title: "OK", style: .cancel)
         alert.show()
+    }
+}
+
+extension UIButton {
+    
+    func setRounded() {
+        self.layer.cornerRadius = (self.frame.width / 2)
+        self.layer.masksToBounds = true
     }
 }
 

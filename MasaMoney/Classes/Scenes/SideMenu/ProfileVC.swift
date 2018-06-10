@@ -16,9 +16,19 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     
     @IBOutlet weak var user_picture: UIImageView!
     
-    @IBOutlet weak var user_FirstName: UILabel!
+    @IBOutlet weak var user_FirstName: UILabel!{
+        didSet {
+            user_FirstName.font = UIFont.mmLatoBoldFont(size: 20)
+            user_FirstName.textColor = UIColor.mmGrey
+        }
+    }
     
-    @IBOutlet weak var user_Email: UILabel!
+    @IBOutlet weak var user_Email: UILabel!{
+        didSet {
+            user_Email.font = UIFont.mmLatoBoldFont(size: 20)
+            user_Email.textColor = UIColor.mmGrey
+        }
+    }
     
     @IBOutlet weak var picker_language: UIPickerView!
     
@@ -41,6 +51,7 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         
         loadData()
         setPickerView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
