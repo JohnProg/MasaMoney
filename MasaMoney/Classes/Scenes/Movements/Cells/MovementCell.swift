@@ -22,6 +22,14 @@ class MovementCell: UITableViewCell {
             destiny.textColor = UIColor.mmBlackish
         }
     }
+    
+    @IBOutlet weak var comment: UILabel!{
+        didSet {
+            comment.font = UIFont.mmLatoSemiBoldFont(size: 15)
+            comment.textColor = UIColor.mmGreenish
+        }
+    }
+    
     @IBOutlet weak var amount: UILabel!{
         didSet {
             amount.font = UIFont.mmLatoSemiBoldFont(size: 25)
@@ -46,7 +54,7 @@ class MovementCell: UITableViewCell {
         super.prepareForReuse()
         
         origin.text = "origen"
-        //   icon.setImage(#imageLiteral(resourceName: "rich"), for: .normal)
+        comment.text = ""
         destiny.text = "destination"
         amount.text = "5€"
     }
@@ -54,6 +62,7 @@ class MovementCell: UITableViewCell {
     func configure(movement: Movement) {
         origin.text = movement.origin
         destiny.text = movement.destination
+        comment.text = movement.comment
         
         // Check if is an addition to an income and set style
         if movement.origin !=  "Income" {

@@ -92,7 +92,6 @@ class MyFirebase {
                     return
                 }
                 print("Successfully saved user info into Firebase database")
-                // after successfull save dismiss the welcome view controller
                 self.hud.dismiss(animated: true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     completion(true)
@@ -136,12 +135,13 @@ class MyFirebase {
         self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
     }
     
-    func createMovements(origin: String, destination: String, amount: Double, date: String, originId: String, destinyId: String){
+    func createMovements(origin: String, destination: String, amount: Double, date: String, comment: String, originId: String, destinyId: String){
         //Creating accounts
         let movementDictionary = ["origin": origin,
                                   "destination": destination,
                                   "amount": amount,
-                                  "date" : date ] as [String : Any]
+                                  "date" : date,
+                                  "comment" : comment] as [String : Any]
         let movementAccountDictionary = [originId: true,
                                          destinyId: true]
         

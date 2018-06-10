@@ -11,6 +11,15 @@ import UIKit
 class IncomeCalculator: UIViewController {
 
     // MARK: -Outlets
+    
+    @IBOutlet weak var commentButton: RoundButton!{
+        didSet{
+            commentButton.setBackgroundImage(#imageLiteral(resourceName: "quepal"), for: .selected)
+        }
+    }
+    
+    @IBOutlet weak var pictureButton: RoundButton!
+    
     @IBOutlet weak var dateButton: UIButton!{
         didSet {
             dateButton.setImage(#imageLiteral(resourceName: "calendar"), for: .normal)
@@ -54,6 +63,8 @@ class IncomeCalculator: UIViewController {
     var accountDestination = Account()
     
     var selectedDate : String = ""
+    
+    var comment : String = ""
     
     var dateFormatter = DateFormatter()
     
@@ -103,6 +114,39 @@ class IncomeCalculator: UIViewController {
         }
     }
     
+    @IBAction func commentTapped(_ sender: Any) {
+        let alert = UIAlertController(style: .alert, title: Strings.comment)
+        let config: TextField.Config = { textField in
+            textField.becomeFirstResponder()
+            textField.textColor = .black
+            textField.text = self.comment
+            textField.left(image: #imageLiteral(resourceName: "pencil"), color: .black)
+            textField.leftViewPadding = 12
+            textField.borderWidth = 1
+            textField.cornerRadius = 8
+            textField.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
+            textField.backgroundColor = nil
+            textField.keyboardAppearance = .default
+            textField.keyboardType = .default
+            textField.returnKeyType = .done
+            textField.action { textField in
+                self.comment = textField.text!
+                if self.comment != ""{
+                    self.commentButton.isSelected = true
+                }else{
+                    self.commentButton.isSelected = false
+                }
+            }
+        }
+        alert.addOneTextField(configuration: config)
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+    }
+    
+    @IBAction func pictureTapped(_ sender: Any) {
+    }
+    
+
     @IBAction func cancel(_ sender: Any) {
         
         _ = self.navigationController?.popToRootViewController(animated: true)
@@ -121,7 +165,7 @@ class IncomeCalculator: UIViewController {
         }
         // create the movement
         print(selectedDate)
-        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, originId: accountOrigin.id, destinyId: accountDestination.id)
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, originId: accountOrigin.id, destinyId: accountDestination.id)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     

@@ -36,9 +36,10 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
         picker_language.dataSource = self
         picker_language.delegate = self
+        
+        loadData()
         setPickerView()
     }
     

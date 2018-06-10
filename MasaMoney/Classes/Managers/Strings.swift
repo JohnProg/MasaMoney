@@ -358,5 +358,14 @@ struct Strings {
             return "Eliminar cuenta"
         }
     }
+    
+    static var comment: String {
+        switch language {
+        case .en:
+            return "Comment"
+        case .es:
+            return "Comentario"
+        }
+    }
 
 }

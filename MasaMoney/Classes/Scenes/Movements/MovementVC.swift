@@ -66,6 +66,7 @@ class MovementVC: UIViewController {
                         
                         let origin = snapshotValue!["origin"] as? String
                         let destination = snapshotValue!["destination"] as? String
+                        let comment = snapshotValue!["comment"] as? String
                         let amount = snapshotValue!["amount"] as? Double
                         let date = snapshotValue!["date"] as? String
                         
@@ -73,6 +74,7 @@ class MovementVC: UIViewController {
                         var movement = Movement()
                         movement.origin = origin!
                         movement.destination = destination!
+                        movement.comment = comment!
                         movement.amount = amount!
                         movement.date = date!
                         

@@ -219,11 +219,14 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
                 account = outcomeDataSource.accountArray[indexOut.row]
             }
         }
-        let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
-        vc.vcType = .edit
-        vc.account = account
-        self.navigationItem.title = Strings.back
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if account.name != ""{
+            let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
+            vc.vcType = .edit
+            vc.account = account
+            self.navigationItem.title = Strings.back
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func addIncomeButton(_ sender: Any) {
