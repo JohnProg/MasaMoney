@@ -14,9 +14,10 @@ extension UIStoryboard {
     enum Storyboard: String {
         case Main
         case AddIncome
-        case IncomeCalculator
+        case Calculator
         case Movement
         case Account
+        case Picture
     }
     
     convenience init(_ storyboard: Storyboard, bundle: Bundle? = nil) {

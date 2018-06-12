@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="899" y="127"/>
         </scene>
-        <!--IncomeCalculator-->
+        <!--CalculatorVC-->
         <scene sceneID="Ibg-Ai-Grs">
             <objects>
-                <viewController storyboardIdentifier="IncomeCalculator" title="IncomeCalculator" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WJ-vd-MIJ" userLabel="IncomeCalculator" customClass="IncomeCalculator" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalculatorVC" title="Calculator" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4WJ-vd-MIJ" userLabel="CalculatorVC" customClass="CalculatorVC" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wiy-g2-TPL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +210,7 @@
                                                                                     <constraint firstAttribute="height" constant="70" id="1H7-1P-S2b"/>
                                                                                     <constraint firstAttribute="width" constant="70" id="ONb-Wk-uAf"/>
                                                                                 </constraints>
-                                                                                <state key="normal" image="photo"/>
+                                                                                <state key="normal" image="photoAdd"/>
                                                                                 <connections>
                                                                                     <action selector="pictureTapped:" destination="4WJ-vd-MIJ" eventType="touchUpInside" id="Yoa-EE-9Kv"/>
                                                                                 </connections>
@@ -424,6 +424,6 @@
         <image name="cancel" width="64" height="64"/>
         <image name="comment" width="32" height="32"/>
         <image name="ok" width="32" height="32"/>
-        <image name="photo" width="32" height="32"/>
+        <image name="photoAdd" width="32" height="32"/>
     </resources>
 </document>

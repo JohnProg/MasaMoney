@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wzf-JI-Jrt">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--PictureVC-->
+        <scene sceneID="PPl-vG-7aw">
+            <objects>
+                <viewController storyboardIdentifier="PictureVC" id="Wzf-JI-Jrt" customClass="PictureVC" customModule="MasaMoney" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cpk-gI-crm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PGX-K7-frw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kxz-4Z-qF4">
+                                <rect key="frame" x="10" y="30" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="4vM-Uz-iqg"/>
+                                    <constraint firstAttribute="width" constant="32" id="dkx-ba-K3L"/>
+                                </constraints>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="backTapped:" destination="Wzf-JI-Jrt" eventType="touchUpInside" id="Y1E-2l-Osy"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3ZK-Wc-KXJ" firstAttribute="bottom" secondItem="PGX-K7-frw" secondAttribute="bottom" id="7ja-a5-sAK"/>
+                            <constraint firstItem="PGX-K7-frw" firstAttribute="top" secondItem="3ZK-Wc-KXJ" secondAttribute="top" id="Hwu-5O-XMl"/>
+                            <constraint firstItem="3ZK-Wc-KXJ" firstAttribute="trailing" secondItem="PGX-K7-frw" secondAttribute="trailing" id="Rnb-cf-iJB"/>
+                            <constraint firstItem="PGX-K7-frw" firstAttribute="leading" secondItem="3ZK-Wc-KXJ" secondAttribute="leading" id="U08-RU-MIo"/>
+                            <constraint firstItem="Kxz-4Z-qF4" firstAttribute="top" secondItem="3ZK-Wc-KXJ" secondAttribute="top" constant="10" id="jhX-5Q-ULS"/>
+                            <constraint firstItem="Kxz-4Z-qF4" firstAttribute="leading" secondItem="3ZK-Wc-KXJ" secondAttribute="leading" constant="10" id="tbn-9m-WNh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3ZK-Wc-KXJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="pictureView" destination="PGX-K7-frw" id="0Oe-OS-TEL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="saM-Hl-rtI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-151" y="182"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="cancel" width="64" height="64"/>
+    </resources>
+</document>

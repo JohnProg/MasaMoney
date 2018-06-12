@@ -54,7 +54,7 @@ extension AddIncome: AccountDataSourceOutput {
         incomeAccount.id = "External"
         incomeAccount.balance = 0
         
-        let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
+        let vc: CalculatorVC = UIStoryboard(.AddIncome).instantiateViewController()
         vc.accountDestination = incomeDataSource.accountArray[indexPath.row]
         vc.accountOrigin = incomeAccount
         self.navigationItem.title = Strings.back

@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class MovementVC: UIViewController {
+class MovementVC: UIViewController, MovementDataSourceDelegate {
+    
+    
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
         hud.interactionType = .blockAllTouches
@@ -24,15 +26,18 @@ class MovementVC: UIViewController {
             totalLabel.text = String(format:"%g €",account.balance)
         }
     }
+    
     @IBOutlet weak var movTableView: UITableView!
     
     // MARK: -Properties
     var account = Account()
     var movementArray: [Movement] = []
-    var movementDataSource = MovementDataSource(movementArray: [])
+    //lazy -> it's initializad just when is called
+    lazy var movementDataSource = MovementDataSource(movementArray: [], delegate: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         navigationItem.title = account.name
         setupTableView()
         loadData()
@@ -67,6 +72,7 @@ class MovementVC: UIViewController {
                         let origin = snapshotValue!["origin"] as? String
                         let destination = snapshotValue!["destination"] as? String
                         let comment = snapshotValue!["comment"] as? String
+                        let picture = snapshotValue!["picture"] as? String
                         let amount = snapshotValue!["amount"] as? Double
                         var date = snapshotValue!["date"] as? String
                         // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
@@ -77,6 +83,7 @@ class MovementVC: UIViewController {
                         movement.origin = origin!
                         movement.destination = destination!
                         movement.comment = comment!
+                        movement.picture = picture!
                         movement.amount = amount!
                         movement.date = date!
                         
@@ -97,6 +104,14 @@ class MovementVC: UIViewController {
             }
         })
         hud.dismiss()
+    }
+    
+    // MARK: - MovementDataSourceDelegate
+    func didSelectImage(with url: String) {
+        let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
+        vc.picture = url
+        vc.modalPresentationStyle = .formSheet
+        present(vc, animated: true, completion: nil)
     }
 }
 

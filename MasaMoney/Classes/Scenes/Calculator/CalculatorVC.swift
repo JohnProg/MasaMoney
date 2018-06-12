@@ -1,5 +1,5 @@
 //
-//  IncomeCalculator.swift
+//  CalculatorVC.swift
 //  MasaMoney
 //
 //  Created by Maria Lopez on 15/05/2018.
@@ -7,8 +7,21 @@
 //
 
 import UIKit
+import JGProgressHUD
 
-class IncomeCalculator: UIViewController {
+import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+
+class CalculatorVC: UIViewController {
+    let hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .light)
+        hud.interactionType = .blockAllTouches
+        return hud
+    }()
+    
+    let dispatchGroup = DispatchGroup()
 
     // MARK: -Outlets
     
@@ -85,7 +98,13 @@ class IncomeCalculator: UIViewController {
     
     var comment : String = ""
     
-    var dateFormatter = DateFormatter()
+    var pictureTaken: UIImage?
+    
+//    var pictureUploaded : String = ""
+    
+    private var dateFormatter = DateFormatter()
+    
+    private let obscuraCamera = Obscura()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +114,17 @@ class IncomeCalculator: UIViewController {
         dateFormatter.dateFormat = "dd MMM yyyy"
         selectedDate = dateFormatter.string(from: Date())
         dateButton.setTitle(selectedDate, for: .normal)
+        
+        obscuraCamera.imagePickedBlock = {[weak self] (response) in
+            switch response {
+            case ObscuraImageResponse.success(let imageResponse):
+                self?.pictureTaken = imageResponse.image
+                self?.pictureButton.isSelected = true
+                
+            case ObscuraImageResponse.failed(_):
+                Service.dismissHud((self?.hud)!, text: "error view load income calculator", detailText: "error", delay: 3)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,6 +134,7 @@ class IncomeCalculator: UIViewController {
     }
     
     // MARK: - Actions
+    
     @IBAction func numberTapped(_ sender: RoundButton) {
         //Check that the number screen is not empty
         guard let text = amountLabel.text, text.count < 8 else {return}
@@ -156,29 +187,38 @@ class IncomeCalculator: UIViewController {
     }
     
     @IBAction func pictureTapped(_ sender: Any) {
-    }
-    
-
-    @IBAction func cancel(_ sender: Any) {
-        
-        _ = self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func confirm(_ sender: Any) {
-        guard let  amount = amountLabel.text, !amount.isEmpty else {
-            let alert = UIAlertController(style: .alert, title: Strings.emptyField, message: Strings.noAmount)
-            alert.addAction(title: Strings.cancel, style: .cancel)
+        //If there is a picture taken and user tap, the picture is deleted and button turns able to pick another one
+        if pictureButton.isSelected == true {
+            pictureButton.isSelected = false
+            pictureTaken = nil
+        } else if pictureButton.isSelected == false {
+            let alert = UIAlertController(title: Strings.picture, message: nil, preferredStyle: .actionSheet)
+            let oKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(UIAlertAction(title: Strings.pictureGallery, style: .default) { [weak self] _ in
+                do {
+                    if let currentVC = self {
+                        try currentVC.obscuraCamera.chooseFromGallery(viewController: currentVC)
+                    }
+                } catch {
+                    let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
+                    alertNoCamera.addAction(oKAction)
+                    self?.present(alertNoCamera, animated: true, completion: nil)
+                }
+            })
+            alert.addAction(UIAlertAction(title: Strings.pictureCamera, style: .default) { [weak self] _ in
+                do {
+                    if let currentVC = self {
+                        try currentVC.obscuraCamera.takePhoto(viewController: currentVC)
+                    }
+                } catch {
+                    let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
+                    alertNoCamera.addAction(oKAction)
+                    self?.present(alertNoCamera, animated: true, completion: nil)
+                }
+            })
+            alert.addAction(UIAlertAction(title: Strings.cancel, style: UIAlertActionStyle.cancel, handler: nil))
             alert.show()
-            return}
-        // Update balance in the accounts except if it is an addition to an income account
-        MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + Double(amount)!)
-        if accountOrigin.id != "External"{
-            MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
         }
-        // create the movement
-        print(selectedDate)
-        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, originId: accountOrigin.id, destinyId: accountDestination.id)
-        _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func dateTapped() {
@@ -190,6 +230,51 @@ class IncomeCalculator: UIViewController {
         }
         alert.addAction(title: "OK", style: .cancel)
         alert.show()
+    }    
+
+    @IBAction func cancel(_ sender: Any) {
+        
+        _ = self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    var pictureUploaded = ""
+    
+    @IBAction func confirm(_ sender: Any) {
+        // Storage picture if there is one
+        if pictureTaken != nil {
+            //Storaging profile picture
+            let profileImageUploadData = UIImageJPEGRepresentation((self.pictureTaken)!, 0.3)
+            
+            let fileName = UUID().uuidString
+            Storage.storage().reference().child("movementImages").child(fileName).putData(profileImageUploadData!, metadata: nil) { (metadata, err) in
+                if let err = err {
+                    Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(err)", delay: 3);
+                    return
+                }
+                self.pictureUploaded = (metadata?.downloadURL()?.absoluteString)!
+                self.savingMovement()
+            }
+        } else {
+            savingMovement()
+        }
+    }
+    
+    func savingMovement() {
+        // Check the textfield is not empty
+        guard let  amount = amountLabel.text, !amount.isEmpty else {
+            let alert = UIAlertController(style: .alert, title: Strings.emptyField, message: Strings.noAmount)
+            alert.addAction(title: Strings.cancel, style: .cancel)
+            alert.show()
+            return}
+        // Update balance in the accounts except if it is an addition to an income account
+        MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + Double(amount)!)
+        if self.accountOrigin.id != "External"{
+            MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
+        }
+        // create the movement
+        print(self.selectedDate)
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, picture: pictureUploaded, originId: accountOrigin.id, destinyId: accountDestination.id)
+        _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }
 

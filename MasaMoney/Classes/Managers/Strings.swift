@@ -367,5 +367,42 @@ struct Strings {
             return "Comentario"
         }
     }
+    
+    static var picture: String {
+        switch language {
+        case .en:
+            return "Attach picture"
+        case .es:
+            return "Añadir foto"
+        }
+    }
+    
+    static var pictureGallery: String {
+        switch language {
+        case .en:
+            return "Take a picture from gallery"
+        case .es:
+            return "Elegir una foto de la galeria"
+        }
+    }
+    
+    static var pictureCamera: String {
+        switch language {
+        case .en:
+            return "Take a picture from camera"
+        case .es:
+            return "Hacer foto desde la camara"
+        }
+    }
+    
+    
+    static var pictureError: String {
+        switch language {
+        case .en:
+            return "Error"
+        case .es:
+            return "Error"
+        }
+    }
 
 }

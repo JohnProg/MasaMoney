@@ -59,7 +59,7 @@ open class SideMenuTransition: UIPercentDrivenInteractiveTransition {
                 return
             }
             
-            statusBarView.backgroundColor = sideMenuManager.menuAnimationBackgroundColor ?? UIColor.black
+            statusBarView.backgroundColor = sideMenuManager.menuAnimationBackgroundColor ?? UIColor.clear
             statusBarView.isUserInteractionEnabled = false
         }
     }

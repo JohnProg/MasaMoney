@@ -12,4 +12,5 @@ struct Movement {
     var amount = 0.0
     var date = ""
     var comment : String?
+    var picture : String?
 }

@@ -16,6 +16,8 @@
 		862B0C9620B180AF008B45C3 /* MovementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9520B180AF008B45C3 /* MovementVC.swift */; };
 		862B0C9820B19EC5008B45C3 /* MovementDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */; };
 		862B0C9A20B19F4F008B45C3 /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B0C9920B19F4F008B45C3 /* Movement.swift */; };
+		862B3CBD20CE5F4300BF1EC3 /* Picture.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862B3CBC20CE5F4300BF1EC3 /* Picture.storyboard */; };
+		862B3CBF20CE61FC00BF1EC3 /* PictureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862B3CBE20CE61FC00BF1EC3 /* PictureVC.swift */; };
 		864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537CE209A123C0098A32F /* AccountsViewCell.swift */; };
 		864537D1209A123C0098A32F /* AccountsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864537CF209A123C0098A32F /* AccountsViewCell.xib */; };
 		864537D3209A15BD0098A32F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864537D2209A15BD0098A32F /* Account.swift */; };
@@ -83,6 +85,10 @@
 		869D5DE020A74A4700A8F0A8 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */; };
 		869D5DE120A74A4700A8F0A8 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */; };
 		869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D5DE220A74BFA00A8F0A8 /* Style.swift */; };
+		869D702A20CD7A020094131F /* Obscura.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D702620CD7A020094131F /* Obscura.swift */; };
+		869D702B20CD7A020094131F /* ObscuraErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D702720CD7A020094131F /* ObscuraErrors.swift */; };
+		869D702C20CD7A020094131F /* Obscura+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D702820CD7A020094131F /* Obscura+ImagePicker.swift */; };
+		869D702D20CD7A020094131F /* ObscuraResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869D702920CD7A020094131F /* ObscuraResponse.swift */; };
 		869F029220873D2400B8D2DE /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869F029120873D2400B8D2DE /* Splash.swift */; };
 		869F02CB20877B7900B8D2DE /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CA20877B7900B8D2DE /* Splash.storyboard */; };
 		869F02CF208784E200B8D2DE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869F02CE208784E200B8D2DE /* Login.storyboard */; };
@@ -92,7 +98,7 @@
 		86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55320849B88008F7E18 /* AppDelegate.swift */; };
 		86A9D55620849B88008F7E18 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* Login.swift */; };
 		86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55A20849B8A008F7E18 /* Assets.xcassets */; };
-		86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */; };
+		86CBD58B20AB0A15001A0100 /* CalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBD58A20AB0A15001A0100 /* CalculatorVC.swift */; };
 		86D8E3BB20AE2C130033A3A3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8E3BA20AE2C130033A3A3 /* Router.swift */; };
 		86DB7FC220C1E5D500D29C31 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86DB7FC120C1E5D500D29C31 /* GoogleService-Info.plist */; };
 		A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */; };
@@ -108,6 +114,8 @@
 		862B0C9520B180AF008B45C3 /* MovementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementVC.swift; sourceTree = "<group>"; };
 		862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDataSource.swift; sourceTree = "<group>"; };
 		862B0C9920B19F4F008B45C3 /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
+		862B3CBC20CE5F4300BF1EC3 /* Picture.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picture.storyboard; sourceTree = "<group>"; };
+		862B3CBE20CE61FC00BF1EC3 /* PictureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureVC.swift; sourceTree = "<group>"; };
 		864537CE209A123C0098A32F /* AccountsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewCell.swift; sourceTree = "<group>"; };
 		864537CF209A123C0098A32F /* AccountsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewCell.xib; sourceTree = "<group>"; };
 		864537D2209A15BD0098A32F /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -175,6 +183,10 @@
 		869D5DDB20A74A4700A8F0A8 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Semibold.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Semibold.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DDC20A74A4700A8F0A8 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Thin.ttf"; path = "MasaMoney/Classes/Support/Fonts/Lato-Thin.ttf"; sourceTree = SOURCE_ROOT; };
 		869D5DE220A74BFA00A8F0A8 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		869D702620CD7A020094131F /* Obscura.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obscura.swift; sourceTree = "<group>"; };
+		869D702720CD7A020094131F /* ObscuraErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObscuraErrors.swift; sourceTree = "<group>"; };
+		869D702820CD7A020094131F /* Obscura+ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Obscura+ImagePicker.swift"; sourceTree = "<group>"; };
+		869D702920CD7A020094131F /* ObscuraResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObscuraResponse.swift; sourceTree = "<group>"; };
 		869F029120873D2400B8D2DE /* Splash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		869F02CA20877B7900B8D2DE /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
 		869F02CE208784E200B8D2DE /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -186,7 +198,7 @@
 		86A9D55520849B88008F7E18 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		86A9D55A20849B8A008F7E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A9D55F20849B8A008F7E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCalculator.swift; sourceTree = "<group>"; };
+		86CBD58A20AB0A15001A0100 /* CalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVC.swift; sourceTree = "<group>"; };
 		86D8E3BA20AE2C130033A3A3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		86DB7FC120C1E5D500D29C31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasaMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +243,7 @@
 				862B0C9020B17C43008B45C3 /* Cells */,
 				862B0C9520B180AF008B45C3 /* MovementVC.swift */,
 				862B0C9720B19EC5008B45C3 /* MovementDataSource.swift */,
+				862B3CBE20CE61FC00BF1EC3 /* PictureVC.swift */,
 			);
 			path = Movements;
 			sourceTree = "<group>";
@@ -253,13 +266,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		866DF24E20A8936700A5B101 /* AddIncome */ = {
+		866DF24E20A8936700A5B101 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
 				866DF25120A8944C00A5B101 /* AddIncome.swift */,
-				86CBD58A20AB0A15001A0100 /* IncomeCalculator.swift */,
+				86CBD58A20AB0A15001A0100 /* CalculatorVC.swift */,
 			);
-			path = AddIncome;
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		866DF25720A8976A00A5B101 /* Storyboards */ = {
@@ -269,6 +282,7 @@
 				869F02CE208784E200B8D2DE /* Login.storyboard */,
 				860C66262088C54F0095B574 /* Main.storyboard */,
 				866DF25520A8965B00A5B101 /* AddIncome.storyboard */,
+				862B3CBC20CE5F4300BF1EC3 /* Picture.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -533,6 +547,17 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		869D702520CD79D60094131F /* CameraHelper */ = {
+			isa = PBXGroup;
+			children = (
+				869D702620CD7A020094131F /* Obscura.swift */,
+				869D702820CD7A020094131F /* Obscura+ImagePicker.swift */,
+				869D702720CD7A020094131F /* ObscuraErrors.swift */,
+				869D702920CD7A020094131F /* ObscuraResponse.swift */,
+			);
+			path = CameraHelper;
+			sourceTree = "<group>";
+		};
 		86A04CF52084C4E900C3CBDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,7 +614,7 @@
 				86A04CFF2084C62500C3CBDB /* Login */,
 				86A04D002084D09900C3CBDB /* Main */,
 				86077DAD20C1A1FB003FC654 /* SideMenu */,
-				866DF24E20A8936700A5B101 /* AddIncome */,
+				866DF24E20A8936700A5B101 /* Calculator */,
 				862B0C8D20B17C10008B45C3 /* Movements */,
 			);
 			path = Scenes;
@@ -598,6 +623,7 @@
 		86A04CFE2084C5ED00C3CBDB /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				869D702520CD79D60094131F /* CameraHelper */,
 				869D5DE420A74ECA00A8F0A8 /* Fonts */,
 				86A04D072084E7F400C3CBDB /* Service.swift */,
 				869D5DE220A74BFA00A8F0A8 /* Style.swift */,
@@ -728,6 +754,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				862B3CBD20CE5F4300BF1EC3 /* Picture.storyboard in Resources */,
 				869D5DDD20A74A4700A8F0A8 /* Lato-Bold.ttf in Resources */,
 				869D5DDE20A74A4700A8F0A8 /* Lato-Medium.ttf in Resources */,
 				862B0C9420B17C94008B45C3 /* MovementCell.xib in Resources */,
@@ -838,6 +865,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8686D7E820BDD5C10009F723 /* ContactCell.swift in Sources */,
+				869D702C20CD7A020094131F /* Obscura+ImagePicker.swift in Sources */,
 				8686D7D520BDD5C10009F723 /* LocaleStore.swift in Sources */,
 				869116B920C566540051546B /* ProfileVC.swift in Sources */,
 				8686D7CD20BDD5C10009F723 /* UIAlertController+Extensions.swift in Sources */,
@@ -845,7 +873,7 @@
 				8686D7F020BDD5C10009F723 /* LikeButtonCell.swift in Sources */,
 				8686D7C920BDD5C10009F723 /* UIColor+Extensions.swift in Sources */,
 				869116BB20C5735D0051546B /* Strings.swift in Sources */,
-				86CBD58B20AB0A15001A0100 /* IncomeCalculator.swift in Sources */,
+				86CBD58B20AB0A15001A0100 /* CalculatorVC.swift in Sources */,
 				8689776420BC7F2C00F0D94E /* SideMenuVC.swift in Sources */,
 				8686D7C120BDD5C10009F723 /* Array+Extensions.swift in Sources */,
 				869116B520C284D70051546B /* ClusterView.swift in Sources */,
@@ -871,9 +899,11 @@
 				8686D7D720BDD5C10009F723 /* LocalePickerViewController.swift in Sources */,
 				8686D7E620BDD5C10009F723 /* Contacts.swift in Sources */,
 				8686D7CE20BDD5C10009F723 /* Optional+Extensions.swift in Sources */,
+				869D702B20CD7A020094131F /* ObscuraErrors.swift in Sources */,
 				8686D7EB20BDD5C10009F723 /* ImagePickerViewController.swift in Sources */,
 				862B0C9A20B19F4F008B45C3 /* Movement.swift in Sources */,
 				8686D7C420BDD5C10009F723 /* UIViewController+Extensions.swift in Sources */,
+				862B3CBF20CE61FC00BF1EC3 /* PictureVC.swift in Sources */,
 				8686D7E920BDD5C10009F723 /* ColorPickerViewController.swift in Sources */,
 				8686D7D620BDD5C10009F723 /* LocaleInfo.swift in Sources */,
 				869F029220873D2400B8D2DE /* Splash.swift in Sources */,
@@ -897,6 +927,7 @@
 				8686D7ED20BDD5C10009F723 /* PhotoLayout.swift in Sources */,
 				8686D7C520BDD5C10009F723 /* UIView+Extensions.swift in Sources */,
 				8686D7C220BDD5C10009F723 /* UISegmentedControl+Extensions.swift in Sources */,
+				869D702A20CD7A020094131F /* Obscura.swift in Sources */,
 				8686D7F220BDD5C10009F723 /* SegmentedControl.swift in Sources */,
 				8686D7CA20BDD5C10009F723 /* UIImage+Extensions.swift in Sources */,
 				866DF25420A8956D00A5B101 /* StoryboardExtension.swift in Sources */,
@@ -906,6 +937,7 @@
 				864537D0209A123C0098A32F /* AccountsViewCell.swift in Sources */,
 				8686D7F520BDD5C10009F723 /* Button.swift in Sources */,
 				8686D7E720BDD5C10009F723 /* Contact.swift in Sources */,
+				869D702D20CD7A020094131F /* ObscuraResponse.swift in Sources */,
 				8686D7EC20BDD5C10009F723 /* ItemWithImage.swift in Sources */,
 				869116B720C2F7F40051546B /* AccountVC.swift in Sources */,
 				8686D7DE20BDD5C10009F723 /* PhotoLibraryPickerViewController.swift in Sources */,

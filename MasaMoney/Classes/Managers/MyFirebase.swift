@@ -135,13 +135,14 @@ class MyFirebase {
         self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
     }
     
-    func createMovements(origin: String, destination: String, amount: Double, date: String, comment: String, originId: String, destinyId: String){
+    func createMovements(origin: String, destination: String, amount: Double, date: String, comment: String, picture: String, originId: String, destinyId: String){
         //Creating accounts
         let movementDictionary = ["origin": origin,
                                   "destination": destination,
                                   "amount": amount,
                                   "date" : date,
-                                  "comment" : comment] as [String : Any]
+                                  "comment" : comment,
+                                  "picture" : picture] as [String : Any]
         let movementAccountDictionary = [originId: true,
                                          destinyId: true]
         

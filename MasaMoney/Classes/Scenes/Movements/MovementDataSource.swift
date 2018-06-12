@@ -8,15 +8,17 @@
 
 import UIKit
 
-// En principio no se va a tocar las celdas del historico
-protocol MovementDataSourceOutput: class {
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath)
+// TODO: - Uncomment and edit movement
+
+protocol MovementDataSourceDelegate: class {
+//    func didSelectAccountAtIndexPath(_ indexPath: IndexPath)
+    func didSelectImage(with url: String)
 }
 
 class MovementDataSource: NSObject {
     
     // MARK: -Properties
-    weak var movementDatasourceDelegate: MovementDataSourceOutput?
+    weak var delegate: MovementDataSourceDelegate?
     
     var movementArray: [Movement] = []
     
@@ -28,8 +30,10 @@ class MovementDataSource: NSObject {
     
     var dateFormatter = DateFormatter()
     
-    required init(movementArray: [Movement]) {
+    //sending the delegate when initializate
+    required init(movementArray: [Movement], delegate: MovementDataSourceDelegate) {
         self.movementArray = movementArray
+        self.delegate = delegate
     }
     
     // MARK: - Functions
@@ -65,7 +69,14 @@ class MovementDataSource: NSObject {
     }
 }
 
+extension MovementDataSource: MovementCellDelegate {
+    func didSelectImage(with url: String) {
+        delegate?.didSelectImage(with: url)
+    }
+}
+
 extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
+    
     //numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getSectionItems(section: section).count
@@ -82,6 +93,7 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
         let movement = sectionItems[indexPath.row]
         
         cell.configure(movement: movement)
+        cell.delegate = self
         
         return cell
     }
@@ -94,7 +106,8 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
         return dateFormatter.string(from: datesDateOrdered[section])
     }
     //didSelectRowAt indexPath
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        movementDatasourceDelegate?.didSelectAccountAtIndexPath(indexPath)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        movementDatasourceDelegate?.didSelectAccountAtIndexPath(indexPath)
+//        print(movementArray[indexPath.row].picture)
+//    }
 }

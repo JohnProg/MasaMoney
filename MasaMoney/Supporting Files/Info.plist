@@ -56,8 +56,12 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to allow you attach a picture to a movement</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>To show you atm nearby</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library to be able to attach any picture to the movement</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Splash</string>
 	<key>UIMainStoryboardFile</key>

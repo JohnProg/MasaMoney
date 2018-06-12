@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MovementCellDelegate: class {
+    func didSelectImage(with url: String)
+}
+
 class MovementCell: UITableViewCell {
 
     @IBOutlet weak var origin: UILabel!{
@@ -37,7 +41,10 @@ class MovementCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var pictureButton: UIButton!
     
+    var picture = ""
+    weak var delegate: MovementCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,6 +70,7 @@ class MovementCell: UITableViewCell {
         origin.text = movement.origin
         destiny.text = movement.destination
         comment.text = movement.comment
+        picture = movement.picture!
         
         // Check if is an addition to an income and set style
         if movement.origin !=  "Income" {
@@ -73,6 +81,15 @@ class MovementCell: UITableViewCell {
             amount.text = String(format:"+%g €",movement.amount)
         }
         
+        if picture != "" {
+            pictureButton.isHidden = false
+        }else {
+            pictureButton.isHidden = true
+        }
     }
     
+    @IBAction func pictureTapped(_ sender: Any) {
+        delegate?.didSelectImage(with : picture)
+    }
 }
+

@@ -281,6 +281,8 @@ extension Main: UICollectionViewDragDelegate {
             let image = UIImage(named: "dollar")
             let imageView = UIImageView(image: image!)
             let dollar = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 64, height: 64))
+            dollar.layer.cornerRadius = dollar.frame.size.width/2
+            dollar.clipsToBounds = true
             dollar.addSubview(imageView)
             return UIDragPreview(view: dollar)
         }
@@ -300,7 +302,7 @@ extension Main: UICollectionViewDropDelegate{
                 if let originAccount = account as? Account {
                     //Send accounts and open calculator
                     DispatchQueue.main.async {
-                        let vc: IncomeCalculator = UIStoryboard(.AddIncome).instantiateViewController()
+                        let vc: CalculatorVC = UIStoryboard(.AddIncome).instantiateViewController()
                         vc.accountOrigin = originAccount
                         vc.accountDestination = destinationAccount
                         self.navigationItem.title = Strings.back

@@ -153,14 +153,6 @@
                                     <outlet property="delegate" destination="g76-nq-voE" id="wGr-Ws-amq"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-oP-u5d">
-                                <rect key="frame" x="31" y="617" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Acercar"/>
-                                <connections>
-                                    <action selector="ZoomIn:" destination="g76-nq-voE" eventType="touchUpInside" id="fSx-XI-ur5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -173,7 +165,6 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="yFE-Mp-1fC" id="HwK-mJ-Rnh"/>
-                        <outlet property="zoomBtn" destination="BiS-oP-u5d" id="y0j-kw-Zuu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkJ-ZE-dhY" userLabel="First Responder" sceneMemberID="firstResponder"/>
