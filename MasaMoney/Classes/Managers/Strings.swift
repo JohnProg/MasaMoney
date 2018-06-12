@@ -44,6 +44,15 @@ struct Strings {
         }
     }
     
+    static var saving: String {
+        switch language {
+        case .en:
+            return "Saving..."
+        case .es:
+            return "Guardando..."
+        }
+    }
+    
     static var loggingFacebook: String {
         switch language {
         case .en:
@@ -395,13 +404,48 @@ struct Strings {
         }
     }
     
-    
     static var pictureError: String {
         switch language {
         case .en:
             return "Error"
         case .es:
             return "Error"
+        }
+    }
+    
+    static var noConnection: String {
+        switch language {
+        case .en:
+            return "No connection"
+        case .es:
+            return "Sin conexion"
+        }
+    }
+    
+    static var noConnectionMessage: String {
+        switch language {
+        case .en:
+            return "This feature is just available with connection"
+        case .es:
+            return "Esta opcion solo esta disponible con conexion"
+        }
+    }
+    
+    static var noConnectionImage: String {
+        switch language {
+        case .en:
+            return "Image not available"
+        case .es:
+            return "Imagen no disponible"
+        }
+    }
+    
+    static var noConnectionMessageImage: String {
+        switch language {
+        case .en:
+            return "Image is not able without connection"
+        case .es:
+            return "Imagen solo disponible con conexion"
         }
     }
 

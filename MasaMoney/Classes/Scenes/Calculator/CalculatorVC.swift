@@ -20,8 +20,6 @@ class CalculatorVC: UIViewController {
         hud.interactionType = .blockAllTouches
         return hud
     }()
-    
-    let dispatchGroup = DispatchGroup()
 
     // MARK: -Outlets
     
@@ -100,7 +98,7 @@ class CalculatorVC: UIViewController {
     
     var pictureTaken: UIImage?
     
-//    var pictureUploaded : String = ""
+    var pictureUploaded : String = ""
     
     private var dateFormatter = DateFormatter()
     
@@ -187,36 +185,43 @@ class CalculatorVC: UIViewController {
     }
     
     @IBAction func pictureTapped(_ sender: Any) {
-        //If there is a picture taken and user tap, the picture is deleted and button turns able to pick another one
-        if pictureButton.isSelected == true {
-            pictureButton.isSelected = false
-            pictureTaken = nil
-        } else if pictureButton.isSelected == false {
-            let alert = UIAlertController(title: Strings.picture, message: nil, preferredStyle: .actionSheet)
-            let oKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(UIAlertAction(title: Strings.pictureGallery, style: .default) { [weak self] _ in
-                do {
-                    if let currentVC = self {
-                        try currentVC.obscuraCamera.chooseFromGallery(viewController: currentVC)
+        //Check connection
+        if Reachability.isConnectedToNetwork(){
+            //If there is a picture taken and user tap, the picture is deleted and button turns able to pick another one
+            if pictureButton.isSelected == true {
+                pictureButton.isSelected = false
+                pictureTaken = nil
+            } else if pictureButton.isSelected == false {
+                let alert = UIAlertController(title: Strings.picture, message: nil, preferredStyle: .actionSheet)
+                let oKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(UIAlertAction(title: Strings.pictureGallery, style: .default) { [weak self] _ in
+                    do {
+                        if let currentVC = self {
+                            try currentVC.obscuraCamera.chooseFromGallery(viewController: currentVC)
+                        }
+                    } catch {
+                        let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
+                        alertNoCamera.addAction(oKAction)
+                        self?.present(alertNoCamera, animated: true, completion: nil)
                     }
-                } catch {
-                    let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
-                    alertNoCamera.addAction(oKAction)
-                    self?.present(alertNoCamera, animated: true, completion: nil)
-                }
-            })
-            alert.addAction(UIAlertAction(title: Strings.pictureCamera, style: .default) { [weak self] _ in
-                do {
-                    if let currentVC = self {
-                        try currentVC.obscuraCamera.takePhoto(viewController: currentVC)
+                })
+                alert.addAction(UIAlertAction(title: Strings.pictureCamera, style: .default) { [weak self] _ in
+                    do {
+                        if let currentVC = self {
+                            try currentVC.obscuraCamera.takePhoto(viewController: currentVC)
+                        }
+                    } catch {
+                        let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
+                        alertNoCamera.addAction(oKAction)
+                        self?.present(alertNoCamera, animated: true, completion: nil)
                     }
-                } catch {
-                    let alertNoCamera = UIAlertController(title: Strings.pictureError, message: nil, preferredStyle: .alert)
-                    alertNoCamera.addAction(oKAction)
-                    self?.present(alertNoCamera, animated: true, completion: nil)
-                }
-            })
-            alert.addAction(UIAlertAction(title: Strings.cancel, style: UIAlertActionStyle.cancel, handler: nil))
+                })
+                alert.addAction(UIAlertAction(title: Strings.cancel, style: UIAlertActionStyle.cancel, handler: nil))
+                alert.show()
+            }
+        }else{
+            let alert = UIAlertController(style: .alert, title: Strings.noConnection, message: Strings.noConnectionMessage)
+            alert.addAction(title: Strings.cancel, style: .cancel)
             alert.show()
         }
     }
@@ -237,9 +242,9 @@ class CalculatorVC: UIViewController {
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
-    var pictureUploaded = ""
-    
     @IBAction func confirm(_ sender: Any) {
+        hud.textLabel.text = Strings.saving
+        hud.show(in: view, animated: true)
         // Storage picture if there is one
         if pictureTaken != nil {
             //Storaging profile picture
@@ -249,6 +254,7 @@ class CalculatorVC: UIViewController {
             Storage.storage().reference().child("movementImages").child(fileName).putData(profileImageUploadData!, metadata: nil) { (metadata, err) in
                 if let err = err {
                     Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(err)", delay: 3);
+                    print("error ", err)
                     return
                 }
                 self.pictureUploaded = (metadata?.downloadURL()?.absoluteString)!

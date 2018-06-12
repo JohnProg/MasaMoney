@@ -99,6 +99,7 @@
 		86A9D55620849B88008F7E18 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9D55520849B88008F7E18 /* Login.swift */; };
 		86A9D55B20849B8A008F7E18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A9D55A20849B8A008F7E18 /* Assets.xcassets */; };
 		86CBD58B20AB0A15001A0100 /* CalculatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CBD58A20AB0A15001A0100 /* CalculatorVC.swift */; };
+		86CFB5C220CFDDF400024445 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CFB5C120CFDDF400024445 /* Reachability.swift */; };
 		86D8E3BB20AE2C130033A3A3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D8E3BA20AE2C130033A3A3 /* Router.swift */; };
 		86DB7FC220C1E5D500D29C31 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86DB7FC120C1E5D500D29C31 /* GoogleService-Info.plist */; };
 		A8BBF0308FD14F00F9E950DB /* Pods_MasaMoney.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */; };
@@ -199,6 +200,7 @@
 		86A9D55A20849B8A008F7E18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A9D55F20849B8A008F7E18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86CBD58A20AB0A15001A0100 /* CalculatorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorVC.swift; sourceTree = "<group>"; };
+		86CFB5C120CFDDF400024445 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		86D8E3BA20AE2C130033A3A3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		86DB7FC120C1E5D500D29C31 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BE2ED6F262DA01B356206276 /* Pods_MasaMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MasaMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,6 +632,7 @@
 				866DF24820A84A3500A5B101 /* RoundButton.swift */,
 				866DF25320A8956D00A5B101 /* StoryboardExtension.swift */,
 				869116B420C284D70051546B /* ClusterView.swift */,
+				86CFB5C120CFDDF400024445 /* Reachability.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -942,6 +945,7 @@
 				869116B720C2F7F40051546B /* AccountVC.swift in Sources */,
 				8686D7DE20BDD5C10009F723 /* PhotoLibraryPickerViewController.swift in Sources */,
 				86A9D55420849B88008F7E18 /* AppDelegate.swift in Sources */,
+				86CFB5C220CFDDF400024445 /* Reachability.swift in Sources */,
 				869D5DE320A74BFA00A8F0A8 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

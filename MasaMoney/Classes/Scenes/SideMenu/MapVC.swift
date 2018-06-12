@@ -40,10 +40,18 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        //Check connection
+        if Reachability.isConnectedToNetwork() == false {
+            let alert = UIAlertController(style: .alert, title: Strings.noConnection, message: Strings.noConnectionMessage)
+            alert.addAction(title: Strings.cancel, style: .cancel)
+            alert.show()
+        }
+    }
+    
     //MARK: - Functions
     
     func centerMapOnLocation(region: MKCoordinateRegion) {
-//        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 1000, 1000)
         mapView.setRegion(region, animated: true)
     }
     
