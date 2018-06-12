@@ -30,6 +30,7 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
     @IBOutlet weak var movTableView: UITableView!
     
     // MARK: -Properties
+    //Account received from main
     var account = Account()
     var movementArray: [Movement] = []
     //lazy -> it's initializad just when is called
@@ -77,7 +78,6 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
                         var date = snapshotValue!["date"] as? String
                         // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
                         date = date?.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-                        
                         
                         var movement = Movement()
                         movement.origin = origin!

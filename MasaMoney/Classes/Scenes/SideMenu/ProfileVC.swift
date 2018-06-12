@@ -102,7 +102,7 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     }
     // Set current language
     func setPickerView(){
-        if Locale.current.languageCode == "es" {
+        if Locale.preferredLanguages.first?.prefix(2) == "es" {
             picker_language.selectRow(1, inComponent: 0, animated: false)
         } else {
             picker_language.selectRow(0, inComponent: 0, animated: false)

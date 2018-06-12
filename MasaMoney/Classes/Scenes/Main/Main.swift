@@ -256,7 +256,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
 extension Main: AccountDataSourceOutput  {
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
         //Identify collectionView by tag
-        //Open movement history and send the account chosen
+        //Open movementVC and send the account chosen
         //set the string to the navigation item
         if tag == 1 {
             let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()

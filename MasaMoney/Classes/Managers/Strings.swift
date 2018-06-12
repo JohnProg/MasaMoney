@@ -15,10 +15,13 @@ enum CountryCode: String {
 
 struct Strings {
     //check the country code in the system
-    private static var userLanguage = Locale.current.languageCode ?? "en"
+//    private static var userLanguage = Locale.current.languageCode ?? "en"
+    private static var userLanguage = Locale.preferredLanguages.first?.prefix(2) ?? "en"
     //if the language is not supported set english by default
     private static var language: CountryCode {
-        if let code = CountryCode.init(rawValue: Strings.userLanguage) {
+//        print("preferred language -> ", Locale.preferredLanguages.first)
+//        print("userLanguage -> ", Locale.current.languageCode)
+        if let code = CountryCode.init(rawValue: String(Strings.userLanguage)) {
             return code
         } else {
             return CountryCode(rawValue: "en")!

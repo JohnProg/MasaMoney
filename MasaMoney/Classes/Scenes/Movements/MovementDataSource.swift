@@ -19,17 +19,18 @@ class MovementDataSource: NSObject {
     
     // MARK: -Properties
     weak var delegate: MovementDataSourceDelegate?
-    
+    //received from MovementVC
     var movementArray: [Movement] = []
     
-    var datesString : [String] = []
+    var dateStringArray : [String] = []
     
     var datesDate: [Date] = []
     
     var datesDateOrdered: [Date] = []
     
-    var dateFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
     
+    // MARK: - Init
     //sending the delegate when initializate
     required init(movementArray: [Movement], delegate: MovementDataSourceDelegate) {
         self.movementArray = movementArray
@@ -39,39 +40,34 @@ class MovementDataSource: NSObject {
     // MARK: - Functions
     
     //Get array of sections
-    func getSectionArray() -> [String]{
-        dateFormatter.dateFormat = "dd MM yyyy"// yyyy-MM-dd"
+    func getSectionArray() -> [Date]{
+        dateFormatter.dateFormat = "dd MM yyyy"
         
+        //Go through the movementArray and get the differents dates and set them in dateStringArray array
         for mov in movementArray {
-            if !datesString.contains(mov.date) {
+            if !dateStringArray.contains(mov.date) {
                 let date = dateFormatter.date(from: mov.date)
                 datesDate.append(date!)
-                datesString.append(mov.date)
+                dateStringArray.append(mov.date)
             }
         }
+        //order the dates in the array
         datesDateOrdered = datesDate.sorted(by: { $0.compare($1) == .orderedDescending })
-        return datesString
+        return datesDateOrdered
     }
     
     //Calculate number of sections
-    func getSectionItems(section: Int) -> [Movement] {
-        var sectionItems = [Movement]()
+    func getMovementsPerSectionArray(section: Int) -> [Movement] {
+        var sectionMovementsArray = [Movement]()
         
-        // loop through the testArray to get the items for this sections's date
-        for item in movementArray {
-            let mov = item as Movement
-            // if the item's date equals the section's date then add it
-            if item.date == datesString[section] {
-                sectionItems.append(mov)
+        //Go through the movementArray to get the items for this sections's date
+        for mov in movementArray {
+            let date = dateFormatter.date(from: mov.date)
+            if date == datesDateOrdered[section] {
+                sectionMovementsArray.append(mov)
             }
         }
-        return sectionItems
-    }
-}
-
-extension MovementDataSource: MovementCellDelegate {
-    func didSelectImage(with url: String) {
-        delegate?.didSelectImage(with: url)
+        return sectionMovementsArray
     }
 }
 
@@ -79,7 +75,7 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
     
     //numberOfRowsInSection
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getSectionItems(section: section).count
+        return getMovementsPerSectionArray(section: section).count
     }
     //cellForRowAt indexPath
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,7 +84,7 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
         }
         // get the items in this section
-        let sectionItems = self.getSectionItems(section: indexPath.section)
+        let sectionItems = self.getMovementsPerSectionArray(section: indexPath.section)
         // get the item for the row in this section
         let movement = sectionItems[indexPath.row]
         
@@ -110,4 +106,10 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
 //        movementDatasourceDelegate?.didSelectAccountAtIndexPath(indexPath)
 //        print(movementArray[indexPath.row].picture)
 //    }
+}
+
+extension MovementDataSource: MovementCellDelegate {
+    func didSelectImage(with url: String) {
+        delegate?.didSelectImage(with: url)
+    }
 }
