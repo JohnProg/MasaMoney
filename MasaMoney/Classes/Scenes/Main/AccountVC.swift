@@ -149,7 +149,7 @@ class AccountVC: UIViewController {
         
         let pickerViewValuesString: [[String]]
         //Check the language to set one array or other in values
-        if Locale.current.languageCode! == "es"{
+        if Locale.preferredLanguages.first?.prefix(2) == "es"{
             pickerViewValuesString = [imagesIconStringES.map { ($0).description }]
         }else{
             pickerViewValuesString = [imagesIconString.map { ($0).description }]
