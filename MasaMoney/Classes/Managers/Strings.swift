@@ -448,5 +448,14 @@ struct Strings {
             return "Imagen solo disponible con conexion"
         }
     }
+    
+    static var total: String {
+        switch language {
+        case .en:
+            return "TOTAL"
+        case .es:
+            return "TOTAL"
+        }
+    }
 
 }

@@ -71,7 +71,7 @@ extension AddIncome: AccountDataSourceDelegate {
     // SELECT ITEM
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int) {
         let incomeAccount = Account()
-        incomeAccount.name = "Income"
+        incomeAccount.name = Strings.income
         incomeAccount.id = "External"
         incomeAccount.balance = 0
         

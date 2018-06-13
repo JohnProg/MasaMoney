@@ -57,6 +57,7 @@ class CalculatorVC: UIViewController {
             incomeTitleLabel.text = "\(accountOrigin.name) > "
         }
     }
+    
     @IBOutlet weak var incomeNameLabel: UILabel!{
         didSet {
             incomeNameLabel.font = UIFont.mmLatoBoldFont(size: 16)
@@ -85,7 +86,6 @@ class CalculatorVC: UIViewController {
             }
         }
     }
-    
     
     // MARK: -Properties
     var accountOrigin = Account()

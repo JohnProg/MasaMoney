@@ -23,7 +23,7 @@ class MovementVC: UIViewController {
         didSet {
             totalLabel.font = UIFont.mmLatoSemiBoldFont(size: 18)
             totalLabel.textColor = UIColor.mmBlackish
-            totalLabel.text = String(format:"%g €",account.balance)
+            totalLabel.text = String(format:"\(Strings.total) : %g €",account.balance)
         }
     }
     

@@ -81,7 +81,7 @@ class MovementCell: UITableViewCell {
         picture = movement.picture!
         
         // Check if is an addition to an income and set style
-        if movement.origin ==  "Income"{
+        if movement.origin ==  "Income" || movement.origin == "Ingreso"{
             amount.textColor = UIColor.mmGreenish
             amount.text = String(format:"+%g €",movement.amount)
 
