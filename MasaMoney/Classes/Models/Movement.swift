@@ -10,6 +10,7 @@ struct Movement {
     var origin = ""
     var destination = ""
     var amount = 0.0
+    var addition = ""
     var date = ""
     var comment : String?
     var picture : String?

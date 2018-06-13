@@ -274,14 +274,20 @@ class CalculatorVC: UIViewController {
             alert.addAction(title: Strings.cancel, style: .cancel)
             alert.show()
             return}
+        
         // Update balance in the accounts except if it is an addition to an income account
         MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + Double(amount)!)
         if self.accountOrigin.id != "External"{
             MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
         }
+        
+        // Check if is an addition
+        var addition = ""
+        if accountOrigin.income == true && accountDestination.income == true {
+            addition = accountDestination.name
+        }
         // create the movement
-        print(self.selectedDate)
-        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, picture: pictureUploaded, originId: accountOrigin.id, destinyId: accountDestination.id)
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, picture: pictureUploaded, originId: accountOrigin.id, destinyId: accountDestination.id, addition: addition)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

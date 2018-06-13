@@ -27,13 +27,11 @@ class MyFirebase {
     var dbRef: DatabaseReference! = Database.database().reference()
     
     private var listenHandler: AuthStateDidChangeListenerHandle?
-    
-    
-    
     private init() {
         
     }
     
+    // MARK: - Login
     func addUserListener(loggedIn: Bool, completion: @escaping (Bool?) -> Void) {
         listenHandler = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
@@ -101,6 +99,8 @@ class MyFirebase {
         }
     }
     
+    // MARK: - Create
+    
     func createBasicAccounts(){
         //Creating accounts
         var accountDictionary = ["name": Strings.wallet,
@@ -136,11 +136,12 @@ class MyFirebase {
         self.dbRef.child("Accounts").child(userId).childByAutoId().setValue(accountDictionary)
     }
     
-    func createMovements(origin: String, destination: String, amount: Double, date: String, comment: String, picture: String, originId: String, destinyId: String){
+    func createMovements(origin: String, destination: String, amount: Double, date: String, comment: String, picture: String, originId: String, destinyId: String, addition: String){
         //Creating accounts
         let movementDictionary = ["origin": origin,
                                   "destination": destination,
                                   "amount": amount,
+                                  "addition": addition,
                                   "date" : date,
                                   "comment" : comment,
                                   "picture" : picture] as [String : Any]
@@ -154,6 +155,8 @@ class MyFirebase {
         
     }
     
+    // MARK: - Edit
+    
     func updateIncomeBalance(idAccount: String, balance: Double){
         _ = dbRef.child("Accounts").child(userId).child(idAccount).updateChildValues(["balance": balance])
     }
@@ -166,6 +169,7 @@ class MyFirebase {
         _ = dbRef.child("Accounts").child(userId).child(idAccount).removeValue()
     }
     
+    // MARK: - Load
     
     func loadMovements (account: Account, completion: @escaping ([Movement]?, Error?) -> Void) {
         
@@ -187,6 +191,7 @@ class MyFirebase {
                         guard let comment = snapshotValue!["comment"] as? String else {return}
                         guard let picture = snapshotValue!["picture"] as? String else {return}
                         guard let amount = snapshotValue!["amount"] as? Double else {return}
+                        guard let addition = snapshotValue!["addition"] as? String else {return}
                         guard var date = snapshotValue!["date"] as? String else {return}
                         // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
                         date = date.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
@@ -197,6 +202,7 @@ class MyFirebase {
                         movement.comment = comment
                         movement.picture = picture
                         movement.amount = amount
+                        movement.addition = addition
                         movement.date = date
                         
                         let dispatchGroup = DispatchGroup()

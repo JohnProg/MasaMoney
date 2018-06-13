@@ -137,17 +137,17 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
                     accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let snapshotValue = snapshot.value as? NSDictionary
-                        let name = snapshotValue!["name"] as? String
-                        let icon = snapshotValue!["icon"] as? String
-                        let balance = snapshotValue!["balance"] as? Double
-                        let income = snapshotValue!["income"] as? Bool
+                        guard let name = snapshotValue!["name"] as? String else {return}
+                        guard let icon = snapshotValue!["icon"] as? String else {return}
+                        guard let balance = snapshotValue!["balance"] as? Double else {return}
+                        guard let income = snapshotValue!["income"] as? Bool else {return}
                         
                         let account = Account()
                         account.id = id
-                        account.name = name!
-                        account.icon = icon!
-                        account.balance = balance!
-                        account.income = income!
+                        account.name = name
+                        account.icon = icon
+                        account.balance = balance
+                        account.income = income
                         
                         self.setUpAccount(account: account)
                         

@@ -66,6 +66,7 @@ class MovementVC: UIViewController {
             if let movements = movements {
                 //something
                 self.movementDataSource.movementArray = movements
+                self.movementDataSource.titleAccount = self.account.name
                 self.movTableView.reloadData()
             }
         }

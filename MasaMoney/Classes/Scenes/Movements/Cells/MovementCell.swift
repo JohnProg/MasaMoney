@@ -13,6 +13,8 @@ protocol MovementCellDelegate: class {
 }
 
 class MovementCell: UITableViewCell {
+    
+    // MARK: - Outlets
 
     @IBOutlet weak var origin: UILabel!{
         didSet {
@@ -43,13 +45,19 @@ class MovementCell: UITableViewCell {
     
     @IBOutlet weak var pictureButton: UIButton!
     
+    // MARK: - Properties
+    
     var picture = ""
     weak var delegate: MovementCellDelegate?
+    
+    // MARK: - Awake
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    // MARK: - Functions
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -66,19 +74,23 @@ class MovementCell: UITableViewCell {
         amount.text = "5€"
     }
     
-    func configure(movement: Movement) {
+    func configure(movement: Movement, titleAccount: String) {
         origin.text = movement.origin
         destiny.text = movement.destination
         comment.text = movement.comment
         picture = movement.picture!
         
         // Check if is an addition to an income and set style
-        if movement.origin !=  "Income" {
-            amount.textColor = UIColor.red
-            amount.text = String(format:"-%g €",movement.amount)
-        }else{
+        if movement.origin ==  "Income"{
             amount.textColor = UIColor.mmGreenish
             amount.text = String(format:"+%g €",movement.amount)
+
+        } else if titleAccount == movement.addition{
+            amount.textColor = UIColor.mmGreenish
+            amount.text = String(format:"+%g €",movement.amount)
+        } else {
+            amount.textColor = UIColor.red
+            amount.text = String(format:"-%g €",movement.amount)
         }
         
         if picture != "" {
@@ -87,6 +99,8 @@ class MovementCell: UITableViewCell {
             pictureButton.isHidden = true
         }
     }
+    
+    // MARK: - Action
     
     @IBAction func pictureTapped(_ sender: Any) {
         delegate?.didSelectImage(with : picture)

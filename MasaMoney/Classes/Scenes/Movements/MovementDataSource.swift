@@ -22,6 +22,8 @@ class MovementDataSource: NSObject {
     //received from MovementVC
     var movementArray: [Movement] = []
     
+    var titleAccount : String = ""
+    
     var dateStringArray : [String] = []
     
     var datesDate: [Date] = []
@@ -88,7 +90,7 @@ extension MovementDataSource : UITableViewDelegate, UITableViewDataSource {
         // get the item for the row in this section
         let movement = sectionItems[indexPath.row]
         
-        cell.configure(movement: movement)
+        cell.configure(movement: movement, titleAccount: titleAccount)
         cell.delegate = self
         
         return cell
