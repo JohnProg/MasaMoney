@@ -104,6 +104,8 @@ class CalculatorVC: UIViewController {
     
     private let obscuraCamera = Obscura()
     
+    // MARK: - Views
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

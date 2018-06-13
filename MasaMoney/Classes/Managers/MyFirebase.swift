@@ -55,6 +55,7 @@ class MyFirebase {
             }
         }
     }
+    
     func isLoggedIn() -> Bool {
         return(currentUser != nil)
     }
@@ -163,5 +164,76 @@ class MyFirebase {
     
     func deleteAccount(idAccount: String){
         _ = dbRef.child("Accounts").child(userId).child(idAccount).removeValue()
+    }
+    
+    
+    func loadMovements (account: Account, completion: @escaping ([Movement]?, Error?) -> Void) {
+        
+        var movementArray: [Movement] = []
+        let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
+        movementsDB.keepSynced(true)
+        movementsDB.observe(.value, with: { (snapshot) in
+            
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in result {
+                    let id = child.key as String
+                    movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        //create a group
+                        
+                        let snapshotValue = snapshot.value as? NSDictionary
+                        
+                        guard let origin = snapshotValue!["origin"] as? String else {return}
+                        guard let destination = snapshotValue!["destination"] as? String else {return}
+                        guard let comment = snapshotValue!["comment"] as? String else {return}
+                        guard let picture = snapshotValue!["picture"] as? String else {return}
+                        guard let amount = snapshotValue!["amount"] as? Double else {return}
+                        guard var date = snapshotValue!["date"] as? String else {return}
+                        // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
+                        date = date.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+                        
+                        var movement = Movement()
+                        movement.origin = origin
+                        movement.destination = destination
+                        movement.comment = comment
+                        movement.picture = picture
+                        movement.amount = amount
+                        movement.date = date
+                        
+                        let dispatchGroup = DispatchGroup()
+                        dispatchGroup.enter()
+                        
+                        self.checkAccountInsideMoves(movementsDB: movementsDB, id: id, account: account, movement: movement, completion: { (movement, error) in
+                            if let error = error {
+                                //error
+                                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: error.localizedDescription, delay: 3)
+                            }
+                            if let movement = movement {
+                                //something
+                                movementArray.append(movement)
+                                DispatchQueue.main.async {
+                                    completion(movementArray, nil)
+                                }
+                                dispatchGroup.leave()
+                            }
+                        })
+                    })
+                }
+            }
+        })
+    }
+    
+    func checkAccountInsideMoves(movementsDB: DatabaseReference, id: String, account: Account, movement: Movement, completion: @escaping (Movement?, Error?) ->Void) {
+        
+ 
+        //check if the account is in the movement, if so, add it to the array to show
+        movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
+            let snapshotValue = snapshot.value as? NSDictionary
+            
+            let historic = snapshotValue![account.id] as? Bool
+            
+            if historic == true {
+                completion (movement, nil)
+            }
+        })
     }
 }

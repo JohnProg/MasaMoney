@@ -17,7 +17,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         hud.interactionType = .blockAllTouches
         return hud
     }()
-    //MARKS: Outlets
+    //MARK: - Outlets
     
     @IBOutlet weak var incomeCollectionView: UICollectionView!
     
@@ -56,7 +56,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
-    //MARKS: Properties
+    //MARK: - Properties
     
     var incomeArray: [Account] = []
     var outcomeArray: [Account] = []
@@ -64,7 +64,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     var incomeDataSource = AccountDataSource(accountArray: [])
     var outcomeDataSource = AccountDataSource(accountArray: [])
     
-    //MARKS: - Views
+    //MARK: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.mmBlackish
@@ -102,7 +102,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    //MARKS: - Functions
+    //MARK: - Functions
     
     func setupCollectionView(){
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
@@ -253,7 +253,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
 }
 
 extension Main: AccountDataSourceDelegate  {
-    
+    // DRAG
     func drag(_ indexPath: IndexPath) -> [UIDragItem] {
         //get the account from the array
         let provider = NSItemProvider(object: incomeDataSource.accountArray[indexPath.row])
@@ -269,7 +269,7 @@ extension Main: AccountDataSourceDelegate  {
         }
         return [dragItem]
     }
-    
+    // DROP
     func performDropWith(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
         //Get destination account
         guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
@@ -305,7 +305,7 @@ extension Main: AccountDataSourceDelegate  {
         return proposal
 
     }
-    
+    // SELECT ITEM
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
         //Identify collectionView by tag
         //Open movementVC and send the account chosen

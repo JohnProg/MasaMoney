@@ -68,8 +68,7 @@ extension AddIncome: AccountDataSourceDelegate {
     
     func didSelectAccountDrop(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
     }
-    
-    
+    // SELECT ITEM
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int) {
         let incomeAccount = Account()
         incomeAccount.name = "Income"

@@ -149,7 +149,6 @@ extension MapVC :  MKMapViewDelegate{
         let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         let region = MKCoordinateRegion(center: center, span: span)
         
-//        mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
         
         //Do api call with user Location
