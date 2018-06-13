@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class MovementVC: UIViewController, MovementDataSourceDelegate {
+class MovementVC: UIViewController {
     
     
     let hud: JGProgressHUD = {
@@ -105,7 +105,9 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
         })
         hud.dismiss()
     }
-    
+}
+
+extension MovementVC : MovementDataSourceDelegate {
     // MARK: - MovementDataSourceDelegate
     func didSelectImage(with url: String) {
         let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
@@ -114,5 +116,3 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
         present(vc, animated: true, completion: nil)
     }
 }
-
-

@@ -109,16 +109,16 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         outcomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         
-        incomeCollectionView.allowsSelection = true
-        incomeCollectionView.dragDelegate = self
-        incomeCollectionView.dropDelegate = self
-        incomeCollectionView.dragInteractionEnabled = true
-        outcomeCollectionView.dropDelegate = self
-        
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
+        incomeCollectionView.dropDelegate = incomeDataSource
+        incomeCollectionView.dragDelegate = incomeDataSource
+        incomeCollectionView.allowsSelection = true
+        incomeCollectionView.dragInteractionEnabled = true
+        
         outcomeCollectionView.delegate = outcomeDataSource
         outcomeCollectionView.dataSource = outcomeDataSource
+        outcomeCollectionView.dropDelegate = outcomeDataSource
         
     }
     
@@ -249,31 +249,12 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         vc.vcType = .outcome
         self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
-    }    
-    
-}
-
-extension Main: AccountDataSourceOutput  {
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
-        //Identify collectionView by tag
-        //Open movementVC and send the account chosen
-        //set the string to the navigation item
-        if tag == 1 {
-            let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
-            vc.account = incomeDataSource.accountArray[indexPath.row]
-            self.navigationItem.title = Strings.back
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if tag == 2 {
-            let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
-            vc.account = outcomeDataSource.accountArray[indexPath.row]
-            self.navigationItem.title = Strings.back
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
 }
 
-extension Main: UICollectionViewDragDelegate {
-    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+extension Main: AccountDataSourceDelegate  {
+    
+    func drag(_ indexPath: IndexPath) -> [UIDragItem] {
         //get the account from the array
         let provider = NSItemProvider(object: incomeDataSource.accountArray[indexPath.row])
         let dragItem = UIDragItem(itemProvider: provider)
@@ -288,14 +269,16 @@ extension Main: UICollectionViewDragDelegate {
         }
         return [dragItem]
     }
-}
-
-extension Main: UICollectionViewDropDelegate{
-    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+    
+    func performDropWith(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
         //Get destination account
         guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
-        let destinationAccount = outcomeArray[destinationIndex]
-
+        var destinationAccount = Account()
+        if tag == 1 {
+            destinationAccount = incomeArray[destinationIndex]
+        } else if tag == 2 {
+            destinationAccount = outcomeArray[destinationIndex]
+        }
         //Get origin account
         for item in coordinator.items {
             item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in
@@ -311,5 +294,29 @@ extension Main: UICollectionViewDropDelegate{
                 }
             })
         }
+    }
+    
+    func canHandle() -> Bool {
+        return true
+    }
+    
+    func dropSessionDidUpdate() -> UICollectionViewDropProposal {
+        let proposal = UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
+        return proposal
+
+    }
+    
+    func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
+        //Identify collectionView by tag
+        //Open movementVC and send the account chosen
+        //set the string to the navigation item
+        let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
+        if tag == 1 {
+            vc.account = incomeDataSource.accountArray[indexPath.row]
+        } else if tag == 2 {
+            vc.account = outcomeDataSource.accountArray[indexPath.row]
+        }
+        self.navigationItem.title = Strings.back
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
