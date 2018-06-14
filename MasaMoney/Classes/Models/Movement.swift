@@ -15,3 +15,15 @@ struct Movement {
     var comment : String?
     var picture : String?
 }
+
+extension Movement {
+    init(_ dictionary: [String: Any]) {
+        origin = dictionary["origin"] as! String
+        destination = dictionary["destination"] as! String
+        amount = dictionary["amount"] as! Double
+        addition = dictionary["addition"] as! String
+        date = dictionary["date"] as! String
+        comment = dictionary["comment"] as? String
+        picture = dictionary["picture"] as? String
+    }
+}

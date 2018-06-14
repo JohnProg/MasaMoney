@@ -196,7 +196,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
             }
         }
         
-        if account.name == "" { //!.isEmpty
+        if !account.name.isEmpty { 
             let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
             vc.vcType = .edit
             vc.account = account

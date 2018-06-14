@@ -186,7 +186,7 @@ class MyFirebase {
     
     func loadAccounts(completion: @escaping (Account?, Error?) -> Void) {
         //read all the accounts
-        let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
+        let accountsDB = Database.database().reference().child("Accounts").child(userId)
         accountsDB.keepSynced(true)
         accountsDB.observe(.value, with: { (snapshot) in
             //go through every result to get the id and read everyone
@@ -195,20 +195,7 @@ class MyFirebase {
                     let id = child.key as String
                     accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
                         let account = Account.init(snapshot.value as! NSDictionary)
-                        account.id = id
-//                        let snapshotValue = snapshot.value as? NSDictionary
-//                        guard let name = snapshotValue!["name"] as? String else {return}
-//                        guard let icon = snapshotValue!["icon"] as? String else {return}
-//                        guard let balance = snapshotValue!["balance"] as? Double else {return}
-//                        guard let income = snapshotValue!["income"] as? Bool else {return}
-//
-//                        let account = Account()
-//                        account.id = id
-//                        account.name = name
-//                        account.icon = icon
-//                        account.balance = balance
-//                        account.income = income
-                        
+                        account.id = id                        
                         completion (account, nil)
                     })
                 }
@@ -219,7 +206,7 @@ class MyFirebase {
     func loadMovements (account: Account, completion: @escaping ([Movement]?, Error?) -> Void) {
         
         var movementArray: [Movement] = []
-        let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
+        let movementsDB = Database.database().reference().child("Movements").child(userId)
         movementsDB.keepSynced(true)
         movementsDB.observe(.value, with: { (snapshot) in
             
@@ -227,31 +214,8 @@ class MyFirebase {
                 for child in result {
                     let id = child.key as String
                     movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        //create a group
                         
-                        let snapshotValue = snapshot.value as? NSDictionary
-                        
-                        guard let origin = snapshotValue!["origin"] as? String else {return}
-                        guard let destination = snapshotValue!["destination"] as? String else {return}
-                        guard let comment = snapshotValue!["comment"] as? String else {return}
-                        guard let picture = snapshotValue!["picture"] as? String else {return}
-                        guard let amount = snapshotValue!["amount"] as? Double else {return}
-                        guard let addition = snapshotValue!["addition"] as? String else {return}
-                        guard var date = snapshotValue!["date"] as? String else {return}
-                        // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
-                        date = date.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-                        
-                        var movement = Movement()
-                        movement.origin = origin
-                        movement.destination = destination
-                        movement.comment = comment
-                        movement.picture = picture
-                        movement.amount = amount
-                        movement.addition = addition
-                        movement.date = date
-                        
-                        let dispatchGroup = DispatchGroup()
-                        dispatchGroup.enter()
+                        let movement = Movement.init(snapshot.value as! [String : Any])
                         
                         self.checkAccountInsideMoves(movementsDB: movementsDB, id: id, account: account, movement: movement, completion: { (movement, error) in
                             if let error = error {
@@ -264,7 +228,6 @@ class MyFirebase {
                                 DispatchQueue.main.async {
                                     completion(movementArray, nil)
                                 }
-                                dispatchGroup.leave()
                             }
                         })
                     })
@@ -274,8 +237,6 @@ class MyFirebase {
     }
     
     func checkAccountInsideMoves(movementsDB: DatabaseReference, id: String, account: Account, movement: Movement, completion: @escaping (Movement?, Error?) ->Void) {
-        
- 
         //check if the account is in the movement, if so, add it to the array to show
         movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
             let snapshotValue = snapshot.value as? NSDictionary
@@ -290,20 +251,11 @@ class MyFirebase {
     
     func loadProfile (completion: @escaping (UserProfile?, Error?) -> Void) {
         //read user information from Firebase
-        let userDB = Database.database().reference().child("users").child(MyFirebase.shared.userId)
+        let userDB = Database.database().reference().child("users").child(userId)
         userDB.keepSynced(true)
         userDB.observe(.value, with: { (snapshot) in
             
-            let snapshotValue = snapshot.value as? NSDictionary
-            guard let name = snapshotValue!["name"] as? String else {return}
-            guard let email = snapshotValue!["email"] as? String else {return}
-            guard let profileImageUrl = snapshotValue!["profileImageUrl"] as? String else {return}
-            
-            //Set the information in fields
-            var user = UserProfile()
-            user.name = name
-            user.email = email
-            user.pictureURL = profileImageUrl
+            let user = UserProfile.init(snapshot.value as! [String : Any])
             
             completion(user, nil)
         })

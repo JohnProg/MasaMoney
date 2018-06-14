@@ -11,3 +11,11 @@ struct UserProfile {
     var email = ""
     var pictureURL = ""
 }
+
+extension UserProfile {
+    init(_ dictionary: [String: Any]) {
+        name = dictionary["name"] as! String
+        email = dictionary["email"] as! String
+        pictureURL = dictionary["pictureURL"] as! String
+    }
+}
