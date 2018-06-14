@@ -170,6 +170,36 @@ class MyFirebase {
     }
     
     // MARK: - Load
+    func loadAccounts(completion: @escaping (Account?, Error?) -> Void) {
+        //read all the accounts
+        let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
+        accountsDB.keepSynced(true)
+        accountsDB.observe(.value, with: { (snapshot) in
+            //go through every result to get the id and read everyone
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in result {
+                    let id = child.key as String
+                    accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        let snapshotValue = snapshot.value as? NSDictionary
+                        guard let name = snapshotValue!["name"] as? String else {return}
+                        guard let icon = snapshotValue!["icon"] as? String else {return}
+                        guard let balance = snapshotValue!["balance"] as? Double else {return}
+                        guard let income = snapshotValue!["income"] as? Bool else {return}
+                        
+                        let account = Account()
+                        account.id = id
+                        account.name = name
+                        account.icon = icon
+                        account.balance = balance
+                        account.income = income
+                        
+                        completion (account, nil)
+                    })
+                }
+            }
+        })
+    }
     
     func loadMovements (account: Account, completion: @escaping ([Movement]?, Error?) -> Void) {
         

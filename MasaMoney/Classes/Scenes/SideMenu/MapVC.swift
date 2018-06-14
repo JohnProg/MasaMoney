@@ -150,7 +150,6 @@ extension MapVC :  MKMapViewDelegate{
         let region = MKCoordinateRegion(center: center, span: span)
         
         mapView.showsUserLocation = true
-        
         //Do api call with user Location
         if mapView.isUserLocationVisible, apiCallMade == false  {
             self.centerMapOnLocation(region: region)

@@ -43,10 +43,12 @@ class SideMenuVC: UITableViewController {
         //Map
         case 1:
             let vc: MapVC = UIStoryboard(.Main).instantiateViewController()
+            self.navigationItem.title = Strings.back
             self.navigationController?.pushViewController(vc, animated: true)
         //Profile
         case 2:
             let vc: ProfileVC = UIStoryboard(.Main).instantiateViewController()
+            self.navigationItem.title = Strings.back
             self.navigationController?.pushViewController(vc, animated: true)
         //Contact
         case 3:

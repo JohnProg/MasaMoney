@@ -123,43 +123,19 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     }
     
     func loadData(){
-        
-        //read all the accounts
-        let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
-        hud.textLabel.text = Strings.loading
-        hud.show(in: self.view, animated: false)
-        accountsDB.keepSynced(true)
-        accountsDB.observe(.value, with: { (snapshot) in
-            //go through every result to get the id and read everyone
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in result {
-                    let id = child.key as String
-                    accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let snapshotValue = snapshot.value as? NSDictionary
-                        guard let name = snapshotValue!["name"] as? String else {return}
-                        guard let icon = snapshotValue!["icon"] as? String else {return}
-                        guard let balance = snapshotValue!["balance"] as? Double else {return}
-                        guard let income = snapshotValue!["income"] as? Bool else {return}
-                        
-                        let account = Account()
-                        account.id = id
-                        account.name = name
-                        account.icon = icon
-                        account.balance = balance
-                        account.income = income
-                        
-                        self.setUpAccount(account: account)
-                        
-                        self.incomeCollectionView.reloadData()
-                        self.outcomeCollectionView.reloadData()
-                        
-                        self.setUpTotal()
-                    })
-                }
+        MyFirebase.shared.loadAccounts { (account, error) in
+            if let error = error {
+                //error
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: error.localizedDescription, delay: 3)
             }
-        })
-        hud.dismiss()
+            
+            if let account = account {
+                self.setUpAccount(account: account)
+                self.incomeCollectionView.reloadData()
+                self.outcomeCollectionView.reloadData()
+                self.setUpTotal()
+            }
+        }
     }
     
     func setUpAccount(account: Account) {
