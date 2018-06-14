@@ -10,8 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 import Alamofire
+import JGProgressHUD
 
 class MapVC: UIViewController, CLLocationManagerDelegate {
+    let hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .light)
+        hud.interactionType = .blockAllTouches
+        return hud
+    }()
+    
     // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     
@@ -19,6 +26,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     var results = [Results]()
+    var markers = [Annotation]()
     
     //Set and address by default
     var completedUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.173417,-3.599750&radius=4000&type=atm&key=AIzaSyAzmfKoVRy8PVXp43dWj0qGjRMyzY828Vc"
@@ -34,10 +42,6 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         
         // Check for Location Services
         checkLocationAuthorizationStatus()
-        
-        // Use custom annotation
-        mapView.register(ClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,12 +69,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func alamofireRequest(url: String) {
+    func loadData(url: String) {
         Alamofire.request(url)
             .responseJSON { response in
-                
                 switch response.result {
-                    
                 case .success:
                     //retrieving the response as data to decode it
                     guard let result = response.data else { return }
@@ -81,11 +83,10 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
                             self.addMarkers()
                         }
                     } catch let error {
-                        print ("Error JSONDecoder ->\(error)")
+                        Service.dismissHud(self.hud, text: Strings.error, detailText: error.localizedDescription, delay: 3)
                     }
-                    
                 case .failure(_):
-                    print("Error-> request = failure")
+                    Service.dismissHud(self.hud, text: Strings.error, detailText: "", delay: 3)
                 }
         }
     }
@@ -108,7 +109,7 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
                 address: "\(placeAddress)",
                 coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
 
-            var markers = [Annotation]()
+            
             markers.append(marker)
             //Set all the annotations in the map
             mapView.addAnnotations(markers)
@@ -138,6 +139,8 @@ class MapVC: UIViewController, CLLocationManagerDelegate {
         let location = view.annotation as! Annotation
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
+        // necessary to deselect annotation because if not crashes when return to the app
+        mapView.deselectAnnotation(location, animated: false)
     }
 }
 
@@ -154,7 +157,9 @@ extension MapVC :  MKMapViewDelegate{
         if mapView.isUserLocationVisible, apiCallMade == false  {
             self.centerMapOnLocation(region: region)
             completedUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(mapView.userLocation.coordinate.latitude),\(mapView.userLocation.coordinate.longitude)&radius=9000&type=atm&key=AIzaSyAzmfKoVRy8PVXp43dWj0qGjRMyzY828Vc"
-            alamofireRequest(url: completedUrl)
+            loadData(url: completedUrl)
+            // Use custom annotation
+            mapView.register(ClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
             apiCallMade = true
         }
     }

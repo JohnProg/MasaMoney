@@ -92,7 +92,6 @@ class Login: UIViewController, GIDSignInUIDelegate {
     //MARK: - Fetch Facebook user
     
     func fetchFacebookUser() {
-        
         let graphRequestConnection = GraphRequestConnection()
         let graphRequest = GraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
         // Make an api call
@@ -105,17 +104,25 @@ class Login: UIViewController, GIDSignInUIDelegate {
                 let json = JSON(responseDict)
                 self.name = json["name"].string
                 self.email = json["email"].string
-                guard let profilePictureUrl = json["picture"]["data"]["url"].string else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
-                guard let url = URL(string: profilePictureUrl) else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
+                guard let profilePictureUrl = json["picture"]["data"]["url"].string,
+                let url = URL(string: profilePictureUrl)
+                    else {
+                        Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3)
+                        return
+                }
+
                 
                 //Unwrapping the url to get the image
                 URLSession.shared.dataTask(with: url) { (data, response, err) in
-                    if err != nil {
-                        guard let err = err else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
+                    if let err = err {
                         Service.dismissHud(self.hud, text: "Fetch error", detailText: err.localizedDescription, delay: 3)
+                    }
+
+                    guard let data = data else {
+                        Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3)
                         return
                     }
-                    guard let data = data else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
+                    
                     self.profileImage = UIImage(data: data)
                 
                     //If everything was fetched, save the data in firebase

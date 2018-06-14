@@ -73,10 +73,11 @@ class AccountDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
 //here I unwrap it with an if
-        if let proposal = accountDatasourceDelegate?.dropSessionDidUpdate() {
-            return proposal
+        
+        guard let proposal = accountDatasourceDelegate?.dropSessionDidUpdate() else {
+            return UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
         }
-        let proposal = UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
+        
         return proposal
     }
 }

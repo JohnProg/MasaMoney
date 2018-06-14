@@ -98,6 +98,16 @@ struct Strings {
         }
     }
     
+    
+    static var error: String {
+        switch language {
+        case .en:
+            return "Error"
+        case .es:
+            return "Error"
+        }
+    }
+    
     static var balance: String {
         switch language {
         case .en:
@@ -455,6 +465,33 @@ struct Strings {
             return "TOTAL"
         case .es:
             return "TOTAL"
+        }
+    }
+    
+    static var cameraPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your camera to be able to attach a picture to a movement"
+        case .es:
+            return "Necesitamos acceso a tu cámara de fotos para poder adjuntar una foto al movimiento"
+        }
+    }
+    
+    static var galleryPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your gallery to be able to attach a picture to a movement"
+        case .es:
+            return "Necesitamos acceso a tu galeria de fotos para poder adjuntar una foto al movimiento"
+        }
+    }
+    
+    static var localizationPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your localization to be able to show you neraby ATMs"
+        case .es:
+            return "Necesitamos acceso a tu localización para poder mostrarte cajeros cercanos a ti"
         }
     }
 

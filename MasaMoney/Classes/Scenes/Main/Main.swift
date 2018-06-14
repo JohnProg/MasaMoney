@@ -140,7 +140,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     func setUpAccount(account: Account) {
         //Check if the account is an income or outcome and add
         //check if already exists to update it instead of append it
-        if account.income == true {
+        if account.income {
             if let i = incomeArray.index(where: {$0.id == account.id}){
                 incomeArray[i] = account
                 incomeDataSource.accountArray = incomeArray
@@ -180,7 +180,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     
     @objc func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer){
         var account = Account()
-        if (gestureRecognizer.state != UIGestureRecognizerState.ended){
+        if (gestureRecognizer.state != UIGestureRecognizerState.ended) {
             return
         }
         // Check from where is coming the long press, pick the account and open the next scene
@@ -196,7 +196,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
             }
         }
         
-        if account.name != ""{
+        if account.name == "" { //!.isEmpty
             let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
             vc.vcType = .edit
             vc.account = account

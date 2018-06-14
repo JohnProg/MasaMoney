@@ -194,19 +194,20 @@ class MyFirebase {
                 for child in result {
                     let id = child.key as String
                     accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let snapshotValue = snapshot.value as? NSDictionary
-                        guard let name = snapshotValue!["name"] as? String else {return}
-                        guard let icon = snapshotValue!["icon"] as? String else {return}
-                        guard let balance = snapshotValue!["balance"] as? Double else {return}
-                        guard let income = snapshotValue!["income"] as? Bool else {return}
-                        
-                        let account = Account()
+                        let account = Account.init(snapshot.value as! NSDictionary)
                         account.id = id
-                        account.name = name
-                        account.icon = icon
-                        account.balance = balance
-                        account.income = income
+//                        let snapshotValue = snapshot.value as? NSDictionary
+//                        guard let name = snapshotValue!["name"] as? String else {return}
+//                        guard let icon = snapshotValue!["icon"] as? String else {return}
+//                        guard let balance = snapshotValue!["balance"] as? Double else {return}
+//                        guard let income = snapshotValue!["income"] as? Bool else {return}
+//
+//                        let account = Account()
+//                        account.id = id
+//                        account.name = name
+//                        account.icon = icon
+//                        account.balance = balance
+//                        account.income = income
                         
                         completion (account, nil)
                     })
