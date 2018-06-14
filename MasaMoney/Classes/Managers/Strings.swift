@@ -15,12 +15,9 @@ enum CountryCode: String {
 
 struct Strings {
     //check the country code in the system
-//    private static var userLanguage = Locale.current.languageCode ?? "en"
     private static var userLanguage = Locale.preferredLanguages.first?.prefix(2) ?? "en"
     //if the language is not supported set english by default
     private static var language: CountryCode {
-//        print("preferred language -> ", Locale.preferredLanguages.first)
-//        print("userLanguage -> ", Locale.current.languageCode)
         if let code = CountryCode.init(rawValue: String(Strings.userLanguage)) {
             return code
         } else {
@@ -98,6 +95,16 @@ struct Strings {
             return "Sign up error"
         case .es:
             return "Error al iniciar sesión"
+        }
+    }
+    
+    
+    static var error: String {
+        switch language {
+        case .en:
+            return "Error"
+        case .es:
+            return "Error"
         }
     }
     
@@ -449,6 +456,42 @@ struct Strings {
             return "Image is not able without connection"
         case .es:
             return "Imagen solo disponible con conexion"
+        }
+    }
+    
+    static var total: String {
+        switch language {
+        case .en:
+            return "TOTAL"
+        case .es:
+            return "TOTAL"
+        }
+    }
+    
+    static var cameraPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your camera to be able to attach a picture to a movement"
+        case .es:
+            return "Necesitamos acceso a tu cámara de fotos para poder adjuntar una foto al movimiento"
+        }
+    }
+    
+    static var galleryPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your gallery to be able to attach a picture to a movement"
+        case .es:
+            return "Necesitamos acceso a tu galeria de fotos para poder adjuntar una foto al movimiento"
+        }
+    }
+    
+    static var localizationPermission: String {
+        switch language {
+        case .en:
+            return "We need access to your localization to be able to show you neraby ATMs"
+        case .es:
+            return "Necesitamos acceso a tu localización para poder mostrarte cajeros cercanos a ti"
         }
     }
 

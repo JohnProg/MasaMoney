@@ -57,4 +57,11 @@ final class Account: NSObject, NSItemProviderWriting, NSItemProviderReading, Cod
     override init() {
         super.init()
     }
+    
+    init(_ dictionary: NSDictionary) {
+        name = dictionary["name"] as! String
+        icon = dictionary["icon"] as! String
+        balance = dictionary["balance"] as! Double
+        income = dictionary["income"] as! Bool
+    }
 }

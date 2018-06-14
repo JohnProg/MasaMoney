@@ -9,11 +9,6 @@
 import UIKit
 import JGProgressHUD
 
-import FirebaseCore
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
-
 class CalculatorVC: UIViewController {
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -57,6 +52,7 @@ class CalculatorVC: UIViewController {
             incomeTitleLabel.text = "\(accountOrigin.name) > "
         }
     }
+    
     @IBOutlet weak var incomeNameLabel: UILabel!{
         didSet {
             incomeNameLabel.font = UIFont.mmLatoBoldFont(size: 16)
@@ -86,7 +82,6 @@ class CalculatorVC: UIViewController {
         }
     }
     
-    
     // MARK: -Properties
     var accountOrigin = Account()
     
@@ -103,6 +98,8 @@ class CalculatorVC: UIViewController {
     private var dateFormatter = DateFormatter()
     
     private let obscuraCamera = Obscura()
+    
+    // MARK: - Views
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -247,18 +244,14 @@ class CalculatorVC: UIViewController {
         hud.show(in: view, animated: true)
         // Storage picture if there is one
         if pictureTaken != nil {
-            //Storaging profile picture
-            let profileImageUploadData = UIImageJPEGRepresentation((self.pictureTaken)!, 0.3)
-            
-            let fileName = UUID().uuidString
-            Storage.storage().reference().child("movementImages").child(fileName).putData(profileImageUploadData!, metadata: nil) { (metadata, err) in
-                if let err = err {
-                    Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(err)", delay: 3);
-                    print("error ", err)
-                    return
+            MyFirebase.shared.storage(pictureTaken: pictureTaken!) { (pictureUploaded, error) in
+                if let error = error {
+                    Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(error)", delay: 3)
                 }
-                self.pictureUploaded = (metadata?.downloadURL()?.absoluteString)!
-                self.savingMovement()
+                if let pictureUploaded = pictureUploaded {
+                    self.pictureUploaded = pictureUploaded
+                    self.savingMovement()
+                }
             }
         } else {
             savingMovement()
@@ -272,14 +265,20 @@ class CalculatorVC: UIViewController {
             alert.addAction(title: Strings.cancel, style: .cancel)
             alert.show()
             return}
+        
         // Update balance in the accounts except if it is an addition to an income account
         MyFirebase.shared.updateIncomeBalance(idAccount: accountDestination.id, balance: accountDestination.balance + Double(amount)!)
         if self.accountOrigin.id != "External"{
             MyFirebase.shared.updateIncomeBalance(idAccount: accountOrigin.id, balance: accountOrigin.balance - Double(amount)!)
         }
+        
+        // Check if is an addition
+        var addition = ""
+        if accountOrigin.income == true && accountDestination.income == true {
+            addition = accountDestination.name
+        }
         // create the movement
-        print(self.selectedDate)
-        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, picture: pictureUploaded, originId: accountOrigin.id, destinyId: accountDestination.id)
+        MyFirebase.shared.createMovements(origin: accountOrigin.name, destination: accountDestination.name, amount: Double(amount)!, date: selectedDate, comment: comment, picture: pictureUploaded, originId: accountOrigin.id, destinyId: accountDestination.id, addition: addition)
         _ = self.navigationController?.popToRootViewController(animated: true)
     }
 }

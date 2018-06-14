@@ -46,11 +46,32 @@ class AddIncome: UIViewController{
     }    
 }
 
-extension AddIncome: AccountDataSourceOutput {
+extension AddIncome: AccountDataSourceDelegate {
+    func drag(_ indexPath: IndexPath) -> [UIDragItem] {
+        //get the account from the array
+        let provider = NSItemProvider(object: incomeDataSource.accountArray[indexPath.row])
+        let dragItem = UIDragItem(itemProvider: provider)
+        return [dragItem]
+    }
     
+    func performDropWith(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
+    }
+    
+    func canHandle() -> Bool {
+        return true
+    }
+    
+    func dropSessionDidUpdate() -> UICollectionViewDropProposal {
+        let proposal = UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
+        return proposal
+    }
+    
+    func didSelectAccountDrop(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
+    }
+    // SELECT ITEM
     func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int) {
         let incomeAccount = Account()
-        incomeAccount.name = "Income"
+        incomeAccount.name = Strings.income
         incomeAccount.id = "External"
         incomeAccount.balance = 0
         

@@ -7,35 +7,36 @@
 //
 
 import UIKit
-import Firebase
 import JGProgressHUD
 
-class MovementVC: UIViewController, MovementDataSourceDelegate {
-    
-    
+class MovementVC: UIViewController {
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
         hud.interactionType = .blockAllTouches
         return hud
     }()
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var totalLabel: UILabel!{
         didSet {
             totalLabel.font = UIFont.mmLatoSemiBoldFont(size: 18)
             totalLabel.textColor = UIColor.mmBlackish
-            totalLabel.text = String(format:"%g €",account.balance)
+            totalLabel.text = String(format:"\(Strings.total) : %g €",account.balance)
         }
     }
     
     @IBOutlet weak var movTableView: UITableView!
     
     // MARK: -Properties
+    
     //Account received from main
     var account = Account()
     var movementArray: [Movement] = []
     //lazy -> it's initializad just when is called
     lazy var movementDataSource = MovementDataSource(movementArray: [], delegate: self)
 
+    // MARK: -View
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -44,6 +45,7 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
         loadData()
     }
     
+    // MARK: -Functions
     func setupTableView(){
         let nibMovementViewCell = UINib(nibName: "MovementCell", bundle:nil)
         movTableView.register(nibMovementViewCell, forCellReuseIdentifier: "MovementCell")
@@ -54,65 +56,35 @@ class MovementVC: UIViewController, MovementDataSourceDelegate {
     }
     
     func loadData(){
-        
-        //check every movement
-        
-        let movementsDB = Database.database().reference().child("Movements").child(MyFirebase.shared.userId)
-        hud.textLabel.text = Strings.loading
-        hud.show(in: self.view, animated: false)
-        movementsDB.keepSynced(true)
-        movementsDB.observe(.value, with: { (snapshot) in
-            
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in result {
-                    let id = child.key as String
-                    movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let snapshotValue = snapshot.value as? NSDictionary
-                        
-                        let origin = snapshotValue!["origin"] as? String
-                        let destination = snapshotValue!["destination"] as? String
-                        let comment = snapshotValue!["comment"] as? String
-                        let picture = snapshotValue!["picture"] as? String
-                        let amount = snapshotValue!["amount"] as? Double
-                        var date = snapshotValue!["date"] as? String
-                        // sometimes datepicker insert a dot, removing this to avoid error in dateformatter
-                        date = date?.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
-                        
-                        var movement = Movement()
-                        movement.origin = origin!
-                        movement.destination = destination!
-                        movement.comment = comment!
-                        movement.picture = picture!
-                        movement.amount = amount!
-                        movement.date = date!
-                        
-                        //check if the account is in the movement, if so, add it to the array to show
-                        movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
-                            let snapshotValue = snapshot.value as? NSDictionary
-                            
-                            let historic = snapshotValue![self.account.id] as? Bool
-                            
-                            if historic == true {
-                                self.movementArray.append(movement)
-                                self.movementDataSource.movementArray = self.movementArray
-                                self.movTableView.reloadData()
-                            }
-                        })
-                    })
-                }
+        MyFirebase.shared.loadMovements(account: account) { (movements, error) in
+            if let error = error {
+                //error
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: error.localizedDescription, delay: 3)
             }
-        })
-        hud.dismiss()
-    }
-    
-    // MARK: - MovementDataSourceDelegate
-    func didSelectImage(with url: String) {
-        let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
-        vc.picture = url
-        vc.modalPresentationStyle = .formSheet
-        present(vc, animated: true, completion: nil)
+            
+            if let movements = movements {
+                //something
+                self.movementDataSource.movementArray = movements
+                self.movementDataSource.titleAccount = self.account.name
+                self.movTableView.reloadData()
+            }
+        }
     }
 }
 
-
+extension MovementVC : MovementDataSourceDelegate {
+    // MARK: - MovementDataSourceDelegate
+    func didSelectImage(with url: String) {
+        //Check connection
+        if Reachability.isConnectedToNetwork() == false {
+            let alert = UIAlertController(style: .alert, title: Strings.noConnectionImage, message: Strings.noConnectionMessageImage)
+            alert.addAction(title: Strings.cancel, style: .cancel)
+            alert.show()
+        } else {
+            let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
+            vc.picture = url
+            vc.modalPresentationStyle = .formSheet
+            present(vc, animated: true, completion: nil)
+        }
+    }
+}

@@ -34,12 +34,7 @@ class PictureVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Check connection
-        if Reachability.isConnectedToNetwork() == false {
-            let alert = UIAlertController(style: .alert, title: Strings.noConnectionImage, message: Strings.noConnectionMessageImage)
-            alert.addAction(title: Strings.cancel, style: .cancel)
-            alert.show()
-        }
+        
     }
     
     // MARK: - Actions
@@ -47,6 +42,4 @@ class PictureVC: UIViewController {
     @IBAction func backTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
 }

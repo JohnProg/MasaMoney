@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import JGProgressHUD
 import SideMenu
 
@@ -17,7 +16,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         hud.interactionType = .blockAllTouches
         return hud
     }()
-    //MARKS: Outlets
+    //MARK: - Outlets
     
     @IBOutlet weak var incomeCollectionView: UICollectionView!
     
@@ -56,7 +55,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
-    //MARKS: Properties
+    //MARK: - Properties
     
     var incomeArray: [Account] = []
     var outcomeArray: [Account] = []
@@ -64,7 +63,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     var incomeDataSource = AccountDataSource(accountArray: [])
     var outcomeDataSource = AccountDataSource(accountArray: [])
     
-    //MARKS: - Views
+    //MARK: - Views
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.mmBlackish
@@ -102,70 +101,46 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    //MARKS: - Functions
+    //MARK: - Functions
     
     func setupCollectionView(){
         let nibAccountViewCell = UINib(nibName: "AccountsViewCell", bundle:nil)
         incomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         outcomeCollectionView.register(nibAccountViewCell, forCellWithReuseIdentifier: "AccountsViewCell")
         
-        incomeCollectionView.allowsSelection = true
-        incomeCollectionView.dragDelegate = self
-        incomeCollectionView.dropDelegate = self
-        incomeCollectionView.dragInteractionEnabled = true
-        outcomeCollectionView.dropDelegate = self
-        
         incomeCollectionView.delegate = incomeDataSource
         incomeCollectionView.dataSource = incomeDataSource
+        incomeCollectionView.dropDelegate = incomeDataSource
+        incomeCollectionView.dragDelegate = incomeDataSource
+        incomeCollectionView.allowsSelection = true
+        incomeCollectionView.dragInteractionEnabled = true
+        
         outcomeCollectionView.delegate = outcomeDataSource
         outcomeCollectionView.dataSource = outcomeDataSource
+        outcomeCollectionView.dropDelegate = outcomeDataSource
         
     }
     
     func loadData(){
-        
-        //read all the accounts
-        let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
-        hud.textLabel.text = Strings.loading
-        hud.show(in: self.view, animated: false)
-        accountsDB.keepSynced(true)
-        accountsDB.observe(.value, with: { (snapshot) in
-            //go through every result to get the id and read everyone
-            if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in result {
-                    let id = child.key as String
-                    accountsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        let snapshotValue = snapshot.value as? NSDictionary
-                        let name = snapshotValue!["name"] as? String
-                        let icon = snapshotValue!["icon"] as? String
-                        let balance = snapshotValue!["balance"] as? Double
-                        let income = snapshotValue!["income"] as? Bool
-                        
-                        let account = Account()
-                        account.id = id
-                        account.name = name!
-                        account.icon = icon!
-                        account.balance = balance!
-                        account.income = income!
-                        
-                        self.setUpAccount(account: account)
-                        
-                        self.incomeCollectionView.reloadData()
-                        self.outcomeCollectionView.reloadData()
-                        
-                        self.setUpTotal()
-                    })
-                }
+        MyFirebase.shared.loadAccounts { (account, error) in
+            if let error = error {
+                //error
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: error.localizedDescription, delay: 3)
             }
-        })
-        hud.dismiss()
+            
+            if let account = account {
+                self.setUpAccount(account: account)
+                self.incomeCollectionView.reloadData()
+                self.outcomeCollectionView.reloadData()
+                self.setUpTotal()
+            }
+        }
     }
     
     func setUpAccount(account: Account) {
         //Check if the account is an income or outcome and add
         //check if already exists to update it instead of append it
-        if account.income == true {
+        if account.income {
             if let i = incomeArray.index(where: {$0.id == account.id}){
                 incomeArray[i] = account
                 incomeDataSource.accountArray = incomeArray
@@ -205,7 +180,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     
     @objc func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer){
         var account = Account()
-        if (gestureRecognizer.state != UIGestureRecognizerState.ended){
+        if (gestureRecognizer.state != UIGestureRecognizerState.ended) {
             return
         }
         // Check from where is coming the long press, pick the account and open the next scene
@@ -221,7 +196,7 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
             }
         }
         
-        if account.name != ""{
+        if !account.name.isEmpty { 
             let vc: AccountVC = UIStoryboard(.Main).instantiateViewController()
             vc.vcType = .edit
             vc.account = account
@@ -249,31 +224,12 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         vc.vcType = .outcome
         self.navigationItem.title = Strings.back
         self.navigationController?.pushViewController(vc, animated: true)
-    }    
-    
-}
-
-extension Main: AccountDataSourceOutput  {
-    func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
-        //Identify collectionView by tag
-        //Open movementVC and send the account chosen
-        //set the string to the navigation item
-        if tag == 1 {
-            let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
-            vc.account = incomeDataSource.accountArray[indexPath.row]
-            self.navigationItem.title = Strings.back
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if tag == 2 {
-            let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
-            vc.account = outcomeDataSource.accountArray[indexPath.row]
-            self.navigationItem.title = Strings.back
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
 }
 
-extension Main: UICollectionViewDragDelegate {
-    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+extension Main: AccountDataSourceDelegate  {
+    // DRAG
+    func drag(_ indexPath: IndexPath) -> [UIDragItem] {
         //get the account from the array
         let provider = NSItemProvider(object: incomeDataSource.accountArray[indexPath.row])
         let dragItem = UIDragItem(itemProvider: provider)
@@ -288,14 +244,16 @@ extension Main: UICollectionViewDragDelegate {
         }
         return [dragItem]
     }
-}
-
-extension Main: UICollectionViewDropDelegate{
-    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+    // DROP
+    func performDropWith(_ coordinator: UICollectionViewDropCoordinator, tag: Int) {
         //Get destination account
         guard let destinationIndex = coordinator.destinationIndexPath?.row else {return}
-        let destinationAccount = outcomeArray[destinationIndex]
-
+        var destinationAccount = Account()
+        if tag == 1 {
+            destinationAccount = incomeArray[destinationIndex]
+        } else if tag == 2 {
+            destinationAccount = outcomeArray[destinationIndex]
+        }
         //Get origin account
         for item in coordinator.items {
             item.dragItem.itemProvider.loadObject(ofClass: Account.self, completionHandler: { (account, error) in
@@ -311,5 +269,29 @@ extension Main: UICollectionViewDropDelegate{
                 }
             })
         }
+    }
+    
+    func canHandle() -> Bool {
+        return true
+    }
+    
+    func dropSessionDidUpdate() -> UICollectionViewDropProposal {
+        let proposal = UICollectionViewDropProposal(operation: .copy, intent: .insertIntoDestinationIndexPath)
+        return proposal
+
+    }
+    // SELECT ITEM
+    func didSelectAccountAtIndexPath(_ indexPath: IndexPath, tag: Int ) {
+        //Identify collectionView by tag
+        //Open movementVC and send the account chosen
+        //set the string to the navigation item
+        let vc: MovementVC = UIStoryboard(.Main).instantiateViewController()
+        if tag == 1 {
+            vc.account = incomeDataSource.accountArray[indexPath.row]
+        } else if tag == 2 {
+            vc.account = outcomeDataSource.accountArray[indexPath.row]
+        }
+        self.navigationItem.title = Strings.back
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

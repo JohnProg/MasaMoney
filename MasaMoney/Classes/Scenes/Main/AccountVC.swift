@@ -48,6 +48,7 @@ class AccountVC: UIViewController {
     var iconString : String = "bills"
     var account = Account()
     
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +66,8 @@ class AccountVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
+    
+    // MARK: - Functions
     
     func setupItems(){
         acNameTF.delegate = self
@@ -99,6 +102,8 @@ class AccountVC: UIViewController {
             deleteButton.isHidden = false
         }
     }
+    
+    // MARK: - Actions
     
     @objc func addTapped(){
         //Check if field name is empty and show an alert
