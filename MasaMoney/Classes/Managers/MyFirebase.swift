@@ -169,7 +169,21 @@ class MyFirebase {
         _ = dbRef.child("Accounts").child(userId).child(idAccount).removeValue()
     }
     
+    // MARK: - Storage
+    
+    func storage(pictureTaken: UIImage, completion: @escaping (String?, Error?) -> Void) {
+        //Storaging profile picture
+        let profileImageUploadData = UIImageJPEGRepresentation(pictureTaken, 0.3)
+        
+        let fileName = UUID().uuidString
+        Storage.storage().reference().child("movementImages").child(fileName).putData(profileImageUploadData!, metadata: nil) { (metadata, err) in
+            let pictureUploaded = (metadata?.downloadURL()?.absoluteString)!
+            completion(pictureUploaded, err)
+        }
+    }
+    
     // MARK: - Load
+    
     func loadAccounts(completion: @escaping (Account?, Error?) -> Void) {
         //read all the accounts
         let accountsDB = Database.database().reference().child("Accounts").child(MyFirebase.shared.userId)
@@ -270,6 +284,27 @@ class MyFirebase {
             if historic == true {
                 completion (movement, nil)
             }
+        })
+    }
+    
+    func loadProfile (completion: @escaping (UserProfile?, Error?) -> Void) {
+        //read user information from Firebase
+        let userDB = Database.database().reference().child("users").child(MyFirebase.shared.userId)
+        userDB.keepSynced(true)
+        userDB.observe(.value, with: { (snapshot) in
+            
+            let snapshotValue = snapshot.value as? NSDictionary
+            guard let name = snapshotValue!["name"] as? String else {return}
+            guard let email = snapshotValue!["email"] as? String else {return}
+            guard let profileImageUrl = snapshotValue!["profileImageUrl"] as? String else {return}
+            
+            //Set the information in fields
+            var user = UserProfile()
+            user.name = name
+            user.email = email
+            user.pictureURL = profileImageUrl
+            
+            completion(user, nil)
         })
     }
 }

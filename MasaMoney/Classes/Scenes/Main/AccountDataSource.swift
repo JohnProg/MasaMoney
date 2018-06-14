@@ -54,7 +54,7 @@ class AccountDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDat
     
     // DRAG
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-//How do unwrap it? with if? guard is not possible
+//How do unwrap it? with if? guard is not possible, is it necessary?
         return (accountDatasourceDelegate?.drag(indexPath))!
     }
     

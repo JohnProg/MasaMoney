@@ -9,11 +9,6 @@
 import UIKit
 import JGProgressHUD
 
-import FirebaseCore
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseStorage
-
 class CalculatorVC: UIViewController {
     let hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
@@ -249,18 +244,14 @@ class CalculatorVC: UIViewController {
         hud.show(in: view, animated: true)
         // Storage picture if there is one
         if pictureTaken != nil {
-            //Storaging profile picture
-            let profileImageUploadData = UIImageJPEGRepresentation((self.pictureTaken)!, 0.3)
-            
-            let fileName = UUID().uuidString
-            Storage.storage().reference().child("movementImages").child(fileName).putData(profileImageUploadData!, metadata: nil) { (metadata, err) in
-                if let err = err {
-                    Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(err)", delay: 3);
-                    print("error ", err)
-                    return
+            MyFirebase.shared.storage(pictureTaken: pictureTaken!) { (pictureUploaded, error) in
+                if let error = error {
+                    Service.dismissHud((self.hud), text: "Error", detailText: "Failed to save user with error: \(error)", delay: 3)
                 }
-                self.pictureUploaded = (metadata?.downloadURL()?.absoluteString)!
-                self.savingMovement()
+                if let pictureUploaded = pictureUploaded {
+                    self.pictureUploaded = pictureUploaded
+                    self.savingMovement()
+                }
             }
         } else {
             savingMovement()

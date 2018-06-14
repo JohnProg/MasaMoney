@@ -150,7 +150,7 @@ extension MapVC :  MKMapViewDelegate{
         let region = MKCoordinateRegion(center: center, span: span)
         
         mapView.showsUserLocation = true
-        //Do api call with user Location
+        //Do api call with user Location just once using bool: apiCallMade
         if mapView.isUserLocationVisible, apiCallMade == false  {
             self.centerMapOnLocation(region: region)
             completedUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(mapView.userLocation.coordinate.latitude),\(mapView.userLocation.coordinate.longitude)&radius=9000&type=atm&key=AIzaSyAzmfKoVRy8PVXp43dWj0qGjRMyzY828Vc"

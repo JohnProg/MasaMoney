@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import Firebase
 import JGProgressHUD
 
 class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    let hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .light)
+        hud.interactionType = .blockAllTouches
+        return hud
+    }()
     
     // MARK: - Outlets
     
@@ -33,11 +37,6 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     @IBOutlet weak var picker_language: UIPickerView!
     
     // MARK: - Properties
-    let hud: JGProgressHUD = {
-        let hud = JGProgressHUD(style: .light)
-        hud.interactionType = .blockAllTouches
-        return hud
-    }()
     
     var languages =  [Strings.english,Strings.spanish]
     
@@ -69,27 +68,25 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     func loadData(){
         hud.textLabel.text = Strings.loading
         hud.show(in: self.view, animated: true)
-        //read user information from Firebase
-        let userDB = Database.database().reference().child("users").child(MyFirebase.shared.userId)
-        userDB.keepSynced(true)
-        userDB.observe(.value, with: { (snapshot) in
-            
-            let snapshotValue = snapshot.value as? NSDictionary
-            let name = snapshotValue!["name"] as? String
-            let email = snapshotValue!["email"] as? String
-            let profileImageUrl = snapshotValue!["profileImageUrl"] as? String
-            
-            //Set the information in fields
-            self.user_FirstName.text = name
-            self.user_Email.text = email
-            self.user_picture.setRounded()
-            let url = URL(string: profileImageUrl!)
-            if let data = try? Data(contentsOf: url!)
-            {
-                self.user_picture.image  = UIImage(data: data)
+        MyFirebase.shared.loadProfile { (user, error) in
+            if let error = error {
+                //error
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: error.localizedDescription, delay: 3)
             }
-            self.hud.dismiss()
-        })
+            
+            if let user = user {
+                //Set the information in fields
+                self.user_FirstName.text = user.name
+                self.user_Email.text = user.email
+                self.user_picture.setRounded()
+                let url = URL(string: (user.pictureURL))
+                if let data = try? Data(contentsOf: url!)
+                {
+                    self.user_picture.image  = UIImage(data: data)
+                }
+                self.hud.dismiss()
+            }
+        }
     }
     
     //Pulse effect profile picture
@@ -100,6 +97,7 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
             self.user_picture.transform = .identity
         }
     }
+    
     // Set current language
     func setPickerView(){
         if Locale.preferredLanguages.first?.prefix(2) == "es" {
