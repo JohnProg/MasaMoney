@@ -76,15 +76,9 @@ extension MovementVC : MovementDataSourceDelegate {
     // MARK: - MovementDataSourceDelegate
     func didSelectImage(with url: String) {
         //Check connection
-        if Reachability.isConnectedToNetwork() == false {
-            let alert = UIAlertController(style: .alert, title: Strings.noConnectionImage, message: Strings.noConnectionMessageImage)
-            alert.addAction(title: Strings.cancel, style: .cancel)
-            alert.show()
-        } else {
-            let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
-            vc.picture = url
-            vc.modalPresentationStyle = .formSheet
-            present(vc, animated: true, completion: nil)
-        }
+        let vc: PictureVC = UIStoryboard(.Picture).instantiateViewController()
+        vc.picture = url
+        vc.modalPresentationStyle = .formSheet
+        present(vc, animated: true, completion: nil)
     }
 }

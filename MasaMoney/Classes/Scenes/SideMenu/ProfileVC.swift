@@ -8,6 +8,7 @@
 
 import UIKit
 import JGProgressHUD
+import Kingfisher
 
 class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     let hud: JGProgressHUD = {
@@ -54,13 +55,6 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     
     override func viewDidAppear(_ animated: Bool) {
         animatePulseView()
-        
-        //Check connection
-        if Reachability.isConnectedToNetwork() == false {
-            let alert = UIAlertController(style: .alert, title: Strings.noConnectionImage, message: Strings.noConnectionMessageImage)
-            alert.addAction(title: Strings.cancel, style: .cancel)
-            alert.show()
-        }
     }
     
     // MARK: - Functions
@@ -80,10 +74,7 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
                 self.user_Email.text = user.email
                 self.user_picture.setRounded()
                 let url = URL(string: (user.pictureURL))
-                if let data = try? Data(contentsOf: url!)
-                {
-                    self.user_picture.image  = UIImage(data: data)
-                }
+                self.user_picture.kf.setImage(with: url)
                 self.hud.dismiss()
             }
         }
@@ -122,7 +113,7 @@ class ProfileVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let languageChosen = (languages[picker_language.selectedRow(inComponent: 0)])
-        
+        // TODO: - Make an extension
         switch (languageChosen){
         case Strings.spanish:
             let alert = UIAlertController(style: .alert, title: "Cambio de idioma", message: "Para cambiar el idioma debe cambiarlo desde el sistema de su telefono")

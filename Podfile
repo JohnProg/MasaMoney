@@ -1,6 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
 # platform :ios, '8.0'
 
 
@@ -26,4 +27,5 @@ pod 'SideMenu'
 
 pod 'Alamofire', '~> 4.7'
 
+pod 'Kingfisher', '~> 4.0'
 end

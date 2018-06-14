@@ -185,7 +185,7 @@ class CalculatorVC: UIViewController {
         //Check connection
         if Reachability.isConnectedToNetwork(){
             //If there is a picture taken and user tap, the picture is deleted and button turns able to pick another one
-            if pictureButton.isSelected == true {
+            if pictureButton.isSelected {
                 pictureButton.isSelected = false
                 pictureTaken = nil
             } else if pictureButton.isSelected == false {
@@ -274,7 +274,7 @@ class CalculatorVC: UIViewController {
         
         // Check if is an addition
         var addition = ""
-        if accountOrigin.income == true && accountDestination.income == true {
+        if accountOrigin.income && accountDestination.income {
             addition = accountDestination.name
         }
         // create the movement

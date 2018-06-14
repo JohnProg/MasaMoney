@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PictureVC: UIViewController {
     
@@ -28,13 +29,10 @@ class PictureVC: UIViewController {
         super.viewDidLoad()
 
         let url = URL(string: picture!)
-        if let data = try? Data(contentsOf: url!){
-            self.pictureView.image  = UIImage(data: data)
-        } 
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
+        self.pictureView.kf.setImage(with: url)
+//        if let data = try? Data(contentsOf: url!){
+//            self.pictureView.image  = UIImage(data: data)
+//        }
     }
     
     // MARK: - Actions

@@ -241,9 +241,9 @@ class MyFirebase {
         movementsDB.child(id).child("Accounts").observeSingleEvent(of: .value, with: { (snapshot) in
             let snapshotValue = snapshot.value as? NSDictionary
             
-            let historic = snapshotValue![account.id] as? Bool
+            guard let historic = snapshotValue![account.id] as? Bool else { return }
             
-            if historic == true {
+            if historic{
                 completion (movement, nil)
             }
         })
