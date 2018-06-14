@@ -74,6 +74,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.14):
     - GTMSessionFetcher/Core (= 1.1.14)
   - JGProgressHUD (2.0.1)
+  - Kingfisher (4.8.0)
   - LBTAComponents (1.0.2)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
@@ -93,6 +94,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - GoogleSignIn
   - JGProgressHUD
+  - Kingfisher (~> 4.0)
   - LBTAComponents
   - SideMenu
   - SwiftyJSON
@@ -117,6 +119,7 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - JGProgressHUD
+    - Kingfisher
     - LBTAComponents
     - leveldb-library
     - nanopb
@@ -142,12 +145,13 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 390ea358e5a0d0133153806f744662dad933d06b
   JGProgressHUD: 63ad7d8850702a91625fb9ed8e94eab706c03d81
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: aa55c9e7aea9f1708704d2962147b50b2c8e062a
+PODFILE CHECKSUM: 6351fb942af3fefec9be80a7a6ccb9b4844c2b4f
 
 COCOAPODS: 1.5.0

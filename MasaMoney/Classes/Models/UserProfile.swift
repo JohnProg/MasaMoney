@@ -16,6 +16,6 @@ extension UserProfile {
     init(_ dictionary: [String: Any]) {
         name = dictionary["name"] as! String
         email = dictionary["email"] as! String
-        pictureURL = dictionary["pictureURL"] as! String
+        pictureURL = dictionary["profileImageUrl"] as! String
     }
 }
