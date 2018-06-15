@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class SideMenuVC: UITableViewController {
 
@@ -58,6 +59,7 @@ class SideMenuVC: UITableViewController {
        //Log out
         case 4:
             try! Auth.auth().signOut()
+            FBSDKLoginManager().logOut()
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             let loginStoryboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
             let loginController = loginStoryboard.instantiateViewController(withIdentifier: "Login") as! Login

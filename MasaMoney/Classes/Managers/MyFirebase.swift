@@ -65,6 +65,23 @@ class MyFirebase {
         Auth.auth().removeStateDidChangeListener(listenHandler!)
     }
     
+    func signIntoFirebaseWithFacebook(credential: AuthCredential, completion: @escaping (Bool) -> Void){
+        Auth.auth().signInAndRetrieveData(with: credential) { (user, err) in
+            if let err = err {
+                print(err)
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: err.localizedDescription, delay: 3)
+                return
+            }
+            if(user?.additionalUserInfo?.isNewUser == true) {
+                self.createBasicAccounts()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    completion(true)
+                }
+            }
+        }
+        
+    }
+    
     func saveUserIntoFirebaseDatabase(name: String, email: String, profileImage: UIImage, loggedIn: Bool, completion: @escaping (Bool?) -> Void) {
         
         //Storaging profile picture
