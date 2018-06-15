@@ -143,6 +143,4 @@ class Login: UIViewController, GIDSignInUIDelegate {
             }
         }
     }
-
 }
-

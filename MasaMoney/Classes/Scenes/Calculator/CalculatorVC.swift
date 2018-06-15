@@ -264,6 +264,7 @@ class CalculatorVC: UIViewController {
             let alert = UIAlertController(style: .alert, title: Strings.emptyField, message: Strings.noAmount)
             alert.addAction(title: Strings.cancel, style: .cancel)
             alert.show()
+            hud.dismiss()
             return}
         
         // Update balance in the accounts except if it is an addition to an income account
