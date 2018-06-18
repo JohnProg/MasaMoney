@@ -220,6 +220,23 @@ class MyFirebase {
         })
     }
     
+    func loadAllMovements (completion: @escaping (Movement?, Error?) -> Void) {
+        let movementsDB = Database.database().reference().child("Movements").child(userId)
+        movementsDB.keepSynced(true)
+        movementsDB.observe(.value, with: { (snapshot) in
+            
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in result {
+                    let id = child.key as String
+                    movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let movement = Movement.init(snapshot.value as! [String : Any])
+                        completion (movement, nil)
+                    })
+                }
+            }
+        })
+    }
+    
     func loadMovements (account: Account, completion: @escaping ([Movement]?, Error?) -> Void) {
         
         var movementArray: [Movement] = []

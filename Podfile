@@ -28,4 +28,8 @@ pod 'SideMenu'
 pod 'Alamofire', '~> 4.7'
 
 pod 'Kingfisher', '~> 4.0'
+
+pod 'Fabric', '~> 1.7.7'
+pod 'Crashlytics', '~> 3.10.2'
+
 end

@@ -147,7 +147,7 @@ class CalculatorVC: UIViewController {
         guard let text = amountLabel.text else {return}
         if sender.tag == 11 && text.contains(".") == false{
             amountLabel.text = text + "."
-        }else if sender.tag == 12 {
+        } else if sender.tag == 12 {
             amountLabel.text?.removeLast()
         }
     }

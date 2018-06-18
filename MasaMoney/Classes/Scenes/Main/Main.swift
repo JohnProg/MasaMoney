@@ -9,6 +9,7 @@
 import UIKit
 import JGProgressHUD
 import SideMenu
+import Crashlytics
 
 class Main: UIViewController, UIGestureRecognizerDelegate{
     let hud: JGProgressHUD = {
@@ -77,6 +78,14 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
         ///set the recognize in multiple views
         incomeCollectionView.addGestureRecognizer(setGestureRecognizer())
         outcomeCollectionView.addGestureRecognizer(setGestureRecognizer())
+        
+        // set button to try crach
+        let button = UIButton(type: .roundedRect)
+        button.frame = CGRect(x: 20, y: 512, width: 100, height: 30)
+        button.setTitle("test", for: [])
+        button.addTarget(self, action: #selector(self.crashButtonTapped(_:)), for: .touchUpInside)
+//        view.addSubview(button)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -177,6 +186,10 @@ class Main: UIViewController, UIGestureRecognizerDelegate{
     }
     
     // MARK: Actions
+    
+    @IBAction func crashButtonTapped(_ sender: AnyObject) {
+        Crashlytics.sharedInstance().crash()
+    }
     
     @objc func handleLongPress(gestureRecognizer : UILongPressGestureRecognizer){
         var account = Account()
@@ -295,3 +308,5 @@ extension Main: AccountDataSourceDelegate  {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+

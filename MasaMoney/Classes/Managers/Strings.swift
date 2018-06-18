@@ -333,6 +333,15 @@ struct Strings {
         }
     }
     
+    static var export: String {
+        switch language {
+        case .en:
+            return "Export data"
+        case .es:
+            return "Exportar datos"
+        }
+    }
+    
     static var back: String {
         switch language {
         case .en:
@@ -492,6 +501,42 @@ struct Strings {
             return "We need access to your localization to be able to show you neraby ATMs"
         case .es:
             return "Necesitamos acceso a tu localización para poder mostrarte cajeros cercanos a ti"
+        }
+    }
+    
+    static var movement: String {
+        switch language {
+        case .en:
+            return "Movement"
+        case .es:
+            return "Movimiento"
+        }
+    }
+    
+    static var origin: String {
+        switch language {
+        case .en:
+            return "Origin"
+        case .es:
+            return "Origen"
+        }
+    }
+    
+    static var destiny: String {
+        switch language {
+        case .en:
+            return "Destiny"
+        case .es:
+            return "Destino"
+        }
+    }
+    
+    static var date: String {
+        switch language {
+        case .en:
+            return "Date"
+        case .es:
+            return "Fecha"
         }
     }
 

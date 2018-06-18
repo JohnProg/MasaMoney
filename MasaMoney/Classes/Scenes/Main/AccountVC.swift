@@ -200,7 +200,6 @@ extension AccountVC : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //Limit the decimalPad keyboard to two decimals, one dot and max character
         if textField.keyboardType == .decimalPad {
-            print(string)
             guard let oldText = textField.text, let r = Range(range, in: oldText) else {
                 return true
             }
