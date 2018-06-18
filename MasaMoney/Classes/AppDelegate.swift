@@ -14,6 +14,7 @@ import FirebaseDatabase
 import FBSDKCoreKit
 import GoogleSignIn
 import JGProgressHUD
+import Fabric
 
 
 @UIApplicationMain
@@ -43,6 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //MAP
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        
+        //Crashlytics
+        Fabric.sharedSDK().debug = true
         
         return true
     }

@@ -124,7 +124,9 @@ class AccountVC: UIViewController {
                 alert.show()
                 return
             }
-            MyFirebase.shared.createAccounts(name: name, balance: Double(amount)!, icon: iconString, income: true)
+            //Change "," to "." to convert it to double
+            let amountDouble = amount.replacingOccurrences(of: ",", with: ".")
+            MyFirebase.shared.createAccounts(name: name, balance: Double(amountDouble)!, icon: iconString, income: true)
             
         case .outcome:
             MyFirebase.shared.createAccounts(name: name, balance: 0.0, icon: iconString, income: false)
@@ -203,11 +205,11 @@ extension AccountVC : UITextFieldDelegate {
             }
             
             let newText = oldText.replacingCharacters(in: r, with: string)
-            let isNumeric = newText.isEmpty || (Double(newText) != nil)
-            let numberOfDots = newText.components(separatedBy: ".").count - 1
+            let isNumeric = !newText.isEmpty || (Double(newText) != nil)
+            let numberOfDots = newText.components(separatedBy: ",").count - 1
             
             let numberOfDecimalDigits: Int
-            if let dotIndex = newText.index(of: ".") {
+            if let dotIndex = newText.index(of: ",") {
                 numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
             } else {
                 numberOfDecimalDigits = 0
@@ -216,8 +218,8 @@ extension AccountVC : UITextFieldDelegate {
             if newText.count > 9 {
                 return false
             }
-            
             return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
+            
         }else{
             // Control max of characters
             let str = (NSString(string: textField.text!)).replacingCharacters(in: range, with: string)

@@ -24,11 +24,17 @@ class Login: UIViewController, GIDSignInUIDelegate {
         return hud
     }()
     
+    // MARK: - Properties
+    
     var name: String? = ""
     var email: String? = ""
     var profileImage: UIImage?
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var facebookButton: UIButton!
+    
+    // MARK: - Views
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,24 +44,7 @@ class Login: UIViewController, GIDSignInUIDelegate {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    //MARK: - Actions Buttons
-    
-    @IBAction func facebookButton(_ sender: Any) {
-        hud.textLabel.text = Strings.loggingFacebook
-        hud.show(in: view, animated: true)
-        let loginManager = LoginManager()
-        loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
-            switch result {
-            case .success(grantedPermissions: _, declinedPermissions: _, token: _):
-                self.signIntoFirebaseWithFacebook()
-                
-            case .failed(let err):
-                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
-            case .cancelled:
-                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.cancelFacebook)", delay: 3)
-            }
-        }
-    }
+    // MARK: - Functions
     
     func setupFaceButton() {
         facebookButton.frame = CGRect(x: 60, y: 512, width: view.frame.width - 115, height: 40)
@@ -72,18 +61,12 @@ class Login: UIViewController, GIDSignInUIDelegate {
 
     //MARK: - Sign into firebase
     
+    //Authentication with firebase, retrieve info to check if user already exists
     func signIntoFirebaseWithFacebook() {
         guard let authenticationToken = AccessToken.current?.authenticationToken else { return }
         let credential = FacebookAuthProvider.credential(withAccessToken: authenticationToken)
-        //Authentication with firebase, retrieve info to check if user already exists
-        Auth.auth().signInAndRetrieveData(with: credential) { (user, err) in
-            if let err = err {
-                print(err)
-                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: err.localizedDescription, delay: 3)
-                return
-            }
-            if(user?.additionalUserInfo?.isNewUser == true) {
-                MyFirebase.shared.createBasicAccounts()
+        MyFirebase.shared.signIntoFirebaseWithFacebook(credential: credential) { (result) in
+            if result {
                 self.fetchFacebookUser()
             }
         }
@@ -99,7 +82,7 @@ class Login: UIViewController, GIDSignInUIDelegate {
             switch result {
             // If is a success, fetch info
             case .success(response: let response):
-                guard let responseDict = response.dictionaryValue else { Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3); return }
+                guard let responseDict = response.dictionaryValue else { Service.dismissHud(self.hud, text: Strings.error, detailText: Strings.error, delay: 3); return }
                 
                 let json = JSON(responseDict)
                 self.name = json["name"].string
@@ -107,19 +90,18 @@ class Login: UIViewController, GIDSignInUIDelegate {
                 guard let profilePictureUrl = json["picture"]["data"]["url"].string,
                 let url = URL(string: profilePictureUrl)
                     else {
-                        Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3)
+                        Service.dismissHud(self.hud, text: Strings.error, detailText: Strings.error, delay: 3)
                         return
                 }
-
                 
                 //Unwrapping the url to get the image
                 URLSession.shared.dataTask(with: url) { (data, response, err) in
                     if let err = err {
-                        Service.dismissHud(self.hud, text: "Fetch error", detailText: err.localizedDescription, delay: 3)
+                        Service.dismissHud(self.hud, text: Strings.error, detailText: err.localizedDescription, delay: 3)
                     }
 
                     guard let data = data else {
-                        Service.dismissHud(self.hud, text: "Error", detailText: "Failed to fetch user.", delay: 3)
+                        Service.dismissHud(self.hud, text: Strings.error, detailText: Strings.error, delay: 3)
                         return
                     }
                     
@@ -137,12 +119,28 @@ class Login: UIViewController, GIDSignInUIDelegate {
                 break
                 
             case .failed(let err):
-                Service.dismissHud(self.hud, text: "Error", detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
+                Service.dismissHud(self.hud, text: Strings.error, detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
                 break
             }
         })
         graphRequestConnection.start()
     }
-
+    
+    //MARK: - Actions Buttons
+    
+    @IBAction func facebookButton(_ sender: Any) {
+        hud.textLabel.text = Strings.loggingFacebook
+        hud.show(in: view, animated: true)
+        let loginManager = LoginManager()
+        loginManager.logIn(readPermissions: [.publicProfile, .email], viewController: self) { (result) in
+            switch result {
+            case .success(grantedPermissions: _, declinedPermissions: _, token: _):
+                self.signIntoFirebaseWithFacebook()
+            case .failed(let err):
+                Service.dismissHud(self.hud, text: Strings.error, detailText: "\(Strings.failedFacebook) \(err)", delay: 3)
+            case .cancelled:
+                Service.dismissHud(self.hud, text: Strings.error, detailText: "\(Strings.cancelFacebook)", delay: 3)
+            }
+        }
+    }
 }
-

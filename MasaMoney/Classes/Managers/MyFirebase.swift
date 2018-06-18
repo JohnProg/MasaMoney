@@ -65,6 +65,23 @@ class MyFirebase {
         Auth.auth().removeStateDidChangeListener(listenHandler!)
     }
     
+    func signIntoFirebaseWithFacebook(credential: AuthCredential, completion: @escaping (Bool) -> Void){
+        Auth.auth().signInAndRetrieveData(with: credential) { (user, err) in
+            if let err = err {
+                print(err)
+                Service.dismissHud(self.hud, text: Strings.errorSignUp, detailText: err.localizedDescription, delay: 3)
+                return
+            }
+            if(user?.additionalUserInfo?.isNewUser == true) {
+                self.createBasicAccounts()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    completion(true)
+                }
+            }
+        }
+        
+    }
+    
     func saveUserIntoFirebaseDatabase(name: String, email: String, profileImage: UIImage, loggedIn: Bool, completion: @escaping (Bool?) -> Void) {
         
         //Storaging profile picture
@@ -197,6 +214,23 @@ class MyFirebase {
                         let account = Account.init(snapshot.value as! NSDictionary)
                         account.id = id                        
                         completion (account, nil)
+                    })
+                }
+            }
+        })
+    }
+    
+    func loadAllMovements (completion: @escaping (Movement?, Error?) -> Void) {
+        let movementsDB = Database.database().reference().child("Movements").child(userId)
+        movementsDB.keepSynced(true)
+        movementsDB.observe(.value, with: { (snapshot) in
+            
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in result {
+                    let id = child.key as String
+                    movementsDB.child(id).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let movement = Movement.init(snapshot.value as! [String : Any])
+                        completion (movement, nil)
                     })
                 }
             }
